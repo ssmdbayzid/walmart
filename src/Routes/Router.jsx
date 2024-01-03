@@ -4,6 +4,7 @@ import App from "../App";
 import Payment_Success from "../Page/Payment/Payment_Success";
 import Payment_Cancel from "../Page/Payment/Payment_Cancel";
 import Payment from "../Page/Payment/Payment";
+import Home from "../Page/Home/Home";
 
 const router = createBrowserRouter([
     {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Payment />
+                element: < Home/>
             },
             {
                 path: "/home",

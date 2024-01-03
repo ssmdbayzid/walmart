@@ -1,4 +1,4 @@
-#root {
+/* #root {
     display: flex;
     align-items: center;
   }
@@ -37,7 +37,7 @@
     margin-bottom: 24px;
   }
   
-  /* Buttons and links */
+  /* Buttons and links 
   button {
     background: #5469d4;
     font-family: Arial, sans-serif;
@@ -63,7 +63,7 @@
     cursor: default;
   }
   
-  /* spinner/processing state, errors */
+  /* spinner/processing state, errors 
   .spinner,
   .spinner:before,
   .spinner:after {
@@ -133,3 +133,4 @@
       min-width: initial;
     }
   }
+  */

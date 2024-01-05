@@ -3,6 +3,7 @@ import logo from '../../assets/logo.png'
 import SearchBar from './SearchBar'
 import HeaderIcons from './HeaderIcons'
 import { IoMenu } from "react-icons/io5";
+import ShoppingCartModal from './ShoppingCartModal';
 
 const Header = () => {
   return (
@@ -38,6 +39,7 @@ const Header = () => {
             </ul>
             </div>
 </nav>
+<ShoppingCartModal />
 </div>
   )
 }

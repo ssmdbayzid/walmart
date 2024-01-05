@@ -16,7 +16,7 @@ const products = [
       category: {
         id: 1,
         name: "nuevo",
-        image: "https://i.imgur.com/QkIa5tT.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival1.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-02T09:35:04.000Z"
       }
@@ -36,7 +36,7 @@ const products = [
       category: {
         id: 2,
         name: "Electronics",
-        image: "https://i.imgur.com/ZANVnHE.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival2.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-01T15:23:18.000Z"
       }
@@ -56,7 +56,7 @@ const products = [
       category: {
         id: 2,
         name: "Electronics",
-        image: "https://i.imgur.com/ZANVnHE.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival3.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-01T15:23:18.000Z"
       }
@@ -76,7 +76,7 @@ const products = [
       category: {
         id: 2,
         name: "Electronics",
-        image: "https://i.imgur.com/ZANVnHE.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival4.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-01T15:23:18.000Z"
       }
@@ -96,7 +96,7 @@ const products = [
       category: {
         id: 2,
         name: "Electronics",
-        image: "https://i.imgur.com/ZANVnHE.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival5.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-01T15:23:18.000Z"
       }
@@ -116,7 +116,7 @@ const products = [
       category: {
         id: 2,
         name: "Electronics",
-        image: "https://i.imgur.com/ZANVnHE.jpeg",
+        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival6.png.webp",
         creationAt: "2024-01-01T15:23:18.000Z",
         updatedAt: "2024-01-01T15:23:18.000Z"
       }
@@ -127,7 +127,7 @@ const Banner = () => {
     const img2 = "http://ps.magentech.com/themes/sp_destino/modules/spbanner/images/banner01.jpg"
 
   return (
-    <div className="max-w-[1170px] mx-auto mt-5">  
+    <div className="max-w-[1170px] mx-auto my-20">  
     <div className="flex">
       <div className="min-w-[30%] ">
     <img src="https://www.asus.com/campaign/Powered-by-ASUS-UK/images/9513Mobile_1080x1500_ROG--logo-removed.jpg"
@@ -135,7 +135,7 @@ const Banner = () => {
     className="h-full"
     />     
       </div>
-      <div>
+      <div className='min-w-[70%]'>
         <div className="flex justify-between mx-8 mb-4">
           <h2 className="text-2xl font-bold font-mono">Product Feature</h2>
           <a href='/' className="px-6 py-1 -skew-y-[10deg] bg-blue-600 text-white cursor-pointer">View All</a>
@@ -170,11 +170,7 @@ const Banner = () => {
                 </div>
 
             </div>
-                {/* --------------- Icons -----------  */}                
-                <div className="mt-auto">
-                 
-            
-                </div>
+                
             </div>
         </div>
         )}

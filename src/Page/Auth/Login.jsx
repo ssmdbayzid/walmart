@@ -1,11 +1,34 @@
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
 
+import { AuthContext } from '../../Provider/AuthProvider';
+import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const Login = () => {
+    const {logIn} =useAuth()
+    
+    const handleLogin = (e) =>{
+
+        const navigate = useNavigate()
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value
+        
+        logIn(email, password)
+        .then(result=> {
+            navigate("/")
+            console.log(result.email)
+            toast.success(`Result Successfull`)
+        })
+        .catch(error => console.log(error))
+        
+    }
     return (
         <div className='max-w-[1170px] mx-auto flex items-center justify-center'>
             <div className="w-full md:w-1/2">
-                <form action="#" className='w-full'>
+                <form onSubmit={handleLogin} className='w-full'>
                     <div className='relative'>
                         <p className='text-xl text-blue-500 font-bold '>Walmart
                         </p>
@@ -15,14 +38,14 @@ const Login = () => {
                     <div>
                         <label htmlFor="email" className='font-semibold '>Email</label>
                         <br />
-                        <input type="text" name='email' id='email'
+                        <input type="email" name='email' id='email'
                             className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1 mb-3'
                             placeholder='example@gmail.com' />
                     </div>
                     <div>
                         <label htmlFor="password" className='font-semibold' >Password</label>
                         <br />
-                        <input type="text" name='email' id='password'
+                        <input type="password" name='password' id='password'
                             className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
                             placeholder='example@gmail.com' />
                     </div>

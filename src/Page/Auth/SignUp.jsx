@@ -2,15 +2,19 @@ import React from 'react'
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa6";
 import img from '../../assets/image/signup vactor.png'
+import useAuth from '../../Hooks/useAuth';
 
 
 const SignUp = () => {
+    const {createUser} = useAuth()
     const handleSignUp  = (e)=>{
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        createUser(email, password)
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
     }
   return (
     <div className='max-w-[1170px] mx-auto flex-1 flex items-center justify-center md:h-[80vh]'>
@@ -37,11 +41,11 @@ const SignUp = () => {
                             placeholder='example@gmail.com' />
                     </div>
                     <p className='text-gray-500 my-3'>Forgot Password ?</p>
-                    <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-3'>Log In</button>
+                    <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-3'>Sign Up</button>
                 </form>
                 <div className="inline-flex items-center justify-center w-full ">
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-blue-100 via-blue-500 to-yellow-300 border-0 rounded dark:bg-gray-700" />
-                    <p className='mx-3 text-lg'>Or Signin With</p>
+                    <p className='mx-3 text-lg'>Or Signup With</p>
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-yellow-300 via-blue-500 to-blue-100 border-0 rounded dark:bg-gray-700" />   
                 </div>
                 <div className='flex justify-between gap-5'>

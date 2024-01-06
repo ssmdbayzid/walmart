@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ShoppingCartModal = () => {
+const ShoppingCartModal = ({setShowSModal, showSModal}) => {
   return (
-    <div className=" hidden relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div className="relative z-[999]" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
     {/* <!--
       Background backdrop, show/hide based on slide-over state.
   
@@ -12,8 +12,11 @@ const ShoppingCartModal = () => {
       Leaving: "ease-in-out duration-500"
         From: "opacity-100"
         To: "opacity-0"
+
+
+        
     --> */}
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity"></div>
   
     <div className="fixed inset-0 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -34,7 +37,9 @@ const ShoppingCartModal = () => {
                 <div className="flex items-start justify-between">
                   <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
                   <div className="ml-3 flex h-7 items-center">
-                    <button type="button" className="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <button
+                    onClick={()=>setShowSModal(!showSModal)}
+                    type="button" className="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
                       <span className="absolute -inset-0.5"></span>
                       <span className="sr-only">Close panel</span>
                       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
@@ -109,15 +114,15 @@ const ShoppingCartModal = () => {
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                  <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                  <a href="/shoppingCart" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
-                    or
-                    <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Continue Shopping
+                    or &nbsp;
+                    <a href='/' className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Continue Shopping 
                       <span aria-hidden="true"> &rarr;</span>
-                    </button>
+                    </a>
                   </p>
                 </div>
               </div>

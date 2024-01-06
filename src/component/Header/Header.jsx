@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../../assets/logo.png'
 import SearchBar from './SearchBar'
 import HeaderIcons from './HeaderIcons'
@@ -6,6 +6,7 @@ import { IoMenu } from "react-icons/io5";
 import ShoppingCartModal from './ShoppingCartModal';
 
 const Header = () => {
+    const [showSModal, setShowSModal] = useState(false)
   return (
     <div className="">
     <nav className="max-w-[1170px] bg-white border-gray-200  mx-auto">
@@ -14,7 +15,7 @@ const Header = () => {
             <img src={logo} className="h-12" alt="Flowbite Logo" />            
         </a>
         <SearchBar />
-        <HeaderIcons />
+        <HeaderIcons setShowSModal={setShowSModal} showSModal={showSModal} />
     </div>
 </nav>
 <nav className="bg-[#0870CC]  ">
@@ -25,7 +26,7 @@ const Header = () => {
             </div>
             <ul className="flex w-full h-8 items-center  font-medium mt-0 space-x-8 rtl:space-x-reverse text-md">
                 <li>
-                    <a href="#" className="h-full  font-light hover:bg-blue-300 text-white hover:underline" aria-current="page">Home</a>
+                    <a href="/" className="h-full  font-light hover:bg-blue-300 text-white hover:underline" aria-current="page">Home</a>
                 </li>
                 <li>
                     <a href="#" className="h-full  font-light hover:bg-blue-300 text-white hover:underline">Company</a>
@@ -39,7 +40,7 @@ const Header = () => {
             </ul>
             </div>
 </nav>
-<ShoppingCartModal />
+{showSModal && <ShoppingCartModal setShowSModal={setShowSModal} showSModal={showSModal} />}
 </div>
   )
 }

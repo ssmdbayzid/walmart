@@ -14,20 +14,21 @@ const cartSlice = createSlice({
 
     // ======= Increase or Add cart item
     addToCart(state, action){
+      console.log(action.payload)
       const itemIndex = state.cartItems.findIndex((item)=> item.id === action.payload.id)
       if(itemIndex >= 0){
         state.cartItems[itemIndex].cartQuantity += 1;
-        toast.info(`Increase ${state.cartItems[itemIndex].name} cart quantity`)
+        toast.info(`Increase ${state.cartItems[itemIndex].title} cart quantity`)
         
         // Updated data store to localStorage
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
       }
       else{
         const newCartItem = {...action.payload, cartQuantity: 0}
-        state,cartItems.push(newCartItem)
+        state.cartItems.push(newCartItem)
 
         // =========== Toast ============
-        toast.success(`${action.payload.name} added to cart`)
+        toast.success(`${action.payload.title} added to cart`)
 
         // Updated data store to localStorage
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
@@ -69,21 +70,46 @@ const cartSlice = createSlice({
       //============ Toast =========
       toast.error("Reset cart Items")
     },
-    getTotals(state){
-      let {total, quantity} = state.cartItems.reduct((cartTotal, cartItem)=> {
-        const {price, cartQuantity} = cartItems;
-        const itemTotalPrice = price * cartQuantity;
+    getTotal(state){
 
+    let {total, quantity} = state.cartItems.reduce((cartTotal, cartItem)=>{
+
+      
+      const {price, cartQuantity} = cartItem;
+      const itemTotalPrice = price * cartItem.cartQuantity;
+
+      cartTotal.total += itemTotalPrice;
+      cartTotal.quantity += cartQuantity;   
+      
+      return cartTotal;
+  }, {
+      total: 0,
+      quantity : 0,
+  })
+
+  state.cartTotalQty = quantity;
+  state.cartTotalAmount = total;
+
+    }
+  }
+})
+
+export const {addToCart, decreaseCartQty, removeCartItem, resetCartItem, getTotal} = cartSlice.actions;
+
+export default cartSlice.reducer;
+
+/*
+let {total, quantity} = state.cartItems.reduce((cartTotal, cartItem)=>{
+        const {price, cartQuantity} = cartItem;
+        const itemTotalPrice = price * cartQuantity;
+        console.log(cartTotal)
         cartTotal.total += itemTotalPrice;
         cartTotal.quantity += cartQuantity;
       }, {
         total: 0,
         quantity: 0,
       })
+      state.cartTotalAmount = total
+      state.cartTotalQty = quantity
     }
-  }
-})
-
-export const {addToCart, decreaseCartQty, removeCartItem, resetCartItem,getTotals} = cartSlice.actions;
-
-export default cartSlice.reducer;
+    */

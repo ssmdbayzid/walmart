@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
+
 import { FaUser } from "react-icons/fa";
 
 // Import Swiper React components
@@ -11,13 +12,16 @@ import { ItemsCategory } from '../../assets/data/ItemsCategory'
 
 import axios from 'axios';
 import Carousel from './Carousel';
+
 // import banner from '../../assets/image/banner'
 
 // import required modules
 
+
 const HeroSection = () => {
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+    
     const [products, setProducts] = useState(null)
     useEffect(()=>{
       axios.get("https://fakestoreapi.com/products")
@@ -26,7 +30,7 @@ const HeroSection = () => {
       })  
       .catch(error=>console.log(error))
     },[])
-    ItemsCategory
+    
     return (
         <div className='w-full md:max-w-[1170px] mx-auto my-4 '>
             <div className='flex w-full'>
@@ -34,7 +38,7 @@ const HeroSection = () => {
                     {ItemsCategory.map((item, index) =>
                         <div key={index}>
                             <ul className='px-2 py-3 border '>
-                                <li ><a href="" className='flex gap-3 items-center'>
+                                <li ><a href={`/products?category=${item.name}`} className='flex gap-3 items-center'>
                                     <span>{React.createElement(item.icon)}</span>
                                     <h2>{item.name}</h2>
                                 </a></li>

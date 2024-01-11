@@ -141,7 +141,10 @@ const Products = () => {
         <div className="grid grid-cols-5 gap-3">
         {products && products.map((item, index)=> 
         <div key={index} className="">
-            <img src={item.category.image} alt="" />
+            <div className='h-60 '>
+            <img src={item.category.image} alt=""
+             class=" w-full h-full mx-auto " />                              
+            </div>   
             <div className="px-1">
                 {/* --------- Product Content ---------- */}
             <div className="">
@@ -170,10 +173,7 @@ const Products = () => {
 
             </div>
                 {/* --------------- Icons -----------  */}                
-                <div className="mt-auto">
-                 
             
-                </div>
             </div>
         </div>
         )}

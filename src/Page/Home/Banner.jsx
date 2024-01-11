@@ -138,12 +138,14 @@ const Banner = () => {
       <div className='min-w-[70%]'>
         <div className="flex justify-between mx-8 mb-4">
           <h2 className="text-2xl font-bold font-mono">Product Feature</h2>
-          <a href='/' className="px-6 py-1 -skew-y-[10deg] bg-blue-600 text-white cursor-pointer">View All</a>
+          <a href='/products' className="px-6 py-1 -skew-y-[10deg] bg-blue-600 text-white cursor-pointer">View All</a>
         </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-2">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mx-2">
       {products && products.map((item, index)=> 
         <div key={index} className="">
-            <img src={item.category.image} alt="" />
+          <div className="h-60">
+            <img src={item.category.image} alt="" className='h-full w-full' />
+          </div>
             <div className="px-1">
                 {/* --------- Product Content ---------- */}
             <div className="">

@@ -10,6 +10,7 @@ import ShoppingCart from "../Page/ShoppingCart/ShoppingCart";
 import CheckOut from "../Page/ShoppingCart/CheckOut";
 import Login from "../Page/Auth/Login";
 import SignUp from "../Page/Auth/SignUp";
+import Products from "../Page/Products/Products";
 
 const router = createBrowserRouter([
     {
@@ -23,15 +24,11 @@ const router = createBrowserRouter([
             {
                 path: "/home",
                 element: <Home />
-            },
+            },           
             {
-                path: "/login",
-                element: <Login />
-            },
-            {
-                path: "/signup",
-                element: <SignUp />
-            },
+                path: "/products",
+                element: <Products />
+            },                    
             {
                 path: "/product/:id",
                 element: <ProductDetails />
@@ -51,6 +48,14 @@ const router = createBrowserRouter([
             {
                 path: '/payment-cancel',
                 element: <Payment_Cancel />
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/signup",
+                element: <SignUp />
             },
         ]
     }

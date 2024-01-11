@@ -17,31 +17,31 @@ const SignUp = () => {
         .catch(error => console.log(error))
     }
   return (
-    <div className='max-w-[1170px] mx-auto flex-1 flex items-center justify-center md:h-[80vh]'>
-            <div className="w-full md:w-1/2 bg-blue-200 p-2">
+    <div className='max-w-[1170px] mx-auto  flex items-center justify-center my-3'>
+            <div className="w-full max-w-[500px] md:w-1/2 bg-blue-200 p-2">
                 <form onSubmit={handleSignUp} className='w-full'>
                     <div className='relative'>
-                        <p className='text-xl text-blue-500 font-bold '>Walmart
+                        <p className='text-lg text-blue-500 font-bold '>Walmart
                         </p>
-                        <span className='absolute top-4 left-20 w-4 h-4 bg-yellow-300 rounded-full'></span>
+                        <span className='absolute top-3 left-20 w-4 h-4 bg-yellow-300 rounded-full'></span>
                     </div>
-                    <p className='text-5xl font-bold font-sans mb-10'>Sign Up</p>
+                    <p className='text-2xl font-bold font-sans mb-2'>Sign Up</p>
                     <div>
                         <label htmlFor="email" className='font-semibold '>Email</label>
                         <br />
                         <input type="email" name='email' id='email'
-                            className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1 mb-3'
+                            className='w-full mt-4 py-2 md:py-1.5 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1 mb-2'
                             placeholder='example@gmail.com' />
                     </div>
                     <div>
                         <label htmlFor="password" className='font-semibold' >Password</label>
                         <br />
                         <input type="password" name='password' id='password'
-                            className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
+                            className='w-full mt-4 py-2 md:py-2 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
                             placeholder='example@gmail.com' />
                     </div>
                     <p className='text-gray-500 my-3'>Forgot Password ?</p>
-                    <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-3'>Sign Up</button>
+                    <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-1'>Sign Up</button>
                 </form>
                 <div className="inline-flex items-center justify-center w-full ">
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-blue-100 via-blue-500 to-yellow-300 border-0 rounded dark:bg-gray-700" />

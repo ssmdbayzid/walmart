@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 // import { products } from '../../assets/data/ItemsCategory'
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -6,10 +7,10 @@ import { Link } from 'react-router-dom';
 import { products } from '../../assets/data/ItemsCategory';
 
 
-const ProductList = ({ result, handleClick}) => {
+const ProductsGrid = ({ result, handleClick}) => {
     const [pageNo, setPageNo] = useState(1)
     const [data, setData] = useState(null)
-    const pageSize = 8
+    const pageSize = 9
 
     useEffect(()=>{
         const startIndex = (pageNo - 1) * pageSize;
@@ -18,11 +19,12 @@ const ProductList = ({ result, handleClick}) => {
         setData(filterProduct)
     },[pageNo, result])
 
+
   return (
-    <div className=''>
+    <div>
         <div>
         <p className="text-xl font-bold">Recommanded</p>
-        <div className="flex flex-wrap gap-4 mb-3 my-2 bg-green-300">
+        <div className=" flex flex-wrap gap-4 mb-3 my-2 mx-auto">
         <button 
         value=""
         onClick={handleClick}
@@ -35,25 +37,25 @@ const ProductList = ({ result, handleClick}) => {
         value={item.company.toLowerCase()}
         onClick={handleClick}
         className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
-                {item[0].company}
+                {item.company}
             </button> )}
         </div>
         </div>
         
-          <div className="grid md:grid-cols-1 gap-3 ">
+          <div className="grid md:grid-cols-3 gap-3 ">
                     {data && data.map((item, index)=>
-                        <div key={index} className="md:flex border-b border-gray-800 dark:border-gray-700 ">
+                        <div key={index} className="relative border border-gray-800 dark:border-gray-700 ">
                                
-                            <div className='h-56 w-1/2'>
+                            <div className='h-60 '>
                             <img src={item.image} alt=""
                             className=" w-full h-full mx-auto " />                              
                             </div>                        
-                            <div className='w-1/2'>
-                            <div className="p-2">                                
-                                    <h3 className="text-2xl font-medium dark:text-gray-400 mb-1">
+                            
+                            <div className="p-2">
+                                
+                                    <h3 className="text-xl font-medium dark:text-gray-400">
                                         {item.title}
                                     </h3>
-                                    <p className='pb-2'>{item.description}</p>
                                     <ul className="flex py-1">
                                     {[...Array(5).keys()].map((_, index)=>
                                         <svg  key={index} xmlns="http://www.w3.org/2000/svg" width="14" height="14"
@@ -72,7 +74,7 @@ const ProductList = ({ result, handleClick}) => {
                                     <span className="text-green-600 dark:text-green-600">${item.price}.00</span>
                                 </p>
                             </div>
-                            <div className="flex justify-between border-t border-gray-300 dark:border-gray-700 cursor-pointer w-full">
+                            <div className="flex justify-between border-t border-gray-300 dark:border-gray-700 cursor-pointer e-full">
                                 <div  className="w-1/2 bg-blue-200 px-2 py-1 cursor-pointer">
                                 <MdOutlineShoppingCart className='text-blue-700 text-xl  mx-auto' />
                                 </div>
@@ -82,7 +84,8 @@ const ProductList = ({ result, handleClick}) => {
                                 </Link>
                                 
                             </div>
-                            </div>                                                        
+                            
+                            
                         </div>)}
                     
                 </div>
@@ -124,4 +127,4 @@ const ProductList = ({ result, handleClick}) => {
   )
 }
 
-export default ProductList
+export default ProductsGrid

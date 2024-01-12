@@ -1,22 +1,23 @@
 import React from 'react'
 
-const SearchBar = ({query, setQuery}) => {
+const SearchBar = ({setQuery}) => {
   
   return (
-    <div>
-        <form className="flex">
-        <input
-        onChange={(e)=> setQuery(e.target.value)}
-        type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Product" required></input>
-        <button type="submit" className="p-2.5 text-sm font-medium  text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-         </svg>
-         <span className="sr-only">Search</span>
-    </button>
-</form>
+    <div className="mx-auto   "> 
+  <form className="relative mx-auto flex w-full  items-center justify-between rounded-md border shadow-sm"> 
+    <svg className="absolute left-2 block h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" className=""></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65" className=""></line>
+    </svg>
+    <input 
+    type="name" 
+    name="search"
+    onChange={(e)=>setQuery(e.target.value)}
+    className="h-12 w-full rounded-md py-4 pr-40 pl-12 outline-none focus:ring-2" placeholder="Search Products" />
+    <button type="submit" className="absolute right-0 mr-1 inline-flex h-10 items-center justify-center rounded-lg bg-gray-900 px-6 font-medium text-white focus:ring-4 hover:bg-gray-700">Search</button>
+  </form>
+</div>
 
-    </div>
   )
 }
 

@@ -1,135 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { products } from '../../assets/data/ItemsCategory'
 
-const products = [
-  {
-      id: 17,
-      title: "Camisa Preta",
-      price: 999,
-      description: "camisa preta com detalhes",
-      images: [
-        "https://i.imgur.com/9DqEOV5.jpeg",
-        "https://i.imgur.com/ae0AEYn.jpeg",
-        "https://i.imgur.com/mZ4rUjj.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-02T14:27:21.000Z",
-      category: {
-        id: 1,
-        name: "nuevo",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival1.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-02T09:35:04.000Z"
-      }
-    },
-    {
-      id: 20,
-      title: "Generic Metal Fish",
-      price: 623,
-      description: "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
-      images: [
-        "https://i.imgur.com/SolkFEB.jpeg",
-        "https://i.imgur.com/KIGW49u.jpeg",
-        "https://i.imgur.com/mWwek7p.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-01T15:23:18.000Z",
-      category: {
-        id: 2,
-        name: "Electronics",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival2.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-01T15:23:18.000Z"
-      }
-    },
-    {
-      id: 21,
-      title: "Tasty Steel Salad",
-      price: 598,
-      description: "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-      images: [
-        "https://i.imgur.com/keVCVIa.jpeg",
-        "https://i.imgur.com/afHY7v2.jpeg",
-        "https://i.imgur.com/yAOihUe.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-01T15:23:18.000Z",
-      category: {
-        id: 2,
-        name: "Electronics",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival3.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-01T15:23:18.000Z"
-      }
-    },
-    {
-      id: 22,
-      title: "Ergonomic Metal Table",
-      price: 562,
-      description: "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
-      images: [
-        "https://i.imgur.com/w3Y8NwQ.jpeg",
-        "https://i.imgur.com/WJFOGIC.jpeg",
-        "https://i.imgur.com/dV4Nklf.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-01T15:23:18.000Z",
-      category: {
-        id: 2,
-        name: "Electronics",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival4.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-01T15:23:18.000Z"
-      }
-    },
-    {
-      id: 25,
-      title: "Electronic Rubber Shoes",
-      price: 510,
-      description: "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
-      images: [
-        "https://i.imgur.com/YaSqa06.jpeg",
-        "https://i.imgur.com/isQAliJ.jpeg",
-        "https://i.imgur.com/5B8UQfh.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-01T15:23:18.000Z",
-      category: {
-        id: 2,
-        name: "Electronics",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival5.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-01T15:23:18.000Z"
-      }
-    },
-    {
-      id: 26,
-      title: "Intelligent Granite Bike",
-      price: 559,
-      description: "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
-      images: [
-        "https://i.imgur.com/yb9UQKL.jpeg",
-        "https://i.imgur.com/m2owtQG.jpeg",
-        "https://i.imgur.com/bNiORct.jpeg"
-      ],
-      creationAt: "2024-01-01T15:23:18.000Z",
-      updatedAt: "2024-01-01T15:23:18.000Z",
-      category: {
-        id: 2,
-        name: "Electronics",
-        image: "https://preview.colorlib.com/theme/shionhouse/assets/img/gallery/arrival6.png.webp",
-        creationAt: "2024-01-01T15:23:18.000Z",
-        updatedAt: "2024-01-01T15:23:18.000Z"
-      }
-    }
-]
 const Banner = () => {
     const img = "http://ps.magentech.com/themes/sp_destino/modules/spbanner/images/banner02.jpg"
     const img2 = "http://ps.magentech.com/themes/sp_destino/modules/spbanner/images/banner01.jpg"
-
+  const [data, setData] = useState(null)
+    useEffect(()=>{
+      setData(products.slice(14, 20))
+    }, [products])
   return (
     <div className="max-w-[1170px] mx-auto my-20">  
     <div className="flex">
-      <div className="min-w-[30%] ">
+      <div className="md:min-w-[30%] md:block hidden ">
     <img src="https://www.asus.com/campaign/Powered-by-ASUS-UK/images/9513Mobile_1080x1500_ROG--logo-removed.jpg"
     alt=""
     className="h-full"
@@ -141,15 +23,15 @@ const Banner = () => {
           <a href='/products' className="px-6 py-1 -skew-y-[10deg] bg-blue-600 text-white cursor-pointer">View All</a>
         </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mx-2">
-      {products && products.map((item, index)=> 
+      {data && data.map((item, index)=> 
         <div key={index} className="">
           <div className="h-60">
-            <img src={item.category.image} alt="" className='h-full w-full' />
+            <img src={item.image} alt="" className='h-full w-full' />
           </div>
             <div className="px-1">
                 {/* --------- Product Content ---------- */}
             <div className="">
-                <p className="text-slate-400 mt-auto">{item.category.name}</p>
+                <p className="text-slate-400 mt-auto">{item.category}</p>
                 {/* <p className="text-md font-semibold">{item.title}</p> */}
                 <div className="flex justify-between">
                 <p className="text-md font-bold text-wrap">{item.title}</p>

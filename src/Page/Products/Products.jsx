@@ -27,12 +27,17 @@ const [query, setQuery] = useState("")
 // ---------- Ratio Filtering -------------
 
 const handleChange = event => {
-  setSelectedCategory(event.target.value)
+  if(event.target.checked){
+    setSelectedCategory(event.target.value)
+  }else{
+    setSelectedCategory(null)
+  }
 }
 
 // ---------------- Button Filtering --------------
 const handleClick = event => {
-  setSelectedCategory(event.target.value)
+  setSelectedCategory(event.target.value.toLowerCase())
+  
 }
 
   const filteredItems = products.filter(
@@ -51,7 +56,7 @@ const filteredData = (products, selected, query) =>{
   
     if(selected){      
       filteredProducts  = filteredProducts.filter(({category, color, company, price}) =>
-        category.name.toLowerCase() === selected ||
+        category.toLowerCase() === selected ||
         color.toLowerCase() === selected ||
         company.toLowerCase() === selected ||
         price <= selected
@@ -122,7 +127,7 @@ return (
       <section aria-labelledby="products-heading" className="pb-24 pt-6">
         <h2 id="products-heading" className="sr-only">Products</h2>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-4 lg:grid-cols-5">
           {/* <!-- Filters --> */}
           <form className="hidden lg:block space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
             
@@ -135,7 +140,7 @@ return (
 
          {menuType === "grid" ?
           <>{/* <!-- Product List --> */}
-         <div className="lg:col-span-3">
+         <div className="md:col-span-3 lg:col-span-4">
          <ProductsGrid result={result} handleClick={handleClick}  />
          </div></>
          : <>{/* <!-- Product grid --> */}

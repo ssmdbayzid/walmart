@@ -10,15 +10,25 @@ import { products } from '../../assets/data/ItemsCategory';
 const ProductsGrid = ({ result, handleClick}) => {
     const [pageNo, setPageNo] = useState(1)
     const [data, setData] = useState(null)
-    const pageSize = 9
+    const [companies, setCompanies] = useState(null)
+    const pageSize = 12
 
     useEffect(()=>{
         const startIndex = (pageNo - 1) * pageSize;
         const endIndex = (startIndex + pageSize)
         const filterProduct =(result.slice(startIndex, endIndex))
-        setData(filterProduct)
+        setData(filterProduct)     
     },[pageNo, result])
 
+    useEffect(()=>{
+        if(data){
+            const uniqueCategories = [...new Set(data.map(product => product.company))];
+            console.log(uniqueCategories)
+            setCompanies(uniqueCategories)
+        }
+    },[data])
+  
+    
 
   return (
     <div>
@@ -31,18 +41,18 @@ const ProductsGrid = ({ result, handleClick}) => {
         className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
             All
         </button>
-        {data && data.map((item, index)=> 
+        {companies && companies.map((company, index)=> 
         <button 
         key={index} 
-        value={item.company.toLowerCase()}
+        value={company.toLowerCase()}
         onClick={handleClick}
         className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
-                {item.company}
+                {company}
             </button> )}
         </div>
         </div>
         
-          <div className="grid md:grid-cols-3 gap-3 ">
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3 ">
                     {data && data.map((item, index)=>
                         <div key={index} className="relative border border-gray-800 dark:border-gray-700 ">
                                
@@ -53,7 +63,7 @@ const ProductsGrid = ({ result, handleClick}) => {
                             
                             <div className="p-2">
                                 
-                                    <h3 className="text-xl font-medium dark:text-gray-400">
+                                    <h3 className="whitespace-nowrap overflow-hidden text-ellipsis text-xl font-medium dark:text-gray-400">
                                         {item.title}
                                     </h3>
                                     <ul className="flex py-1">
@@ -92,9 +102,14 @@ const ProductsGrid = ({ result, handleClick}) => {
                 <div className="flex justify-end mt-6">
                     <nav aria-label="page-navigation">
                         <ul className="flex list-style-none">
-                            <li className="page-item disabled ">
+                            <li className="page-item ">
                                 <a 
-                                    className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600">Previous
+                                    onClick={()=> {
+                                        if(pageNo > 1){
+                                            setPageNo(pageNo - 1)
+                                        }
+                                    }}
+                                    className={`relative block ${pageNo === 1 && "pointer-events-none"} px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300 rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600`}>Previous
                                 </a>
                             </li>
                             
@@ -103,21 +118,31 @@ const ProductsGrid = ({ result, handleClick}) => {
                             className={`cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 1 && "bg-blue-400"}`}>
                                 1
                             </li>
-                            <li 
+                            <li                             
                             onClick={()=>setPageNo(2)}
-                            className={`cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 2 && "bg-blue-400"}`}>
+                            className={` ${result.length < 13 && "pointer-events-none"} cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 2 && "bg-blue-400"}`}>
                                 2
-                            </li>
-                                                                               
+                            </li>                                                                               
                             <li 
                             onClick={()=>setPageNo(3)}
-                            className={`cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 3 && "bg-blue-400"}`}>
+                            className={`${result.length < 25 && "pointer-events-none"}  cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 3 && "bg-blue-400"}`}>
                                 3
                             </li>
+                            <li 
+                            onClick={()=>setPageNo(4)}
+                            className={`${result.length < 37 && "pointer-events-none"}  cursor-pointer page-item relative block px-3 py-1.5 mr-3 text-blue-700 transition-all duration-300 bg-blue-200  dark:hover:bg-gray-700 rounded-md  ${pageNo === 4 && "bg-blue-400"}`}>
+                                4
+                            </li>
                                                                                
-                            <li className="page-item ">
+                            <li 
+                            onClick={()=> {
+                                if(pageNo < 4 ){
+                                    setPageNo(pageNo + 1)
+                                }
+                            }}
+                            className="page-item disabled">
                                 <a href=''
-                                    className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md ">Next
+                                    className="relativeblock px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md ">Next
                                 </a>
                             </li>
                         </ul >

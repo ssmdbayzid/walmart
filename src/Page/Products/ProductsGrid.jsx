@@ -109,7 +109,7 @@ const ProductsGrid = ({ result, handleClick}) => {
                                             setPageNo(pageNo - 1)
                                         }
                                     }}
-                                    className={`relative block ${pageNo === 1 && "pointer-events-none"} px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300 rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600`}>Previous
+                                    className={`cursor-pointer relative block ${pageNo === 1 && "pointer-events-none"} px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300 rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600`}>Previous
                                 </a>
                             </li>
                             
@@ -141,8 +141,8 @@ const ProductsGrid = ({ result, handleClick}) => {
                                 }
                             }}
                             className="page-item disabled">
-                                <a href=''
-                                    className="relativeblock px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md ">Next
+                                <a
+                                    className="cursor-pointer relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md ">Next
                                 </a>
                             </li>
                         </ul >

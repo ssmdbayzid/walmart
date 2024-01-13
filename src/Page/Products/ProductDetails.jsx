@@ -3,6 +3,7 @@ import { products } from '../../assets/data/ItemsCategory'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { addToCart } from '../../app/features/cartSlice'
+import { Magnifier } from 'react-image-magnifiers'
 
 
 
@@ -24,34 +25,37 @@ const handleAddtocart = (product) =>{
         <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
             <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                {product &&  product.map((item)=><div key={item.id} className="flex flex-wrap -mx-4">
-                    <div className="w-full px-4 md:w-1/2 lg:p-20">
+                    <div className="relative w-full px-4 md:w-1/2  ">
                         
                             {/* <div className="relative mb-6  lg:h-2/4 ">
                                 <img src={item.category.image} alt=""
                                     className="object-cover w-full lg:h-full " />
                             </div> */}
-                            {/* <div className="relative mb-6 lg:w-full">
+                            <div className="
+                            md:before:border-2 md:before:border-blue-300 md:before:w-full 
+                            md:before:absolute md:before:top-10 md:before:-left-4 
+                            md:before:-bottom-3 mb-6 lg:w-full ">
                             <Magnifier 
-                                imageSrc={item.category.image}
+                                imageSrc={item.image}
                                 imageAlt={item.title}
                                 style={{
-                                maxHeight: '100%',
-                                maxWidth: '100%',
-                                height: '100%',
-                                width: '100%',
+                                maxHeight: '80%',
+                                maxWidth: '110%',
+                                height: '80%',
+                                width: '110%',
                                 objectFit: 'contain'
                                 }}
                             />                                                 
-                        </div> */}
+                        </div>
                       
                     </div>
                     <div className="w-full px-4 md:w-1/2 ">
                         <div className="lg:pl-20">
-                            <div className="mb-8 ">
+                            <div className="mb-3 ">
                                 <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
-                                <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                                <h2 className="max-w-xl mt-2 mb-3 text-2xl font-bold dark:text-gray-400 md:text-4xl">
                                     {item.title}</h2>
-                                <div className="flex items-center mb-6">
+                                <div className="flex items-center mb-2">
                                     <ul className="flex mr-2">
                                         <li>
                                             <a href="#">
@@ -68,19 +72,17 @@ const handleAddtocart = (product) =>{
                                     </ul>
                                     <p className="text-xs dark:text-gray-400 ">(2 customer reviews)</p>
                                 </div>
-                                <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                                <p className="max-w-md mb-3 text-gray-700 dark:text-gray-400">
                                     Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
                                     Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
                                 </p>
-                                <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                                    <span>$1000.99</span>
-                                    <span
-                                        className="text-base font-normal text-gray-500 line-through dark:text-gray-400">${item.price}</span>
-                                </p>
-                                <p className="text-green-600 dark:text-green-300 ">7 in stock</p>
+                                <p className="inline-block mb-3 text-3xl font-bold text-gray-700 dark:text-gray-400 ">
+                                    <span>${item.price}.00</span>
+                                   
+                                </p>                                
                             </div>
-                            <div className="flex items-center mb-8">
-                                <h2 className="w-16 mr-6 text-xl font-bold dark:text-gray-400">
+                            <div className="flex items-center mb-3">
+                                <h2 className="w-16 mr-6 text-lg font-bold dark:text-gray-400">
                                     Colors:</h2>
                                 <div className="flex flex-wrap -mx-2 -mb-2">
                                     <button
@@ -97,7 +99,7 @@ const handleAddtocart = (product) =>{
                                     </button>
                                 </div>
                             </div>
-                            <div className="flex items-center mb-8">
+                            <div className="flex items-center mb-3">
                                 <h2 className="w-16 text-xl font-bold dark:text-gray-400">
                                     Size:</h2>
                                 <div className="flex flex-wrap -mx-2 -mb-2">
@@ -115,7 +117,7 @@ const handleAddtocart = (product) =>{
                                     </button>
                                 </div>
                             </div>
-                            <div className="w-32 mb-8 ">
+                            {/* <div className="w-32 mb-8 ">
                                 <label htmlFor=""
                                     className="w-full text-xl font-semibold text-gray-700 dark:text-gray-400">Quantity</label>
                                 <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
@@ -131,22 +133,17 @@ const handleAddtocart = (product) =>{
                                         <span className="m-auto text-2xl font-thin">+</span>
                                     </button>
                                 </div>
-                            </div>
-                            <div className="flex flex-wrap items-center -mx-4 ">
-                                <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
+                            </div> */}
+                            
+                                <div className="w-full px-2 mb-4 lg:mb-0">
                                     <button
                                     onClick={()=>handleAddtocart(item)}
-                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
+                                        className="flex items-center justify-center w-full py-2 mt-8 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                         Add to Cart
                                     </button>
                                 </div>
-                                <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                                    <button
-                                        className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
-                                        Add to wishlist
-                                    </button>
-                                </div>
-                            </div>
+                                
+
                         </div>
                     </div>
                 </div>)}

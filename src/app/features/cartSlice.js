@@ -46,6 +46,7 @@ const cartSlice = createSlice({
 
         // ======= Toast =============
         toast.error(`Decrease ${state.cartItems[itemIndex].title} cart quantity`)
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
       }
       else if(state.cartItems[itemIndex].cartQuantity === 1){
         state.cartItems = state.cartItems.filter((item)=> item.id !== action.payload.id)
@@ -72,24 +73,14 @@ const cartSlice = createSlice({
     },
     getTotal(state){
 
-      
-    let {total, quantity} = state.cartItems.reduce((cartTotal, cartItem)=>{
+      const totalQuantity = state?.cartItems.reduce((sum, cartItem)=> sum += cartItem.cartQuantity, 0)
+      console.log("totalCartQuantity", totalQuantity)
+    
 
-      
-      const {price, cartQuantity} = cartItem;
-      const itemTotalPrice = price * cartItem.cartQuantity;
+      const totalPrice = state?.cartItems.reduce((sum, cartItem)=> sum += cartItem.price * cartItem.cartQuantity, 0)
 
-      cartTotal.total += itemTotalPrice;
-      cartTotal.quantity += cartQuantity;   
-      
-      return cartTotal;
-  }, {
-      total: 0,
-      quantity : 0,
-  })
-
-  state.cartTotalQty = quantity;
-  state.cartTotalAmount = total;
+  state.cartTotalQty = totalQuantity;
+  state.cartTotalAmount = totalPrice;
 
     }
   }
@@ -99,18 +90,3 @@ export const {addToCart, decreaseCartQty, removeCartItem, resetCartItem, getTota
 
 export default cartSlice.reducer;
 
-/*
-let {total, quantity} = state.cartItems.reduce((cartTotal, cartItem)=>{
-        const {price, cartQuantity} = cartItem;
-        const itemTotalPrice = price * cartQuantity;
-        console.log(cartTotal)
-        cartTotal.total += itemTotalPrice;
-        cartTotal.quantity += cartQuantity;
-      }, {
-        total: 0,
-        quantity: 0,
-      })
-      state.cartTotalAmount = total
-      state.cartTotalQty = quantity
-    }
-    */

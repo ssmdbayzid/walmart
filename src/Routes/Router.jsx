@@ -11,6 +11,7 @@ import CheckOut from "../Page/ShoppingCart/CheckOut";
 import Login from "../Page/Auth/Login";
 import SignUp from "../Page/Auth/SignUp";
 import Products from "../Page/Products/Products";
+import SCard from "../component/SCard";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
                 path: "/ShoppingCart",
                 element: <ShoppingCart />
             },
+            // {
+            //     path: "/ShoppingCart",
+            //     element: <SCard />
+            // },
             {
                 path: "/Checkout",
                 element: <CheckOut />

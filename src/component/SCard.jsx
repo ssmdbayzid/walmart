@@ -1,24 +1,13 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { addToCart, decreaseCartQty, getTotal  } from '../../app/features/cartSlice';
-
-import { FaMinus, FaPlus, FaCross } from "react-icons/fa6";
-import { FaArrowRightLong } from "react-icons/fa6"
-import { Link } from 'react-router-dom';
-const ShoppingCart = () => {
-  const cart = useSelector((state)=> state.cart)    
-  const dispatch = useDispatch()
-  useEffect(()=> {
-      dispatch(getTotal())
-  },[dispatch, cart])
+const SCard = () => {
+    const cart = useSelector((state)=> state.cart)    
+    const dispatch = useDispatch()
+    useEffect(()=> {
+        dispatch(getTotal())
+    },[cart])
   return (
-    <section className="max-w-[1170px] mx-auto  bg-slate-200 font-poppins md:h-screen  ">
-     <div className="container mx-auto py-2 w-5/6 pt-0 h-full ">
-     <div className='py-10 bg-[url("https://media.istockphoto.com/photos/golden-shopping-bag-with-black-shopping-bags-picture-id1281319569?k=20&m=1281319569&s=612x612&w=0&h=HiPaofdFtZQFc8TVzBabuG_NW8KNvLs9xC_7JRt4U9Q=")] bg-cover object-cover bg-no-repeat mb-10'>
-
-<h2 className="text-4xl font-bold  text-center text-white ">Your Cart</h2>
-</div>
+    <div className="container mx-auto py-8 w-5/6 pt-16 h-full">
+      <h1 className="text-2xl font-bold text-center my-10">Shopping Cart</h1>
       <div className="">
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="p-3 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -90,7 +79,7 @@ const ShoppingCart = () => {
 
        {/*  -------  --------  Coupon Section-------  -------  */}
        <div className="flex flex-col md:flex-row gap-6">
-       <div className="border border-slate-300 w-full md:w-5/12  rounded h-full mt-3 pb-5">
+       <div className="border w-full md:w-5/12  rounded h-full mt-3 pb-5">
         <h1 className="text-xl bg-slate-300 py-1  font-bold ps-3">Coupon</h1>
         <p className='ps-3 pt-2'>Enter your coupon code if you have one.</p>
         <div className="flex items-center mt-5 ps-3">
@@ -100,7 +89,7 @@ const ShoppingCart = () => {
         </div> 
 
         {/*  -------  --------  Shopping Cart Summary -------  -------  */}    
-       <div className="border border-slate-300 w-full md:w-7/12  rounded h-full mt-3">
+       <div className="border w-full md:w-7/12  rounded h-full mt-3">
         <h1 className="text-xl bg-slate-300 py-1  font-bold ps-3">Cart Total</h1>
         <div className="flex justify-between px-3 mt-3">
             <p>Subtotal</p>
@@ -124,8 +113,7 @@ const ShoppingCart = () => {
       </div> 
 
     </div>
-    </section>
   )
 }
 
-export default ShoppingCart
+export default SCard

@@ -3,19 +3,29 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa6";
 import img from '../../assets/image/signup vactor.png'
 import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../../utls/setAuthToken';
 
 
 const SignUp = () => {
     const {createUser} = useAuth()
-    const handleSignUp  = (e)=>{
-        e.preventDefault()
-        const form = e.target;
+    const navigate = useNavigate()
+    const handleSignUp  = (event)=>{
+        event.preventDefault()
+
+        const form = event.target;
         const email = form.email.value;
-        const password = form.password.value;
+        const password = form.password.value;       
+
         createUser(email, password)
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
+        .then(result => {
+            const user = result.user;
+            setAuthToken(user)
+        })
+        .catch(err=> console.log(err.message))
     }
+
   return (
     <div className='max-w-[1170px] mx-auto  flex items-center justify-center my-3'>
             <div className="w-full max-w-[500px] md:w-1/2 bg-blue-200 p-2">

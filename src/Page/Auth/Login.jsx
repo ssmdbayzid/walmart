@@ -5,29 +5,30 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { setAuthToken } from '../../utls/setAuthToken';
 const Login = () => {
     const {logIn} =useAuth()
     
+    const navigate = useNavigate()
+
     const handleLogin = (e) =>{
 
-        const navigate = useNavigate()
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
-        const password = form.password.value
-        
+        const password = form.password.value        
         logIn(email, password)
-        .then(result=> {
-            navigate("/")
-            console.log(result.email)
-            toast.success(`Result Successfull`)
+        .then(result => {
+            console.log(result.user)
+            const user = result.user;
+            setAuthToken(user)
         })
-        .catch(error => console.log(error))
-        
+        .catch(err=> console.log(err.message))
     }
     return (
         <div className='max-w-[1170px] mx-auto flex items-center justify-center'>
-            <div className="w-full md:w-1/2">
+            <div className="p-3 w-full md:w-1/2">
                 <form onSubmit={handleLogin} className='w-full'>
                     <div className='relative'>
                         <p className='text-xl text-blue-500 font-bold '>Walmart

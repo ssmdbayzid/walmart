@@ -1,7 +1,6 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { createContext, useEffect, useState } from "react"
 import auth from "../firebase.init"
-import axios from "axios"
 import { current } from "@reduxjs/toolkit"
 
 
@@ -14,10 +13,10 @@ const AuthProvider = ({children}) => {
 
     // ------------ Create User ----------------
     const createUser = (email, password) => {
+
+        console.log("email", email, "password", password)
         setLoading(true)
-        const result =  createUserWithEmailAndPassword(auth,email, password)
-        console.log(result)
-        return;
+        return  createUserWithEmailAndPassword(auth,email, password)
 
     }
     // ------------ Log In ----------------
@@ -32,26 +31,18 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
     }
 
-    const logOut = () =>{
-        setLoading(false)
+    const logOut = () =>{        
         signOut(auth)
     }
 
     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
-            
-            if(currentUser){
+        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{                        
+            if(currentUser){                
+                setLoading(false)
                 setUser(currentUser);                
+            }else{
+                setLoading(false)
             }
-            // if(currentUser){
-            //     axios.post("http://localhost:8000/", {email: currentUser?.email})
-            //     .then(data=> {
-            //         console.log(data)
-            //     })
-            //     .catch(error => console.log(error.message))
-            // }else{
-            //     setLoading(false)
-            // }
         })
 
         return ()=> {

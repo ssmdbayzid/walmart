@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeCartItem } from '../../app/features/cartSlice'
+import { getTotal, removeCartItem } from '../../app/features/cartSlice'
 
 const ShoppingCartModal = ({setShowSModal, showSModal}) => {
 
   const dispatch =  useDispatch()
   const cart = useSelector((state)=> state.cart)
-  console.log(cart)
+  
+  useEffect(()=>{
+    dispatch(getTotal())
+  },[cart, dispatch])
+
 
   return (
     <div className="relative z-[999]" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
@@ -23,7 +27,7 @@ const ShoppingCartModal = ({setShowSModal, showSModal}) => {
 
         
     --> */}
-    <div className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity"></div>
+    <div className="fixed inset-0  bg-opacity-75 transition-opacity"></div>
   
     <div className="fixed inset-0 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -71,7 +75,7 @@ const ShoppingCartModal = ({setShowSModal, showSModal}) => {
                               <h3>
                                 <a href="#">{item.title}</a>
                               </h3>
-                              <p className="ml-4">${item.price}</p>
+                              <p className="ml-4">${item.price.toFixed(2)}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">{item.category}</p>
                           </div>
@@ -120,7 +124,7 @@ const ShoppingCartModal = ({setShowSModal, showSModal}) => {
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>$262.00</p>
+                  <p>${cart.cartTotalAmount.toFixed(2)}</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">

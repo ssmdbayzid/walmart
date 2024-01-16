@@ -13,7 +13,7 @@ const ShoppingCart = () => {
       dispatch(getTotal())
   },[dispatch, cart])
   return (
-    <section className="max-w-[1170px] mx-auto  bg-slate-200 font-poppins md:h-screen  ">
+    <section className="max-w-[1170px] mx-auto  bg-slate-200 font-poppins  ">
      <div className="container mx-auto py-2 w-5/6 pt-0 h-full ">
      <div className='py-10 bg-[url("https://media.istockphoto.com/photos/golden-shopping-bag-with-black-shopping-bags-picture-id1281319569?k=20&m=1281319569&s=612x612&w=0&h=HiPaofdFtZQFc8TVzBabuG_NW8KNvLs9xC_7JRt4U9Q=")] bg-cover object-cover bg-no-repeat mb-10'>
 
@@ -58,7 +58,7 @@ const ShoppingCart = () => {
                         className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                             <span className="sr-only">Quantity button</span>
                             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16"/>
                             </svg>
                         </button>
                         <div>
@@ -69,7 +69,7 @@ const ShoppingCart = () => {
                         className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                             <span className="sr-only">Quantity button</span>
                             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
                             </svg>
                         </button>
                     </div>
@@ -89,8 +89,8 @@ const ShoppingCart = () => {
       
 
        {/*  -------  --------  Coupon Section-------  -------  */}
-       <div className="flex flex-col md:flex-row gap-6">
-       <div className="border border-slate-300 w-full md:w-5/12  rounded h-full mt-3 pb-5">
+       <div className="flex flex-col md:flex-row gap-6 ">
+       <div className="border border-slate-300 w-full md:w-5/12  rounded h-full mt-3 pb-5 bg-slate-100">
         <h1 className="text-xl bg-slate-300 py-1  font-bold ps-3">Coupon</h1>
         <p className='ps-3 pt-2'>Enter your coupon code if you have one.</p>
         <div className="flex items-center mt-5 ps-3">
@@ -100,7 +100,7 @@ const ShoppingCart = () => {
         </div> 
 
         {/*  -------  --------  Shopping Cart Summary -------  -------  */}    
-       <div className="border border-slate-300 w-full md:w-7/12  rounded h-full mt-3">
+       <div className="border border-slate-300 w-full md:w-7/12  rounded h-full mt-3 bg-slate-100">
         <h1 className="text-xl bg-slate-300 py-1  font-bold ps-3">Cart Total</h1>
         <div className="flex justify-between px-3 mt-3">
             <p>Subtotal</p>

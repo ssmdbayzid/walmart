@@ -33,6 +33,8 @@ const AuthProvider = ({children}) => {
 
     const logOut = () =>{        
         signOut(auth)
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
     }
 
     useEffect(()=>{

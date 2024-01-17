@@ -19,6 +19,25 @@ const Products = () => {
 const [openSortMenu, setOpenSortMenu] = useState(false)
 const [menuType, setMenuType] = useState("grid")
 
+
+
+/*
+if(data){
+  console.log(data)
+}
+if(isError){
+  return <div>
+    <p className='text-red-600 text-lg'>Error ......</p>
+  </div>
+}
+
+if(isLoading){
+  return <div>
+    <p className='text-red-600 text-lg'>Loading ......</p>
+  </div>
+}
+*/
+
 const [selectedCategory, setSelectedCategory] = useState(null);
 
 

@@ -46,7 +46,7 @@ const ShoppingCart = () => {
         { cart && cart.cartItems.map((item, index)=>
             <tr key={index} className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 mb-5">
                 <td className="p-1 h-24 border mt-3">
-                    <img src={item.image} className="object-fill h-full w-full " alt="Apple Watch"/>
+                    <img src={item.image} className="object-cover h-full w-full " alt="Apple Watch"/>
                 </td>
                 <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                     {item.title}

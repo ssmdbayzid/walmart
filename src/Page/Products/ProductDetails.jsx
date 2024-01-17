@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { addToCart } from '../../app/features/cartSlice'
 import { Magnifier } from 'react-image-magnifiers'
+import { useGetSingleProductQuery } from '../../app/features/productAPISlice'
 
 
 
@@ -11,13 +12,27 @@ const ProductDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const [product, setProduct] = useState([])
+    const {data, isLoading, isError} = useGetSingleProductQuery("65a40e39ef162b25e96371a6")
     
+
     
     useEffect(()=>{
         const findProduct = products.filter((item) => id  == item.id)
         setProduct(findProduct)
     },[products])
     
+
+        if(data){
+        console.log(data)
+        }
+
+    if(isLoading){
+        return <p>Loading .....</p>
+    }
+
+    if(isError){
+        return <p>Some thing Wents Wrong</p>
+    }
 const handleAddtocart = (product) =>{
     dispatch(addToCart(product))
 }
@@ -32,20 +47,10 @@ const handleAddtocart = (product) =>{
                                     className="object-cover w-full lg:h-full " />
                             </div> */}
                             <div className="
-                            md:before:border-2 md:before:border-blue-300 md:before:w-full 
-                            md:before:absolute md:before:top-10 md:before:-left-4 
-                            md:before:-bottom-3 mb-6 lg:w-full ">
-                            <Magnifier 
-                                imageSrc={item.image}
-                                imageAlt={item.title}
-                                style={{
-                                maxHeight: '80%',
-                                maxWidth: '110%',
-                                height: '80%',
-                                width: '110%',
-                                objectFit: 'contain'
-                                }}
-                            />                                                 
+                            md:before:border-2 md:before:border-blue-300 md:before:w-[95%]
+                            md:before:absolute md:before:top-10  md:before:right-12
+                            md:before:-bottom-3 mb-6 lg:w-full h-[400px] ">
+                            <img src={item.image} alt="" srcset="" className='h-full w-full object-cover md:object-fill md:z-50 relative'/>                                  
                         </div>
                       
                     </div>

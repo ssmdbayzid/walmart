@@ -62,7 +62,7 @@ const ShoppingCart = () => {
                             </svg>
                         </button>
                         <div>
-                            <input type="number" id="first_product" className="text-center bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={item.cartQuantity} required/>
+                            <input type="number" id="first_product" value={item.cartQuantity} className="text-center bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={item.cartQuantity} required/>
                         </div>
                         <button 
                         onClick={()=> dispatch(addToCart(item))}
@@ -108,14 +108,14 @@ const ShoppingCart = () => {
         </div>
         <div className="flex justify-between  mt-3 border-b-2 pb-8">
             <p className='ps-3'>Shipping</p>
-            <p className='pe-3'>${(cart.cartTotalAmount * 0.05).toFixed(2)}</p>
+            <p className='pe-3'>${(cart.cartTotalAmount * 0.02).toFixed(2)}</p>
         </div>
         <div className="flex justify-between px-3 pt-3">
             <p className='font-semibold'>Total</p>
             <p className='font-bold'>${(cart.cartTotalAmount * 0.05 + cart.cartTotalAmount).toFixed(2)}</p>
         </div>
         <div className="flex justify-end mt-5 p-3 ">        
-        <button className='px-5 bg-black text-slate-100  py-2.5 font-semibold uppercase rounded-sm'>Process to checkout</button>
+        <Link to={"/checkOut"} className='px-5 bg-black text-slate-100  py-2.5 font-semibold uppercase rounded-sm'>Process to checkout</Link>
         </div>        
         </div>     
         

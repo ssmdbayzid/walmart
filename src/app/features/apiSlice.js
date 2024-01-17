@@ -33,8 +33,7 @@ export const apiSlice = createApi({
       if(refreshResult?.data){
         localStorage.setItem("accessToken", refreshResult?.data?.accessToken)
         toast.success("Generate Access Token")
-        return await baseQuery(args, api, extraOptions)
-        
+        return await baseQuery(args, api, extraOptions)        
       }else{
         const {logOut}=useAuth()
         logOut()

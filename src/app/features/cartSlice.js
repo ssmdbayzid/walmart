@@ -15,7 +15,7 @@ const cartSlice = createSlice({
     // ======= Increase or Add cart item
     addToCart(state, action){
       
-      const itemIndex = state.cartItems.findIndex((item)=> item.id === action.payload.id)
+      const itemIndex = state.cartItems.findIndex((item)=> item._id === action.payload._id)
       if(itemIndex >= 0){
         state.cartItems[itemIndex].cartQuantity += 1;
         toast.info(`Increase ${state.cartItems[itemIndex].title} cart quantity`)
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
     // ======= Decreate cart item =====
 
     decreaseCartQty(state, action){
-      const  itemIndex = state.cartItems.findIndex((item)=> item.id === action.payload.id)
+      const  itemIndex = state.cartItems.findIndex((item)=> item._id === action.payload._id)
 
       if(state.cartItems[itemIndex].cartQuantity > 1){
         
@@ -49,7 +49,7 @@ const cartSlice = createSlice({
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
       }
       else if(state.cartItems[itemIndex].cartQuantity === 1){
-        state.cartItems = state.cartItems.filter((item)=> item.id !== action.payload.id)
+        state.cartItems = state.cartItems.filter((item)=> item._id !== action.payload._id)
 
         // =========== Toast =============
         toast.error(`${action.payload.title} remove from cart`)
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
       }
     },
     removeCartItem(state, action){
-      state.cartItems = state.cartItems.filter((item)=> item.id !== action.payload.id)
+      state.cartItems = state.cartItems.filter((item)=> item._id !== action.payload._id)
       
       // ================== Toast ===============
       toast.error(`${action.payload.title} remove from cart`)

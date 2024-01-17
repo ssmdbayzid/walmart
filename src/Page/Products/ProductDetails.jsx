@@ -12,19 +12,11 @@ const ProductDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const [product, setProduct] = useState([])
-    const {data, isLoading, isError} = useGetSingleProductQuery("65a40e39ef162b25e96371a6")
+    const {data, isLoading, isError} = useGetSingleProductQuery(id)
     
 
-    
-    useEffect(()=>{
-        const findProduct = products.filter((item) => id  == item.id)
-        setProduct(findProduct)
-    },[products])
-    
-
-        if(data){
-        console.log(data)
-        }
+  
+        
 
     if(isLoading){
         return <p>Loading .....</p>
@@ -38,19 +30,21 @@ const handleAddtocart = (product) =>{
 }
     return (
         <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-            <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-               {product &&  product.map((item)=><div key={item.id} className="flex flex-wrap -mx-4">
+          {  (isError || isLoading) ? <> {isError ? <p className="text-center">Something Went Error</p>  
+           : <div className=' text-center pt-[10%]'> Loading .... </div>}    </> :
+            <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">               
+               <div  className="flex flex-wrap -mx-4">
                     <div className="relative w-full px-4 md:w-1/2  ">
                         
                             {/* <div className="relative mb-6  lg:h-2/4 ">
-                                <img src={item.category.image} alt=""
+                                <img src={data.data.category.image} alt=""
                                     className="object-cover w-full lg:h-full " />
                             </div> */}
                             <div className="
                             md:before:border-2 md:before:border-blue-300 md:before:w-[95%]
                             md:before:absolute md:before:top-10  md:before:right-12
                             md:before:-bottom-3 mb-6 lg:w-full h-[400px] ">
-                            <img src={item.image} alt="" srcset="" className='h-full w-full object-cover md:object-fill md:z-50 relative'/>                                  
+                            <img src={data.data.image} alt="" srcset="" className='h-full w-full object-cover md:object-fill md:z-50 relative'/>                                  
                         </div>
                       
                     </div>
@@ -59,7 +53,7 @@ const handleAddtocart = (product) =>{
                             <div className="mb-3 ">
                                 <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
                                 <h2 className="max-w-xl mt-2 mb-3 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                                    {item.title}</h2>
+                                    {data.data.title}</h2>
                                 <div className="flex items-center mb-2">
                                     <ul className="flex mr-2">
                                         <li>
@@ -82,7 +76,7 @@ const handleAddtocart = (product) =>{
                                     Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
                                 </p>
                                 <p className="inline-block mb-3 text-3xl font-bold text-gray-700 dark:text-gray-400 ">
-                                    <span>${item.price}.00</span>
+                                    <span>${data.data.price}.00</span>
                                    
                                 </p>                                
                             </div>
@@ -142,7 +136,7 @@ const handleAddtocart = (product) =>{
                             
                                 <div className="w-full px-2 mb-4 lg:mb-0">
                                     <button
-                                    onClick={()=>handleAddtocart(item)}
+                                    onClick={()=>handleAddtocart(data?.data)}
                                         className="flex items-center justify-center w-full py-2 mt-8 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                                         Add to Cart
                                     </button>
@@ -151,8 +145,8 @@ const handleAddtocart = (product) =>{
 
                         </div>
                     </div>
-                </div>)}
-            </div>
+                </div>
+            </div>}
         </section>
     )
 }

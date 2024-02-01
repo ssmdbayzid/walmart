@@ -6,7 +6,8 @@ import Brand from './Brand'
 import Subscription from './Subscription'
 import Footer from './Footer'
 import HeroSection from './HeroSection'
-import Offer from './Offer'
+
+import Banner2 from './Bannner2'
 
 const Home = () => {
   return (
@@ -14,8 +15,8 @@ const Home = () => {
       <HeroSection />
       <Promotion />
       <Products />
+      <Banner2 />
       <Banner />
-      <Offer />
       <Brand />
       <Subscription />
       < Footer/>

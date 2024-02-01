@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FcGoogle } from "react-icons/fc";
 
 import { AuthContext } from '../../Provider/AuthProvider';
 import useAuth from '../../Hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { setAuthToken } from '../../utls/setAuthToken';
 const Login = () => {
-    const {logIn} =useAuth()
+    const {logIn, user} =useAuth()
     
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    let from = location.state?.from?.pathname || "/home";
+
+  
+
+useEffect(()=>{
+    if (user) {
+        navigate(from, { replace: true });
+    }
+},[from, user])
     const handleLogin = (e) =>{
 
         e.preventDefault()
@@ -23,6 +33,7 @@ const Login = () => {
             console.log(result.user)
             const user = result.user;
             setAuthToken(user)
+            
         })
         .catch(err=> console.log(err.message))
     }

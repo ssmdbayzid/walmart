@@ -34,11 +34,11 @@ const ProductsGrid = ({ result, handleClick}) => {
     <div>
         <div>
         <p className="text-xl font-bold">Recommanded</p>
-        <div className=" flex flex-wrap gap-4 mb-3 my-2 mx-auto">
+        <div className=" grid grid-cols-6 gap-4 mb-3 my-2 mx-auto">
         <button 
         value=""
         onClick={handleClick}
-        className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
+        className='border-2  font-semibold px-3 py-1 rounded-sm'>
             All
         </button>
         {companies && companies.map((company, index)=> 
@@ -46,7 +46,7 @@ const ProductsGrid = ({ result, handleClick}) => {
         key={index} 
         value={company.toLowerCase()}
         onClick={handleClick}
-        className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
+        className='border-2   font-semibold px-3 py-1 rounded-sm'>
                 {company}
             </button> )}
         </div>
@@ -89,7 +89,7 @@ const ProductsGrid = ({ result, handleClick}) => {
                                 <MdOutlineShoppingCart className='text-blue-700 text-xl  mx-auto' />
                                 </div>
 
-                                <Link to={`/product/${item.id}`} className='bg-yellow-200 w-1/2 pt-1'>
+                                <Link to={`/product/${item._id}`} className='bg-yellow-200 w-1/2 pt-1'>
                                <FaRegEye className='text-blue-700 text-xl mx-auto ' />
                                 </Link>
                                 

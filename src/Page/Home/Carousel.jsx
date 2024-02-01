@@ -1,5 +1,5 @@
 import React from 'react'
-import  {Pagination} from 'swiper/modules';
+import  {Autoplay,Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import banner from '../../assets/image/banner.jpg'
 
@@ -9,13 +9,15 @@ import 'swiper/css/pagination';
 const Carousel = ({products}) => {
   return (
     <div>
-    <Swiper className='w-full '
+    <Swiper className='carousel w-full '
+                        // modules={[Autoplay, Pagination ]}
                         modules={[ Pagination ]}
-                        spaceBetween={30}
+                        // spaceBetween={30}
                         slidesPerView={1}
                         pagination={{ clickable: true }}
                         autoplay={{
-                            delay: 1000
+                            delay: 3000,
+                            disableOnInteraction: false,
                         }}
                         navigation={{ // Add navigation arrows
                             nextEl: '.swiper-button-next',
@@ -37,7 +39,7 @@ const Carousel = ({products}) => {
                         }}>
                 {products && products.map((item)=>
                 <SwiperSlide key={item.title}>
-                  <section className="bg-white dark:bg-gray-900">
+                  <section className=" dark:bg-gray-900">
     <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Payments tool for software companies</h1>
@@ -50,7 +52,7 @@ const Carousel = ({products}) => {
                 Speak to Sales
             </a> 
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        <div className="hidden relative  lg:mt-0 lg:col-span-5 lg:flex">
             <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup" />
         </div>                
     </div>

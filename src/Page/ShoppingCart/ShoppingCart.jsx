@@ -6,12 +6,16 @@ import { addToCart, decreaseCartQty, getTotal  } from '../../app/features/cartSl
 import { FaMinus, FaPlus, FaCross } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6"
 import { Link } from 'react-router-dom';
+
 const ShoppingCart = () => {
   const cart = useSelector((state)=> state.cart)    
   const dispatch = useDispatch()
   useEffect(()=> {
       dispatch(getTotal())
   },[dispatch, cart])
+
+  console.log(cart)
+  
   return (
     <section className="max-w-[1170px] mx-auto  bg-slate-200 font-poppins  ">
      <div className="container mx-auto py-2 w-5/6 pt-0 h-full ">
@@ -93,9 +97,9 @@ const ShoppingCart = () => {
        <div className="border border-slate-300 w-full md:w-5/12  rounded h-full mt-3 pb-5 bg-slate-100">
         <h1 className="text-xl bg-slate-300 py-1  font-bold ps-3">Coupon</h1>
         <p className='ps-3 pt-2'>Enter your coupon code if you have one.</p>
-        <div className="flex items-center mt-5 ps-3">
+        <div className="flex items-center mt-5 px-3">
         <input type="text" placeholder='Coupon Code' className='border w-1/2' />
-        <button className='text-sm px-2 md:px-5 bg-black text-slate-100 ms-3 md:ms-6 py-2.5 font-semibold uppercase rounded-sm'>Apply coupon</button>
+        <button className='text-sm w-1/2 px-2 md:px-5 bg-black text-slate-100 ms-3  py-2.5 font-semibold uppercase rounded-sm'>Apply coupon</button>
         </div>        
         </div> 
 
@@ -108,11 +112,11 @@ const ShoppingCart = () => {
         </div>
         <div className="flex justify-between  mt-3 border-b-2 pb-8">
             <p className='ps-3'>Shipping</p>
-            <p className='pe-3'>${(cart.cartTotalAmount * 0.02).toFixed(2)}</p>
+            <p className='pe-3'>${(cart.cartTotalAmount * 0).toFixed(2)}</p>
         </div>
         <div className="flex justify-between px-3 pt-3">
             <p className='font-semibold'>Total</p>
-            <p className='font-bold'>${(cart.cartTotalAmount * 0.05 + cart.cartTotalAmount).toFixed(2)}</p>
+            <p className='font-bold'>${(cart.cartTotalAmount * 0 + cart.cartTotalAmount).toFixed(2)}</p>
         </div>
         <div className="flex justify-end mt-5 p-3 ">        
         <Link to={"/checkOut"} className='px-5 bg-black text-slate-100  py-2.5 font-semibold uppercase rounded-sm'>Process to checkout</Link>

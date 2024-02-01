@@ -21,9 +21,12 @@ const Brand = () => {
         </div>
         </div>
         <div>
-            <span className="w-16 h-16 rounded-full animate-bounce bg-slate-300 absolute -top-[25%] left-6 delay-100 duration-500"></span>
-            <span className="w-16 h-16 rounded-full animate-bounce bg-slate-300 absolute -bottom-[30%] left-1/2 delay-100 duration-500"></span>
-            <span className="w-16 h-16 animate-spin bg-slate-300 absolute -right-12 top-1/2 delay-100 duration-500 border border-x-green-300 "></span>
+            <span className="w-16 h-16 rounded-full animate bg-slate-300 absolute -top-[25%] left-6 delay-100 duration-500"></span>
+            <span className="w-16 h-16 rounded-full animate bg-slate-300 absolute -top-[25%] right-6 delay-100 duration-500"></span>
+            <span className="w-16 h-16 rounded-full animate- bg-slate-300 absolute -bottom-[30%] left-1/2 delay-100 duration-500"></span>
+
+            <span className="w-6 h-6  bg-slate-700 absolute -right-2 top-1/2 delay-500 duration-500 border border-x-green-300 "></span>
+            <span className="w-6 h-6  bg-slate-700 absolute -left-2 top-1/2 delay-500 duration-500 border border-x-green-300 "></span>
             {/* <span className="w-16 h-16 rounded-full animate-bounce bg-slate-300 absolute -top-[25%] left-6 delay-100 duration-500"></span> */}
           
         </div>

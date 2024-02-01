@@ -1,45 +1,27 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-import { products } from '../../assets/data/ItemsCategory'
-import { useGetProductsQuery } from '../../app/features/productAPISlice'
+// import { products } from '../../assets/data/ItemsCategory'
+// import { useGetProductsQuery } from '../../app/features/productAPISlice'
+import { useGetProducts } from '../../Hooks/useGetProducts'
 
 
 const Products = () => {
-  const [data, setData] = useState(null)
-  const {data:prod, isLoading, isError} = useGetProductsQuery()
+  const {products, loading} = useGetProducts()
 
-
-  
-  useEffect(()=>{
-    if(prod){
-      setData(prod?.data?.slice(0, 10))
-    }
-    
-  },[prod])
-
-//   useEffect(()=>{
-//     setData(products.slice(0, 10))
-//     // console.log(products)
-// },[products])
+  if(loading){
+    return <div>Loading ....</div>
+  }
   
   return (
     <div className="max-w-[1170px] mx-auto">
-        <div className="flex justify-between items-center mx-8 my-5">
-        <h1 className="text-2xl font-semibold">Popular Products</h1>        
-            <ul className="flex  bg-blue-600 px-8  rounded-br-xl rounded-tl-2xl">
-                <li className="bg-slate-200 py-2 px-2">All</li>
-                <li  className=" py-2 px-2">Mens</li>
-                <li  className=" py-2 px-2">Women</li>
-                <li  className=" py-2 px-2">Shirt</li>
-                <li  className=" py-2 px-2">Electronics</li>
-            </ul>        
-        </div>
-        {
-           (isError || isLoading) ? <> {isError ? <p className="text-center">Something Went Error</p>  
-           : <div className=' text-center pt-[10%]'> Loading .... </div>}    </> :
-           <div className="grid grid-cols-5 gap-3">
-           {data && data.map((item, index)=> 
+        
+        <h1 className="text-4xl font-semibold text-center ">Popular Products</h1>        
+        <hr className='mb-4 h-1 bg-gradient-to-r from-yellow-300 via-blue-100 to-blue-500
+        w-1/4 m-auto mt-2' />
+                
+           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+           {products && products.slice(0, 10).map((item, index)=> 
            <div key={index} className="">
                <div className='h-60 '>
                <img src={item.image} alt=""
@@ -80,7 +62,7 @@ const Products = () => {
            </div>
            )}
            </div>
-        }
+        
        
     </div>
   )

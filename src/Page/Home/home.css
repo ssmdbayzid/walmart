@@ -23,11 +23,11 @@
     padding-bottom: 50px !important;
   }
 
-  .swiper-slide.swiper-slide-next {
+  /* .swiper-slide.swiper-slide-next {
     background: #0067ff;
     border-radius: 12px;
-    box-shadow: 00px 20px 70px rgba(0, 103, 255, 0.3)  !important; 
-  }
+    box-shadow: 00px 20px 70px rgba(0, 103, 255, 0.3)  !important;  
+   } */
 
   .swiper-slide.swiper-slide-next h2 ,  .swiper-slide.swiper-slide-next p {
     color: #ffffff

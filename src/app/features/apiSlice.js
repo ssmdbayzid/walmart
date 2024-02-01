@@ -5,8 +5,7 @@ import { toast } from 'react-toastify';
 
 let token
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:8000/api/v1/',
-  credentials: "include",
+  baseUrl: 'http://localhost:8000/api/v1/',  
   prepareHeaders: (headers)=> {
     if(token){
       headers.set("Authorization", `Bearer ${token}`)
@@ -33,7 +32,7 @@ export const apiSlice = createApi({
       if(refreshResult?.data){
         localStorage.setItem("accessToken", refreshResult?.data?.accessToken)
         toast.success("Generate Access Token")
-        return await baseQuery(args, api, extraOptions)        
+        result = await baseQuery(args, api, extraOptions)        
       }else{
         const {logOut}=useAuth()
         logOut()

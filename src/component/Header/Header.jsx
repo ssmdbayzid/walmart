@@ -8,37 +8,30 @@ import ShoppingCartModal from './ShoppingCartModal';
 const Header = () => {
     const [showSModal, setShowSModal] = useState(false)
   return (
-    <div className="">
-    <nav className="max-w-[1170px] bg-white border-gray-200  mx-auto">
-    <div className="flex flex-wrap justify-between items-center mx-auto  py-4">
-        <a href="https://flowbite.com" className="flex items-center space-x-3 rtl:space-x-reverse">
+    <div className="">   
+<nav className=" py-2 bg-gradient-to-r from-yellow-200 via-slate-500 to-blue-500 backdrop-blur-xl">
+    <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto">
+    <a href="https://flowbite.com" className="">
             <img src={logo} className="h-12" alt="Flowbite Logo" />            
         </a>
-        <SearchBar />
-        <HeaderIcons setShowSModal={setShowSModal} showSModal={showSModal} />
+    <div className='flex gap-3 w-3/5'>
+    <ul className="flex w-full h-8 items-center  font-medium mt-0 space-x-8 rtl:space-x-reverse text-md">
+    <li>    
+                    <a href="/" className="h-full  font-medium text-white hover:underline" aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="/products" className="h-full  font-medium text-white hover:underline">Products</a>
+                </li>
+                <li>
+                    <a href="#" className="h-full  font-medium text-white hover:underline">Team</a>
+                </li>
+                <li>
+                    <a href="#" className="h-full  font-medium text-white hover:underline">Features</a>
+                </li>
+    </ul>
+    <HeaderIcons setShowSModal={setShowSModal} showSModal={showSModal} />
     </div>
-</nav>
-<nav className="bg-[#0870CC]  ">
-    <div className="flex max-w-[1170px] mx-auto">
-            <div className="flex w-[20%] mr-2 items-center">
-                <p className="text-white mr-3">All Categories</p>
-                <IoMenu className="text-white text-2xl" />
-            </div>
-            <ul className="flex w-full h-8 items-center  font-medium mt-0 space-x-8 rtl:space-x-reverse text-md">
-                <li>
-                    <a href="/" className="h-full  font-light hover:bg-blue-300 text-white hover:underline" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="#" className="h-full  font-light hover:bg-blue-300 text-white hover:underline">Company</a>
-                </li>
-                <li>
-                    <a href="#" className="h-full  font-light hover:bg-blue-300 text-white hover:underline">Team</a>
-                </li>
-                <li>
-                    <a href="#" className="h-full  font-light hover:bg-blue-300 text-white hover:underline">Features</a>
-                </li>
-            </ul>
-            </div>
+    </div>
 </nav>
 {showSModal && <ShoppingCartModal setShowSModal={setShowSModal} showSModal={showSModal} />}
 </div>

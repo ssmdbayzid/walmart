@@ -33,7 +33,7 @@ const handleAddtocart = (product) =>{
           {  (isError || isLoading) ? <> {isError ? <p className="text-center">Something Went Error</p>  
            : <div className=' text-center pt-[10%]'> Loading .... </div>}    </> :
             <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">               
-               <div  className="flex flex-wrap -mx-4">
+               <div  className="flex items-center flex-wrap -mx-4">
                     <div className="relative w-full px-4 md:w-1/2  ">
                         
                             {/* <div className="relative mb-6  lg:h-2/4 ">
@@ -42,7 +42,7 @@ const handleAddtocart = (product) =>{
                             </div> */}
                             <div className="
                             md:before:border-2 md:before:border-blue-300 md:before:w-[95%]
-                            md:before:absolute md:before:top-10  md:before:right-12
+                            md:before:absolute md:before:h-[400px] md:before:top-10  md:before:right-12
                             md:before:-bottom-3 mb-6 lg:w-full h-[400px] ">
                             <img src={data.data.image} alt="" srcset="" className='h-full w-full object-cover md:object-fill md:z-50 relative'/>                                  
                         </div>

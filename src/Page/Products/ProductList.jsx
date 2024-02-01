@@ -22,11 +22,11 @@ const ProductList = ({ result, handleClick}) => {
     <div className=''>
         <div>
         <p className="text-xl font-bold">Recommanded</p>
-        <div className="flex flex-wrap gap-4 mb-3 my-2 bg-green-300">
+        <div className="flex flex-row gap-4 mb-3 my-2 bg-green-300">
         <button 
         value=""
         onClick={handleClick}
-        className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
+        className='border-2  text-blue-600 font-semibold px-3 py-1 rounded-sm'>
             All
         </button>
         {data && data.map((item, index)=> 
@@ -34,7 +34,7 @@ const ProductList = ({ result, handleClick}) => {
         key={index} 
         value={item.company.toLowerCase()}
         onClick={handleClick}
-        className='border-2 hover:bg-blue-300 text-blue-600 font-semibold px-3 py-1 rounded-sm'>
+        className='border-2  font-semibold px-3 py-1 rounded-sm'>
                 {item[0].company}
             </button> )}
         </div>

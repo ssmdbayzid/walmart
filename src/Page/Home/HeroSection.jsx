@@ -32,9 +32,9 @@ const HeroSection = () => {
     },[])
     
     return (
-        <div className=' w-full md:max-w-[1170px] mx-auto my-4 '>
-            <div className='flex w-full'>
-                <div className="itemsList w-[20%] mr-2">
+        <div className='flex w-full md:max-w-[1170px] mx-auto my-4 '>
+            
+                <div className="itemsList md:w-1/3 mr-2">
                     {ItemsCategory.map((item, index) =>
                         <div key={index}>
                             <ul className='px-2 py-3 border '>
@@ -47,13 +47,10 @@ const HeroSection = () => {
                         </div>
                         
                         )}
-                </div>
-
-
-            <div className=' '>
-             <Carousel products={products}/>
+                </div>                
+            <div className='w-full md:w-2/3'>
+             <Carousel  products={products}/>
             </div>
-                </div>
 
             </div>
         

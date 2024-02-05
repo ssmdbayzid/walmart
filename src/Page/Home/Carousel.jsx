@@ -1,62 +1,86 @@
 import React from 'react'
-import  {Autoplay,Pagination} from 'swiper/modules';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import banner from '../../assets/image/banner.jpg'
+import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from 'swiper/modules'
 
-import 'swiper/css';
-import 'swiper/css/pagination';
 
-const Carousel = ({products}) => {
+
+const Carousel = () => {
   return (
-    <div>
-    <Swiper className='carousel w-full '
-                        modules={[ Pagination ]}                        
-                        slidesPerView={1}
-                        pagination={{ clickable: true }}
-                        // autoplay={{
-                        //     delay: 3000,
-                        //     disableOnInteraction: false,
-                        // }}
-                        navigation={{ // Add navigation arrows
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                          }}
-                        breakpoints={{
-                            640: {
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                            },
-                            768: {
-                                slidesPerView: 2,
-                                spaceBetween: 20,
-                            },
-                            1024: {
-                                slidesPerView: 1,
-                                spaceBetween: 30,
-                            },
-                        }}>
-                {products && products.map((item)=>
-                <SwiperSlide key={item.title}>
-                  
-    <div className="flex  px-4 py-8 mx-auto flex-row  bg-slate-200">
-        <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Payments tool for software companies</h1>
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.</p>
-            <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                Get started
-                <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-            </a>
-            <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                Speak to Sales
-            </a> 
+    <div className=''>
+    
+      <Swiper
+        modules={[Autoplay, Pagination]}        
+        slidesPerView={2}
+        spaceBetween={30}
+        // grabCursor={true}
+        // slidesPerGroup={4}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+    
+        breakpoints={{
+          640: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+          },
+          768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+          },
+          1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+          },
+      }}
+      >
+        <div>
+
+         
+         <SwiperSlide  className="">
+         <div className="h-60">
+           <img src="https://electrolyte7-store.myshopify.com/cdn/shop/files/slider-1.jpg?v=1648275680" alt="" className='h-full w-full' />
+         </div>
+           <div className="px-1">
+               {/* --------- Product Content ---------- */}
+           <div className="">
+               <p className="text-slate-400 mt-auto">item.category</p>
+               {/* <p className="text-md font-semibold">{item.title}</p> */}
+               <div className="flex justify-between">
+               <p className="text-md font-bold text-wrap">item.title</p>
+               <p>$item.price</p>
+               </div>
+               <div className="flex justify-between mt-2">
+             
+               <div className="flex items-center justify-center">                   
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-orange-400 mr-1">
+               <path fillRule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clipRule="evenodd" />
+               </svg>
+               <span>4.5 (5)</span>
+               </div>  
+               <Link to={`/product/`} className="flex items-center justify-center bg-blue-600 hover:bg-blue-500 rounded w-10 h-7 text-white cursor-pointer">                   
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+               </svg>
+           
+               </Link>   
+               </div>
+
+           </div>
+               
+           </div>
+       </SwiperSlide>
+       
         </div>
-              
-    </div>
-                  </SwiperSlide>)}
-                
-            </Swiper> 
-            <div className="swiper-button-next"></div>
-      <div className="swiper-button-prev"></div>
+       
+      </Swiper>
+  <h1 className='bg-green-200'>
+    Header
+    </h1>
     </div>
   )
 }

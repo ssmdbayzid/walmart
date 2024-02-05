@@ -20,7 +20,7 @@ export const apiSlice = createApi({
   // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api/v1/' }), // Update the base URL accordingly
   baseQuery: async (args, api, extraOptions) =>{
     token = localStorage.getItem("accessToken");
-    const result = await baseQuery(args, api, extraOptions)    
+    let result = await baseQuery(args, api, extraOptions)    
     if(result?.error?.status === 401){
       token = localStorage.getItem("refreshToken")
       

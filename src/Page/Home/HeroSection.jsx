@@ -32,7 +32,7 @@ const HeroSection = () => {
     },[])
     
     return (
-        <div className='w-full md:max-w-[1170px] mx-auto my-4 '>
+        <div className=' w-full md:max-w-[1170px] mx-auto my-4 '>
             <div className='flex w-full'>
                 <div className="itemsList w-[20%] mr-2">
                     {ItemsCategory.map((item, index) =>
@@ -50,7 +50,7 @@ const HeroSection = () => {
                 </div>
 
 
-            <div className=' w-[80%]'>
+            <div className=' '>
              <Carousel products={products}/>
             </div>
                 </div>

@@ -22,27 +22,33 @@ const HeaderIcons = ({setShowSModal, showSModal}) => {
         </div> 
 
         <p 
-      onClick={() => setIsDropdownOpen(true)}
-    //   onMouseLeave={() => setIsDropdownOpen(false)}
+      // onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       className='group flex items-center gap-2 cursor-pointer'>
         <CgProfile className='text-xl' />
       </p>
       {isDropdownOpen &&
-        <div class="absolute top-10 z-[999] right-8 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-        <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+        
+       <div className="fixed bg-slate-300 right-6 top-14 rounded-lg z-[999]">
+        <div className="px-4 py-3">
+
+         <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green
+          </span>
+          <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
         </div>
-        <ul class="py-2" aria-labelledby="user-menu-button">
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+        <ul className="py-2" aria-labelledby="user-menu-button">
+          <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
+          className='cursor-pointer'
+          >
+            <a href="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
           </li>
           
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
+          >
+            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
           </li>
         </ul>
-      </div> }
+      </div>}
             
     </div>
   )

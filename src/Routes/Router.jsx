@@ -11,9 +11,11 @@ import CheckOut from "../Page/ShoppingCart/CheckOut";
 import Login from "../Page/Auth/Login";
 import SignUp from "../Page/Auth/SignUp";
 import Products from "../Page/Products/Products";
-import SCard from "../component/SCard";
+
 import Order from "../Page/Order/Order";
 import RequiredAuth from "./RequiredAuth";
+import Dashboard from "../Page/Dashboard/Dashboard";
+import Orders from "../Page/Dashboard/Orders";
 
 const router = createBrowserRouter([
     {
@@ -42,11 +44,17 @@ const router = createBrowserRouter([
                         <ShoppingCart />
                         </RequiredAuth>
             },
+            {
+                path: "/dashboard",
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: "order",
+                        element: <Orders />
+                    }
+                ]
+            },
            
-            // {
-            //     path: "/ShoppingCart",
-            //     element: <SCard />
-            // },
             {
                 path: "/Checkout",
                 element: <CheckOut />

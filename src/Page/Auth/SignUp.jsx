@@ -3,26 +3,24 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa6";
 import img from '../../assets/image/signup vactor.png'
 import useAuth from '../../Hooks/useAuth';
-import axios from 'axios';
+
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../../utls/setAuthToken';
+import { useSignUp } from '../../utls/useSignUp';
 
 
 const SignUp = () => {
     const {createUser} = useAuth()
     const navigate = useNavigate()
+
     const handleSignUp  = (event)=>{
         event.preventDefault()
 
         const form = event.target;
         const email = form.email.value;
-        const password = form.password.value;       
-
+        const password = form.password.value;            
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            setAuthToken(user)
-        })
+        .then(result =>navigate("/home"))
         .catch(err=> console.log(err.message))
     }
 
@@ -48,7 +46,7 @@ const SignUp = () => {
                         <br />
                         <input type="password" name='password' id='password'
                             className='w-full mt-4 py-2 md:py-2 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
-                            placeholder='example@gmail.com' />
+                            placeholder='password' />
                     </div>
                     <p className='text-gray-500 my-3'>Forgot Password ?</p>
                     <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-1'>Sign Up</button>

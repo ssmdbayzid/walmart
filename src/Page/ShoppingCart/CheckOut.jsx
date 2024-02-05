@@ -14,24 +14,22 @@ const CheckOut = () => {
     dispatch(getTotal())
   },[dispatch, cart])
   return (
-    <div className='max-w-[1170px] mx-auto'>     
-    <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-  
-  <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
+    <div className='max-w-[1170px] w-full mx-auto'>     
+     <div className='px-2 pt-8 w-full md:px-10'>
+   <CheckOutSummary className=""/>  
+</div>
+
+<div className=" flex w-full  flex-col  md:flex-row md:mt-16 md:px-10">  
+<div className='w-full md:w-1/2 '>
+ <ShippingForm  className=''/>
+</div>
+<div className='w-full md:w-1/2 '>
+<Payment className="" />
+</div>
+  </div>
+ 
     
-  </div>
-</div>
-<div className=" flex w-full flex-col items-start sm:px-10 md:flex-row ">
-  <div className="px-4 pt-8 md:w-1/2 ">
-   <CheckOutSummary />
-    <p className="mt-8 text-2xl text-center font-medium">Payment </p>
-    <Payment />
-  </div>
-  <div className='md:w-1/2'>
- <ShippingForm  />
-  </div>
-</div>
-    </div>
+</div>    
   )
 }
 

@@ -80,7 +80,7 @@ const ShoppingCartModal = ({setShowSModal, showSModal}) => {
                             <p className="mt-1 text-sm text-gray-500">{item.category}</p>
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">
-                            <p className="text-gray-500">Qty 1</p>
+                            <p className="text-gray-500">Qty {item.cartQuantity}</p>
   
                             <div className="flex">
                               <button 

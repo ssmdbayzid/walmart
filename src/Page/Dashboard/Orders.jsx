@@ -1,24 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTotal } from '../../app/features/cartSlice'
+import useAuth from '../../Hooks/useAuth'
 
-const CheckOutSummary = () => {
+const Orders = () => {
+    const cart = useSelector((state)=> state.cart)
+    const {user, loading} = useAuth()
 
-    const cart = useSelector((state)=> state.cart)    
     const dispatch = useDispatch()
-  
     useEffect(()=>{
-      dispatch(getTotal())
-    },[dispatch, cart])
+        dispatch(getTotal())
+    },[cart, dispatch])
+    if(loading){
+        return <p>Loading ...</p>
+    }
+    if(user){
+        console.log(user?.orders)
+    }
   return (
-    <div>
-         <p className="text-xl font-medium">Order Summary</p>
-    <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>  
-<div className="relative overflow-x-auto">
+    <div className="bg-slate-100 p-8 rounded-md w-full">
+   {user && user?.orders.map((order, index)=><div>
+   <div className="flex space-y-2 flex-col">
+        <h1 className="text-md dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #{order.tran_id}</h1>
+        <p className="text-base dark:text-gray-300 font-medium leading-6 -600 text-capitalize ">Delivery Status : <span className='text-yellow-400 capitalize'>{order.delivery_Status}</span> </p>
+       
+    </div>     
+    <div className="relative overflow-x-auto">
     <table className="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="px-6 text-center py-3">
+                <th scope="col" className=" text-center py-3">
                     Image
                 </th>
                 <th scope="col" className="px-3   py-3">
@@ -33,14 +44,15 @@ const CheckOutSummary = () => {
                 <th scope="col" className="px-3  py-3">
                     Total
                 </th>
+             
             </tr>
         </thead>
         <tbody>
-        { cart && cart.cartItems.map((item, index)=>  
+        { order?.cartItems && order?.cartItems.map((item, index)=>  
          <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td className="py-2 px-2">
-                  <div className=' h-20'>
-                    <img src={item.image} className="object-cover h-full w-[95%] mx-auto" alt="Apple Watch"/>
+                <td className="py-2 ">
+                  <div className=' h-10'>
+                    <img src={item.image} className="object-cover h-full w-16 mx-auto" alt="Apple Watch"/>
 
                   </div>
                 </td>
@@ -56,28 +68,28 @@ const CheckOutSummary = () => {
                 <td className="px-3 ">
                     ${item.price * item.cartQuantity.toFixed(2) }
                 </td>
+               
             </tr>)}
           
         </tbody>
     </table>
     <div className="mt-6 border-t border-b py-2">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-gray-900">Subtotal</p>
-          <p className="font-semibold text-gray-900">${cart?.cartTotalAmount.toFixed(2)}</p>
+          <p className="text-sm font-medium text-gray-900">Total</p>
+          <p className="font-semibold text-gray-900">${order?.total_price.toFixed(2)}</p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Shipping</p>
-          <p className="font-semibold text-gray-900">${(cart?.cartTotalAmount * 0).toFixed(2)}</p>
+          <p className="font-semibold text-gray-900">${(order?.total_price * 0).toFixed(2)}</p>
         </div>
       </div>
       <div className="mt-6 flex items-center justify-between">
         <p className="text-sm font-medium text-gray-900">Total</p>
-        <p className="text-2xl font-semibold text-gray-900">${(cart?.cartTotalAmount * 0 + cart?.cartTotalAmount).toFixed(2)}</p>
+        <p className="text-2xl font-semibold text-gray-900">${(order?.total_price).toFixed(2)}</p>
       </div>  
-</div>
-
-    </div>
+</div>  </div>)}  
+  </div>
   )
 }
 
-export default CheckOutSummary
+export default Orders

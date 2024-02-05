@@ -22,8 +22,7 @@ const ProductsGrid = ({ result, handleClick}) => {
 
     useEffect(()=>{
         if(data){
-            const uniqueCategories = [...new Set(data.map(product => product.company))];
-            console.log(uniqueCategories)
+            const uniqueCategories = [...new Set(data.map(product => product.company))];            
             setCompanies(uniqueCategories)
         }
     },[data])

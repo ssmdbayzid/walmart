@@ -7,34 +7,29 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { setAuthToken } from '../../utls/setAuthToken';
+
 const Login = () => {
-    const {logIn, user} =useAuth()
-    
+    const {logIn, setUser} = useAuth()
+    const token = localStorage.getItem("accessToken")
+ 
     const navigate = useNavigate();
     const location = useLocation();
 
     let from = location.state?.from?.pathname || "/home";
 
-  
+        useEffect(()=>{
+            if(token) {
+              navigate(from, { replace: true });
+              }
+        },[token])
 
-useEffect(()=>{
-    if (user) {
-        navigate(from, { replace: true });
-    }
-},[from, user])
     const handleLogin = (e) =>{
 
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
-        const password = form.password.value        
-        logIn(email, password)
-        .then(result => {
-            console.log(result.user)
-            const user = result.user;
-            setAuthToken(user)
-            
-        })
+        const password = form.password.value           
+        logIn(email, password)        
         .catch(err=> console.log(err.message))
     }
     return (
@@ -59,7 +54,7 @@ useEffect(()=>{
                         <br />
                         <input type="password" name='password' id='password'
                             className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
-                            placeholder='example@gmail.com' />
+                            placeholder='password' />
                     </div>
                     <p className='text-gray-500 my-3'>Forgot Password ?</p>
                     <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-3'>Log In</button>

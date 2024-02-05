@@ -14,8 +14,7 @@ useEffect(()=>{
     setLoading(true)
     if(data){
         setProducts(data?.data)
-        setLoading(false)
-        console.log("product context", data?.data)
+        setLoading(false)        
     }else{
         setProducts(null)
         setLoading(false)

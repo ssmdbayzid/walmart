@@ -8,9 +8,11 @@ import { IoGrid } from "react-icons/io5";
 
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
-import { products } from '../../assets/data/ItemsCategory';
+
 import FilterMenu from './FilterMenu';
 import ProductsGrid from './ProductsGrid';
+import { useGetProducts } from '../../Hooks/useGetProducts';
+import { products } from '../../assets/data/ItemsCategory';
 
 
 
@@ -18,11 +20,20 @@ import ProductsGrid from './ProductsGrid';
 const Products = () => {
 const [openSortMenu, setOpenSortMenu] = useState(false)
 const [menuType, setMenuType] = useState("grid")
-
 const [selectedCategory, setSelectedCategory] = useState(null);
-
-
 const [query, setQuery] = useState("")
+
+const {products:prods, loading} = useGetProducts()
+
+
+
+if(loading){
+  console.log(loading)
+  return <p>Loading ...</p>
+}
+if(prods){
+  console.log(prods)
+}
 
 // ---------- Ratio Filtering -------------
 
@@ -34,13 +45,14 @@ const handleChange = event => {
   }
 }
 
+
 // ---------------- Button Filtering --------------
 const handleClick = event => {
   setSelectedCategory(event.target.value.toLowerCase())
   
 }
 
-  const filteredItems = products.filter(
+  const filteredItems = products?.filter(
     (item)=> item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1    
   )
 
@@ -69,7 +81,7 @@ const filteredData = (products, selected, query) =>{
 
 const result = filteredData(products, selectedCategory, query)
 
-console.log(result)
+console.log(products)
 
 
 return (

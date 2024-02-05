@@ -1,16 +1,54 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, Route, Routes } from 'react-router-dom'
 import Header from '../component/Header/Header'
-import Head from '../component/Head'
+import Home from '../Page/Home/Home'
+import Products from '../Page/Products/Products'
+import ProductDetails from '../Page/Products/ProductDetails'
+import ShoppingCart from '../Page/ShoppingCart/ShoppingCart'
+import RequiredAuth from '../Routes/RequiredAuth'
+import Dashboard from '../Page/Dashboard/Dashboard'
 
+import CheckOut from '../Page/ShoppingCart/CheckOut'
+import Payment_Success from '../Page/Payment/Payment_Success'
+import Payment_Cancel from '../Page/Payment/Payment_Cancel'
+import Login from '../Page/Auth/Login'
+import SignUp from '../Page/Auth/SignUp'
+import DashboardIndex from '../Page/Dashboard/DashboardIndex'
+import Address from '../Page/Dashboard/User/Address'
+import Orders from '../Page/Dashboard/Orders'
+
+Routes, Route, Link
 
 const MainLayout = () => {
   
     return (
     <div>
         <Header />
-        {/* <Head /> */}
-        <Outlet />
+        <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/home' element={<Home />}/>
+        <Route path='/products' element={<Products />}/>
+        <Route path='/product/:id' element={<ProductDetails />}/>
+        <Route path='/shoppingCart' element={<RequiredAuth> <ShoppingCart /></RequiredAuth>}/>
+        <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
+        <Route path='/payment-success' element={<RequiredAuth> <Payment_Success /></RequiredAuth>}/>
+        <Route path='/payment-cancel' element={<RequiredAuth> <Payment_Cancel /></RequiredAuth>}/>
+        <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<SignUp />}/>
+
+        <Route path='/dashboard' element={
+        <RequiredAuth>
+          <Dashboard />
+        </RequiredAuth>}>
+          <Route path="/dashboard/orders"  element={<Orders />} />
+          <Route path="/dashboard/address"  element={<Address />} />
+          <Route  index  element={<DashboardIndex />} />
+        </Route>
+
+
+        </Routes>
+        
     </div>
   )
 }

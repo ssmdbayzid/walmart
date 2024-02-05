@@ -41,12 +41,16 @@ const Payment = () => {
 
 
   return (
-    <div className="App flex justify-center my-3">
+    <div className="">
+      <p className=" text-2xl text-center font-medium ">Payment </p>
+    <div className="flex-col px-6 md:px-8 flex w-full justify-center md:justify-start my-3">
+      <br />
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
       )}
+    </div>
     </div>
   )
 }

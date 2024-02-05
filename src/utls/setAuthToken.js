@@ -1,4 +1,7 @@
+import useAuth from "../Hooks/useAuth";
+
 export const setAuthToken = (user) =>{
+    // const {setUser} = useAuth()
     const currentUser = {
         email: user.email
     }
@@ -17,5 +20,8 @@ export const setAuthToken = (user) =>{
             // local storage is the easiest but not the best place to store jwt token
             localStorage.setItem("accessToken", data.accessToken)
             localStorage.setItem("refreshToken", data.refreshToken)
-        });
+            // setUser(data?.user)
+
+        })
+        .catch(error=> console.log(error.message))
 }

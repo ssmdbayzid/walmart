@@ -7,8 +7,19 @@ import ShoppingCartModal from './ShoppingCartModal';
 
 const Header = () => {
     const [showSModal, setShowSModal] = useState(false)
+    const [scroll, setScroll] = useState(false)
+
+    const handleOnchage = () =>{
+        if(window.scrollY >= 70){
+            setScroll(true)
+        }else{
+            setScroll(false)
+        }
+    }
+    window.addEventListener("scroll", handleOnchage)
+
   return (
-    <div className="">   
+    <div className={`${scroll && "fixed  w-full top-0"} z-[999]`}>   
 <nav className=" py-2 bg-gradient-to-r from-yellow-200 via-slate-500 to-blue-500 backdrop-blur-xl">
     <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto">
     <a href="https://flowbite.com" className="">

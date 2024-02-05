@@ -40,10 +40,29 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{                        
             if(currentUser){                
-                setLoading(false)
-                setUser(currentUser);                
+                setLoading(true)
+                fetch('http://localhost:8000/api/v1/auth/jwt-token', {
+                  method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+                .then(res => res.json())
+                .then(data => {                    
+                    // local storage is the easiest but not the best place to store jwt token
+                    localStorage.setItem("accessToken", data.accessToken)
+                    localStorage.setItem("refreshToken", data.refreshToken)
+                    setUser(data?.user)
+                    setLoading(false)
+                })
+                .catch(error=> console.log(error.message))
+                 
             }else{
                 setLoading(false)
+                localStorage.removeItem("accessToken")
+                localStorage.removeItem("refreshToken")
+                setUser(null)
             }
         })
 
@@ -56,6 +75,7 @@ const AuthProvider = ({children}) => {
         user,        
         loading,
         setLoading,
+        setUser,
         createUser,
         logIn,
         googleSignIn,

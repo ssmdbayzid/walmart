@@ -27,17 +27,16 @@ const HeaderIcons = ({setShowSModal, showSModal}) => {
       className='group flex items-center gap-2 cursor-pointer'>
         <CgProfile className='text-xl text-gray-600' />
       </p>
+
       {isDropdownOpen &&
         
-       <div className="fixed bg-slate-300 right-6 top-14 rounded-lg z-[999]">
+       <div className="fixed z-[999] max-w-48 w-full bg-slate-200 right-6 top-14 rounded-lg ">
         <div className="px-4 py-3">
-
-         <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green
-          </span>
-          <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+       
+    {user &&  <span className="block text-sm  text-center text-gray-500 truncate dark:text-gray-400">{user.email}</span>}
         </div>
         <ul className="py-2" aria-labelledby="user-menu-button">
-          <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
+         {user ? <> <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
           className='cursor-pointer'
           >
             <a href="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
@@ -46,7 +45,18 @@ const HeaderIcons = ({setShowSModal, showSModal}) => {
           <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
           >
             <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          </li></>
+          : <> <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
+          className='cursor-pointer'
+          >
+            <a href="/login" className="block text-center hover:bg-blue-500 px-4 py-2 text-sm text-gray-700 bg-gray-300 mb-4 mx-2 rounded-md">Log In</a>
           </li>
+          
+          <li onClick={()=>setIsDropdownOpen(!isDropdownOpen)}
+          >
+            <a href="/signup" className="block text-center hover:bg-blue-500 px-4 py-2 text-sm text-gray-700 bg-gray-300  mx-2 rounded-md">Sign up</a>
+          </li></>}
+         
         </ul>
       </div>}
             

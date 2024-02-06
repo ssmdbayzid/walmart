@@ -41,8 +41,9 @@ const Payment = () => {
 
 
   return (
-    <div className="">
+    <div className="bg-blue-100 ">
       <p className=" text-2xl text-center font-medium ">Payment </p>
+      <p className='text-center' >All transaction are secure & encripted</p>
     <div className="flex-col px-6 md:px-8 flex w-full justify-center md:justify-start my-3">
       <br />
       {clientSecret && (

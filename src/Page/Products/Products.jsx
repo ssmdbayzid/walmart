@@ -32,13 +32,13 @@ const [loading, setLoading]  = useState(false)
 useEffect(() => {
   setLoading(true);
   if (data) {
+    setLoading(false);    
     setproducts(data?.data);
-    console.log(data?.data);
-    setLoading(false);
   } else {
     setLoading(false);
   }
 }, [data]);
+
 
 
 // ---------- Ratio Filtering -------------
@@ -77,6 +77,7 @@ const filteredData = (products, selected, query) =>{
   
   
     if(selected){      
+      console.log(selected)
       filteredProducts  = filteredProducts.filter(({category, color, company, price}) =>
         category.toLowerCase() === selected ||
         color.toLowerCase() === selected ||
@@ -91,15 +92,14 @@ const filteredData = (products, selected, query) =>{
 
 const result = filteredData(products, selectedCategory, query)
 
-console.log(products)
-
-
 return (
     <div>
   <div className="max-w-[1170px] mx-auto bg-gray-100">
  <> <div>
     <FilterMenu />
-   { loading ? <p>Loading ...</p> :
+   { loading ? <div className='flex items-center justify-center h-screen'>
+   <p>Loading ...</p>
+</div>  :
   <>
   {products && <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
       <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">

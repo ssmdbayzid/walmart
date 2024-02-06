@@ -11,7 +11,7 @@ import { Pagination } from 'swiper/modules';
 const HeroSection2 = () => {
   return (
     <div className='relative '>            
-        <img src="https://static.wixstatic.com/media/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png/v1/fill/w_1349,h_565,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png" alt="" className='' />      
+        <img src="https://static.wixstatic.com/media/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png/v1/fill/w_1349,h_565,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png" alt="" className='h-full' />      
         <div className='left-[10%] absolute top-24'>
         <p className='text-white bg-red-600 inline-block px-5 py-1 mb-6'>Best Prices </p>
 

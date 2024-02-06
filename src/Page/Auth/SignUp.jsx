@@ -48,8 +48,8 @@ const SignUp = () => {
                             className='w-full mt-4 py-2 md:py-2 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
                             placeholder='password' />
                     </div>
-                    <p className='text-gray-500 my-3'>Forgot Password ?</p>
-                    <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-1'>Sign Up</button>
+                    <p className='text-gray-500 my-3'>Already have an account ?</p>
+                    <a href='/login' className='w-full py-2 bg-blue-500 text-white font-light text-xl my-1'>Sign Up</a>
                 </form>
                 <div className="inline-flex items-center justify-center w-full ">
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-blue-100 via-blue-500 to-yellow-300 border-0 rounded dark:bg-gray-700" />

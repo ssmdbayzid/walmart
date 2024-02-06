@@ -30,10 +30,12 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value           
         logIn(email, password)        
-        .catch(err=> console.log(err.message))
+        .catch(err=> {
+            toast.error(`invalid credential`)
+        })
     }
     return (
-        <div className='max-w-[1170px] mx-auto flex items-center justify-center'>
+        <div className='max-w-[1170px] h-[90vh] mx-auto flex items-center justify-center'>
             <div className="p-3 w-full md:w-1/2">
                 <form onSubmit={handleLogin} className='w-full'>
                     <div className='relative'>
@@ -56,7 +58,7 @@ const Login = () => {
                             className='w-full mt-4 py-2 md:py-4 rounded-lg focus:border focus:border-blue-300 border-gray-600 border-1'
                             placeholder='password' />
                     </div>
-                    <p className='text-gray-500 my-3'>Forgot Password ?</p>
+                    <p className='text-gray-500 my-3'>Don't have an account ? <a href="/signup" className='font-semibold text-blue-500'> Sign Up</a></p>
                     <button className='w-full py-2 bg-blue-500 text-white font-light text-xl my-3'>Log In</button>
                 </form>
                 <div className="inline-flex items-center justify-center w-full ">

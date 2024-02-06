@@ -6,6 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 
@@ -59,7 +60,7 @@ export default function CheckoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!shippingAddress){
-      alert("Complete your shipping address")
+      toast.error("Add shipping address")
       return
     }
     if(!user){

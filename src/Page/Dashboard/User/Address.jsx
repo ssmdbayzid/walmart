@@ -52,16 +52,25 @@ const Address = () => {
     }
   }
   
+
   // ------------ Handle Form Submit ----------------
     const handleFormData = (event) =>{
         event.preventDefault()                            
         setOpen(true)
         if(addressType == "shipping"){
-        axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{shippingAddress:shippingAddress})
-        .then(res=> console.log(res))
-        .catch(err=> console.log(err))
+          if(event.target.ship_bill_Address.checked === true){
+            axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{
+              shippingAddress:shippingAddress, billingAddress: shippingAddress})
+            .then(res=> console.log(res))
+            .catch(err=> console.log(err))
+            localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
+          }else{
+            axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{shippingAddress:shippingAddress})
+            .then(res=> console.log(res))
+            .catch(err=> console.log(err))
+            localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
+          }
 
-          localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
         }else{
           localStorage.setItem("billingAddress", JSON.stringify(billingAddress))
           axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{billingAddress:billingAddress})
@@ -131,6 +140,11 @@ const Address = () => {
       </div>
       </div>
       {/* ------------ City & Region End--------  */}                          
+    </div>
+    <div className="flex gap-3 pt-5 capitalize items-center">
+      <input 
+      type="checkbox" name="ship_bill_Address" id="" className='outline outline-slate-400 rounded-full p-1' />
+      <p className='text-slate-600 font-semibold'>The shipping & billing address are same</p>
     </div>
     <div className="flex justify-between gap-5">
     <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Save</button>

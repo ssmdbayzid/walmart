@@ -12,8 +12,12 @@ const CheckOutSummary = () => {
     },[dispatch, cart])
   return (
     <div>
-         <p className="text-xl font-medium">Order Summary</p>
-    <p className="text-gray-400">Check your items. And select a suitable shipping method.</p>  
+        <div className='py-10 bg-[url("https://images.pexels.com/photos/10330114/pexels-photo-10330114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")] bg-center object-cover bg-no-repeat mb-10'>
+
+<h2 className="text-4xl font-bold  text-center text-white  ">Payment Checkout</h2>
+</div>
+         <p className="text-3xl font-medium mb-2">Order Summary</p>
+    <p className="text-gray-400 mb-6">Check your items. And select a suitable shipping method.</p>  
 <div className="relative overflow-x-auto">
     <table className="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -40,7 +44,7 @@ const CheckOutSummary = () => {
          <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td className="py-2 px-2">
                   <div className=' h-20'>
-                    <img src={item.image} className="object-cover h-full w-[95%] mx-auto" alt="Apple Watch"/>
+                    <img src={item.image} className="object-fill h-full w-[95%] mx-auto" alt="Apple Watch"/>
 
                   </div>
                 </td>
@@ -60,7 +64,7 @@ const CheckOutSummary = () => {
           
         </tbody>
     </table>
-    <div className="mt-6 border-t border-b py-2">
+    <div className="mt-4 border-t border-b py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Subtotal</p>
           <p className="font-semibold text-gray-900">${cart?.cartTotalAmount.toFixed(2)}</p>

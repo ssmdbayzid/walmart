@@ -11,7 +11,7 @@ const Carousel = () => {
     
       <Swiper
         modules={[Autoplay, Pagination]}        
-        slidesPerView={2}
+        slidesPerView={1}
         spaceBetween={30}
         // grabCursor={true}
         // slidesPerGroup={4}
@@ -23,20 +23,20 @@ const Carousel = () => {
           disableOnInteraction: false,
         }}
     
-        breakpoints={{
-          640: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-          },
-          768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-          },
-          1024: {
-              slidesPerView: 4,
-              spaceBetween: 30,
-          },
-      }}
+      //   breakpoints={{
+      //     640: {
+      //         slidesPerView: 2,
+      //         spaceBetween: 10,
+      //     },
+      //     768: {
+      //         slidesPerView: 3,
+      //         spaceBetween: 20,
+      //     },
+      //     1024: {
+      //         slidesPerView: 4,
+      //         spaceBetween: 30,
+      //     },
+      // }}
       >
         <div>
 

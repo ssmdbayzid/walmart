@@ -5,6 +5,8 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { products } from '../../assets/data/ItemsCategory';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../app/features/cartSlice';
 
 
 const ProductsGrid = ({ result, handleClick}) => {
@@ -12,6 +14,9 @@ const ProductsGrid = ({ result, handleClick}) => {
     const [data, setData] = useState(null)
     const [companies, setCompanies] = useState(null)
     const pageSize = 12
+
+const dispatch = useDispatch()
+
 
     useEffect(()=>{
         const startIndex = (pageNo - 1) * pageSize;
@@ -84,7 +89,7 @@ const ProductsGrid = ({ result, handleClick}) => {
                                 </p>
                             </div>
                             <div className="flex justify-between border-t border-gray-300 dark:border-gray-700 cursor-pointer e-full">
-                                <div  className="w-1/2 bg-blue-200 px-2 py-1 cursor-pointer">
+                                <div onClick={()=> dispatch(addToCart(item))} className="w-1/2 bg-blue-200 px-2 py-1 cursor-pointer">
                                 <MdOutlineShoppingCart className='text-blue-700 text-xl  mx-auto' />
                                 </div>
 

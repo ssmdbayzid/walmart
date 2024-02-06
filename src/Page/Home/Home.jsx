@@ -8,11 +8,13 @@ import Footer from './Footer'
 import HeroSection from './HeroSection'
 
 import Banner2 from './Bannner2'
+import HeroSection2 from './HeroSection2'
 
 const Home = () => {
   return (
     <div className="">
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <HeroSection2 />
       <Promotion />
       <Products />
       <Banner2 />

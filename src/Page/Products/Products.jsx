@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ColorFilter from './ColorFilter'
 import CategoryFilter from './CategoryFilter'
 import SizeFilter from './SizeFilter'
@@ -11,8 +11,8 @@ import SearchBar from './SearchBar';
 
 import FilterMenu from './FilterMenu';
 import ProductsGrid from './ProductsGrid';
-import { useGetProducts } from '../../Hooks/useGetProducts';
-import { products } from '../../assets/data/ItemsCategory';
+import { useGetProductsQuery } from '../../app/features/productAPISlice';
+// import { products } from '../../assets/data/ItemsCategory';
 
 
 
@@ -22,18 +22,24 @@ const [openSortMenu, setOpenSortMenu] = useState(false)
 const [menuType, setMenuType] = useState("grid")
 const [selectedCategory, setSelectedCategory] = useState(null);
 const [query, setQuery] = useState("")
+const [products, setproducts] = useState(null)
+const {data} = useGetProductsQuery()
+const [loading, setLoading]  = useState(false)
 
-const {products:prods, loading} = useGetProducts()
 
 
 
-if(loading){
-  console.log(loading)
-  return <p>Loading ...</p>
-}
-if(prods){
-  console.log(prods)
-}
+useEffect(() => {
+  setLoading(true);
+  if (data) {
+    setproducts(data?.data);
+    console.log(data?.data);
+    setLoading(false);
+  } else {
+    setLoading(false);
+  }
+}, [data]);
+
 
 // ---------- Ratio Filtering -------------
 
@@ -52,9 +58,13 @@ const handleClick = event => {
   
 }
 
-  const filteredItems = products?.filter(
+let filteredItems;
+
+if(products){
+  filteredItems = products?.filter(
     (item)=> item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1    
   )
+}  
 
 const filteredData = (products, selected, query) =>{
   
@@ -86,13 +96,12 @@ console.log(products)
 
 return (
     <div>
-
-<div className="max-w-[1170px] mx-auto bg-gray-100">
-  <div>
+  <div className="max-w-[1170px] mx-auto bg-gray-100">
+ <> <div>
     <FilterMenu />
-    
-
-    <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
+   { loading ? <p>Loading ...</p> :
+  <>
+  {products && <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
       <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
         <SearchBar query={query} setQuery={setQuery} />
@@ -142,9 +151,7 @@ return (
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-4 lg:grid-cols-5">
           {/* <!-- Filters --> */}
           <form className="hidden lg:block space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-            
-          {/* <ColorFilter products={products} handleChange={handleChange} /> */}
-           
+                               
           <CategoryFilter  products={products} handleChange={handleChange}  /> 
           
            <SizeFilter handleChange={handleChange}  />
@@ -165,11 +172,10 @@ return (
           
         </div>
       </section>
-    </main>
+    </main>}</> }
+  </div> </> 
   </div>
-</div>
-
-    </div>
+ </div>
   )
 }
 

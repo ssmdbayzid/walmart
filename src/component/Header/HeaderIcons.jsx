@@ -17,7 +17,7 @@ const HeaderIcons = ({setShowSModal, showSModal}) => {
   return (
     <div className="flex gap-3 items-center">
         <div onClick={()=> setShowSModal(!showSModal)} className="relative cursor-pointer">
-        <MdOutlineShoppingCart  className="text-2xl" />
+        <MdOutlineShoppingCart  className="text-2xl text-gray-600" />
         <div className="absolute -top-1 right-0 w-4 h-4  text-sm bg-blue-700 text-white rounded-full flex items-center justify-center">{cart.cartItems.length}</div>   
         </div> 
 
@@ -25,7 +25,7 @@ const HeaderIcons = ({setShowSModal, showSModal}) => {
       // onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       className='group flex items-center gap-2 cursor-pointer'>
-        <CgProfile className='text-xl' />
+        <CgProfile className='text-xl text-gray-600' />
       </p>
       {isDropdownOpen &&
         

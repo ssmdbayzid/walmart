@@ -39,16 +39,14 @@ const [products, setProducts] = useState(null)
         modules={[Autoplay, Pagination]}        
         slidesPerView={2}
         spaceBetween={30}
-        // grabCursor={true}
-        // slidesPerGroup={4}
         pagination={{
           clickable: true,
         }}
+        
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
-        }}
-        className=""
+        }}        
        
         breakpoints={{
           640: {
@@ -63,8 +61,7 @@ const [products, setProducts] = useState(null)
               slidesPerView: 4,
               spaceBetween: 30,
           },
-      }}
-      >
+      }} >
         <div>
 
           {products && products.map((item, index)=> 
@@ -111,7 +108,4 @@ const [products, setProducts] = useState(null)
 }
 
 export default Banner
-
-
- 
 

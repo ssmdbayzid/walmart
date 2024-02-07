@@ -30,7 +30,7 @@ const HeaderIcons = ({setOpenMenu,openMenu, setShowSModal, showSModal}) => {
       {/* // Menu Icon */}
         <p 
       onClick={() => setOpenMenu(!openMenu)}      
-      className='group flex items-center gap-2 cursor-pointer'>
+      className='group md:hidden flex items-center gap-2 cursor-pointer'>
         <CgMenu className='text-2xl text-gray-600' />
       </p>
 

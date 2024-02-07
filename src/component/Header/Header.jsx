@@ -23,7 +23,7 @@ const Header = () => {
     window.addEventListener("scroll", handleOnchage)
 
   return (
-    <div className={`${scroll ? "fixed z-[999] shadow-lg" : "relative"} top-0 w-full `}>   
+    <div className={`${scroll ? "fixed z-[999] shadow-lg" : "relative"}  w-full ease-in-out transition-all duration-300`}>   
 <nav className={` bg-gradient-to-r from-slate-50 via-slate-200 to-yellow-50  `}>
     
     <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto px-4 md:px-0 py-4">
@@ -42,7 +42,7 @@ const Header = () => {
                     <a href="#" className="h-full  font-medium  hover:underline">About</a>
                 </li>
                 <li>
-                    <a href="#" className="h-full  font-medium  hover:underline">Contact</a>
+                    <a href="/contact" className="h-full  font-medium  hover:underline">Contact</a>
                 </li>
               {user &&  <li>
                     <a href="#" className="h-full  font-medium  hover:underline">Dashboard</a>

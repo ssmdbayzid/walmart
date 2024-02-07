@@ -16,6 +16,7 @@ import SignUp from '../Page/Auth/SignUp'
 import DashboardIndex from '../Page/Dashboard/DashboardIndex'
 import Address from '../Page/Dashboard/User/Address'
 import Orders from '../Page/Dashboard/Orders'
+import Contact from '../Page/Contact/Contact'
 
 Routes, Route, Link
 
@@ -36,6 +37,7 @@ const MainLayout = () => {
         <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp />}/>
+        <Route path='/contact' element={<Contact />}/>
 
         <Route path='/dashboard' element={
         <RequiredAuth>

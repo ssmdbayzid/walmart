@@ -5,7 +5,7 @@ import { GrMoney } from "react-icons/gr";
 const Promotion = () => {
   return (
     <div className="max-w-[1170px] mx-auto my-10">        
-        <div className="flex items-center justify-center border rounded-lg py-3 gap-16">
+        <div className="flex md:flex-row flex-col items-center justify-center border rounded-lg py-3 gap-16">
             <div className="group flex items-center pl-2 pr-6 border-r">
             <GoRocket className="group-hover:text-slate-700 text-slate-300  text-4xl mr-3 duration-400 transition-all" />
             <div className="">

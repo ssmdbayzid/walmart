@@ -17,6 +17,8 @@ import DashboardIndex from '../Page/Dashboard/DashboardIndex'
 import Address from '../Page/Dashboard/User/Address'
 import Orders from '../Page/Dashboard/Orders'
 import Contact from '../Page/Contact/Contact'
+import CreateProduct from '../Page/Dashboard/Admin/CreateProduct'
+import AllOrder from '../Page/Dashboard/Admin/AllOrder'
 
 Routes, Route, Link
 
@@ -45,6 +47,8 @@ const MainLayout = () => {
         </RequiredAuth>}>
           <Route path="/dashboard/orders"  element={<Orders />} />
           <Route path="/dashboard/address"  element={<Address />} />
+          <Route path="/dashboard/createProduct"  element={<CreateProduct />} />
+          <Route path="/dashboard/allOrder"  element={<AllOrder />} />
           <Route  index  element={<DashboardIndex />} />
         </Route>
 

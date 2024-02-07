@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 const Dashboard = () => {
     const [showSideBar, setShowSideBar] = useState(false)
   return (
-    <div className="">
+    <div className="max-w-[1170px] mx-auto mt-10">
       <div className="bg-[url('https://cdn.pixabay.com/photo/2018/01/11/21/27/desk-3076954_1280.jpg')] py-3 bg-cover bg-no-repeat w-full">
     <h1 className='text-center text-2xl font-bold'>Account Details</h1>
       </div>

@@ -339,7 +339,7 @@ const Menu = () => {
               aria-label="toggle sidebar"
               id="openSideBar"
               className="h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded focus:ring-gray-800"
-              onclick="sidebarHandler(true)"
+              onClick="sidebarHandler(true)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -369,7 +369,7 @@ const Menu = () => {
               aria-label="Close sidebar"
               id="closeSideBar"
               className="hidden h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white"
-              onclick="sidebarHandler(false)"
+              onClick="sidebarHandler(false)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,19 +1,48 @@
-import React, { useState } from 'react'
-import { useGetOrdersQuery } from '../../../app/features/orderApiSlice'
+import React, { useEffect, useState } from 'react'
+import { useGetOrdersQuery, useUpdateOrderMutation } from '../../../app/features/orderApiSlice'
 import { IoEyeOutline } from "react-icons/io5";
 import ItemModal from './ItemModal';
+import { FiEdit3 } from "react-icons/fi";
+import { toast } from 'react-toastify';
 const AllOrder = () => {
-    const [openOption, setOpenOption] = useState(false)
+    // const [openOption, setOpenOption] = useState(false)
+    const [openEdit, setOpenEdit] = useState(false)
     const [openModal, setOpenModal] = useState(false)
     const {data, isLoading, isError} = useGetOrdersQuery()
+    const [ updateOrder] = useUpdateOrderMutation()
+    const [loading, setLoading]= useState(false)
+    const [orders, setOrders] = useState(null)
+    
 
-    if(data){
-      console.log(data)
+useEffect(()=>{
+  setLoading(true)
+  if(data){
+    setOrders(data)
+    console.log(data?.data)
+    setLoading(false)
+  }else{
+    setOrders(null)
+  }
+},[data])
+
+    const updateOrderStatus = async (id, dStatus) =>{
+      setLoading(true)
+      const result =  await updateOrder({id, delivery_Status: dStatus})
+      
+      if(result.data){
+        setOpenEdit(false)
+        setLoading(false)
+        toast.success("Order Updated")        
     }
-    if(isLoading){
-      return <p>Loading</p>
+    if(result.error){
+        // toast.error(`${result.error?.data}`,)
+        setLoading(false)
+        console.log(result.error)
     }
-    console.log(openModal)
+    }
+
+
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 min-h-screen">
   <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
@@ -239,8 +268,8 @@ const AllOrder = () => {
           </div>
         </div>
       </div>
-     {isLoading ? <p>Loading ....</p> : <>
-     {data && data?.data.map((order, index)=> <div key={index} className="overflow-x-auto">
+     {loading ? <p>Loading ....</p> : <>
+     {orders && orders?.data.map((order, index)=> <div key={index} className="overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -260,7 +289,7 @@ const AllOrder = () => {
                 Delivery Status
               </th>
               <th scope="col" className="px-4 py-3">
-                <span className="sr-only">Actions</span>
+             Actions
               </th>
             </tr>
           </thead>
@@ -274,60 +303,22 @@ const AllOrder = () => {
               </th>
               <td className="px-4 py-3">{order.cartItems.length}</td>
               <td className="px-4 py-3">{order.total_price}</td>
-              <td className="px-4 py-3">{order.shippingAddress.name}</td>
-              <td className="px-4 py-3">${order.delivery_Status}</td>
-              <td className="px-4 py-3 flex items-center justify-end">
-                <button
-                  id="apple-imac-27-dropdown-button"
-                  data-dropdown-toggle="apple-imac-27-dropdown"
-                  className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                  type="button"
-                >
-                  <IoEyeOutline onClick={()=>setOpenModal(!openModal)} data-modal-target="default-modal" data-modal-toggle="default-modal" className='w-6 h-6 mr-2' />
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                </button>
-                <div
-                  id="apple-imac-27-dropdown"
-                  className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                >
-                  <ul
-                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="apple-imac-27-dropdown-button"
-                  >
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Show
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Edit
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a
-                      href="#"
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </div>
+              <td className="px-4 py-3">{order.shippingAddress.address}</td>
+              <td className="px-4 py-3">
+                {openEdit ?
+                <select onChange={(e)=>updateOrderStatus(order._id, e.target.value)} name="delivery_status" id="" className='px-2 py-1' >
+                  <option value="pending">pending</option>
+                  <option value="shipped">shipped</option>
+                  <option value="delivered">delivered</option>
+                </select> : <>{order.delivery_Status}</>}
+                </td>
+              <td className="px-4 py-3 flex items-center justify-center">
+                  
+                  <IoEyeOutline onClick={()=>setOpenModal(!openModal)} 
+                   className='w-6 h-6 mr-2 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none' />
+                   <FiEdit3 onClick={()=>setOpenEdit(!openEdit)} className='w-6 h-6 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none'/>
+                
+            
               </td>
             </tr>
           

@@ -22,8 +22,9 @@ const Header = () => {
     }
     window.addEventListener("scroll", handleOnchage)
 
+    
   return (
-    <div className={`${scroll ? "fixed z-[999] shadow-lg" : "relative"}  w-full ease-in-out transition-all duration-300`}>   
+    <div className={`${scroll ? "fixed z-[999] top-0 shadow-lg" : "relative"}  w-full ease-in-out transition-all duration-300`}>   
 <nav className={` bg-gradient-to-r from-slate-50 via-slate-200 to-yellow-50  `}>
     
     <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto px-4 md:px-0 py-4">
@@ -44,8 +45,8 @@ const Header = () => {
                 <li>
                     <a href="/contact" className="h-full  font-medium  hover:underline">Contact</a>
                 </li>
-              {user &&  <li>
-                    <a href="#" className="h-full  font-medium  hover:underline">Dashboard</a>
+              {user?.role ==="admin" &&  <li>
+                    <a href="/dashboard" className="h-full  font-medium  hover:underline">Dashboard</a>
                 </li>}
     </ul>
     <HeaderIcons setOpenMenu={setOpenMenu} openMenu={openMenu} setShowSModal={setShowSModal} showSModal={showSModal} />

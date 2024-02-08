@@ -28,7 +28,7 @@ const HeroSection2 = () => {
         <div>
         
         <SwiperSlide  className="">
- <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png/v1/fill/w_1349,h_565,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png")] bg-center bg-no-repeat py-32 xl:py-48 bg-cover'>            
+ <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png/v1/fill/w_1349,h_565,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_f58829a26e594ca3aa72383e19cf39b9~mv2.png")] bg-center bg-no-repeat  h-[95vh] bg-cover'>            
         {/* <img src="" alt="" className='h-full' />       */}
         <div className='max-w-[1170px] mx-auto ps-5 md:ps-0'>
         <p className='text-white bg-red-600 inline-block px-5 py-1 mb-6'>Best Prices </p>
@@ -42,7 +42,7 @@ const HeroSection2 = () => {
     </div>
     </SwiperSlide>
         <SwiperSlide  className="">
- <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_9c1280daaeb0481abc58e6e236efdf59~mv2.png/v1/fill/w_1349,h_595,al_br,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_9c1280daaeb0481abc58e6e236efdf59~mv2.png")] bg-center bg-no-repeat py-32 xl:py-48 bg-cover'>            
+ <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_9c1280daaeb0481abc58e6e236efdf59~mv2.png/v1/fill/w_1349,h_595,al_br,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_9c1280daaeb0481abc58e6e236efdf59~mv2.png")] bg-center bg-no-repeat  h-screen bg-cover'>            
         {/* <img src="" alt="" className='h-full' />       */}
         <div className='max-w-[1170px] mx-auto ps-5 md:ps-0'>
         <p className='text-white bg-red-600 inline-block px-5 py-1 mb-6'>Best Prices </p>
@@ -56,7 +56,7 @@ const HeroSection2 = () => {
     </div>
     </SwiperSlide>
         <SwiperSlide  className="">
- <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_837f9cd4f59146c3ad47a2bd882fedfd~mv2.png/v1/fill/w_1349,h_595,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_837f9cd4f59146c3ad47a2bd882fedfd~mv2.png")] bg-center bg-no-repeat py-32 xl:py-48 bg-cover'>            
+ <div className=' bg-[url("https://static.wixstatic.com/media/c837a6_837f9cd4f59146c3ad47a2bd882fedfd~mv2.png/v1/fill/w_1349,h_595,al_r,q_90,usm_0.66_1.00_0.01,enc_auto/c837a6_837f9cd4f59146c3ad47a2bd882fedfd~mv2.png")] bg-center bg-no-repeat  h-screen bg-cover'>            
         {/* <img src="" alt="" className='h-full' />       */}
         <div className='max-w-[1170px] mx-auto ps-5 md:ps-0'>
         <p className='text-white bg-red-600 inline-block px-5 py-1 mb-6'>Best Prices </p>

@@ -1,34 +1,80 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaRegTrashAlt } from "react-icons/fa";
+import Image_Upload from '../../../utls/image_upload';
+import { useCreateProductMutation } from '../../../app/features/productAPISlice';
+import { toast } from 'react-toastify';
+
+
 
 const CreateProduct = () => {
-    const {register, handleSubmit} = useForm()
+    const {register, reset, handleSubmit, formState: { errors },} = useForm()
+    const [inputFiles, setInputFiles] = useState(null)
+    const [inputFilesError, setInputFilesError] = useState("")
+    const [createProduct, {isloading}] = useCreateProductMutation()
 
-    const onSubmit = d => console.log(d)
+    const onSubmit = async d => {
+      if (!inputFiles?.length) return   setInputFilesError("Photo is required")
+
+
+      const formData = new FormData()
+       // Append each file individually
+       inputFiles.forEach(file => formData.append("file", file))
+      
+      formData.append("cloud_name", "dxspmmowc")
+      formData.append("upload_preset", "walmart")
+  
+      const url = "https://api.cloudinary.com/v1_1/dxspmmowc/image/upload"
+  
+      const data = await fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+      .then(res => res.json())
+      
+      // console.log(data)
+      alert(data.error)
+   
+      // --- post data to database ----
+
+      const result = await createProduct({...d, image: data?.url})
+
+    if(result.data){
+        console.log(result.data)
+        toast.success("Created product successfully")
+        reset()
+        setInputFiles(null)
+    }
+    if(result.error){
+        // toast.error(`${result.error?.data}`,)
+        console.log(result.error)
+    }
+    }
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-slate-100 dark:bg-gray-900">
   <div className="max-w-2xl px-4 py-8 mx-auto lg:py-16">
-    <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-      Update product
+    <h2 className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white">
+      Create product
     </h2>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
         <div className="sm:col-span-2">
           <label
-            htmlFor="name"
+            htmlFor="title"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Product Name
           </label>
           <input
             type="text"
-           {...register("name")}
-            id="name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            defaultValue="Apple iMac 27“"
-            placeholder="Type product name"
-            required=""
+           {...register("title", {required: true})}
+            id="title"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"            
+            placeholder="Type product title"            
           />
+          {errors.title && errors.title.type === "required" && (
+        <p className='text-red-400 text-md ps-3 py-1'>Title is required</p>
+      )}      
         </div>
         <div className="w-full">
           <label
@@ -40,13 +86,14 @@ const CreateProduct = () => {
           </label>
           <input
             type="text"
-            {...register("brand")}
+            {...register("brand", {required: true})}
             id="brand"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            defaultValue="Apple"
-            placeholder="Product brand"
-            required=""
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"            
+            placeholder="Product brand"            
           />
+          {errors.brand && errors.brand.type === "required" && (
+        <p className='text-red-400 text-md ps-3 py-1'>Brand is required</p>
+      )}  
         </div>
         <div className="w-full">
           <label
@@ -57,13 +104,14 @@ const CreateProduct = () => {
           </label>
           <input
             type="number"
-            {...register("price")}
+            {...register("price", {required: true})}
             id="price"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            defaultValue={2999}
-            placeholder="$299"
-            required=""
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"            
+            placeholder="Price"            
           />
+          {errors.price && errors.price.type === "required" && (
+          <p className='text-red-400 text-md ps-3 py-1'>Price is required</p>
+      )}  
         </div>
         <div>
           <label
@@ -74,32 +122,43 @@ const CreateProduct = () => {
           </label>
           <select
             id="category"
-            {...register("categorty")}
+            {...register("category", {required: true})}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-          >
-            <option selected="">Electronics</option>
-            <option value="TV">TV/Monitors</option>
-            <option value="PC">PC</option>
-            <option value="GA">Gaming/Console</option>
-            <option value="PH">Phones</option>
+          >          
+        <option value="">Select</option>
+        <option value="Mobile">Mobile</option>
+        <option value="Watch">Watch</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Camera">Camera</option>
+        <option value="PC">PC</option>
+        <option value="Microphone">Microphone</option>
+        <option value="Headphone">Headphone</option>
+        <option value="Printer">Printer</option>
+        <option value="Keyboard">Keyboard</option>
+        <option value="electronics">Electronics</option>
           </select>
+          {errors.category && errors.category.type === "required" && (
+        <p className='text-red-400 text-md ps-3 py-1'>Category is required</p>
+
+      )}  
         </div>
         <div>
           <label
-            htmlFor="item-weight"
+            htmlFor="company"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Item Weight (kg)
+            Company
           </label>
           <input
-            type="number"
-            {...register("itemWeight")}
-            id="item-weight"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            defaultValue={15}
-            placeholder="Ex. 12"
-            required=""
+            type="text"
+            {...register("company", {required: true})}
+            id="company"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"            
+            placeholder="Company"            
           />
+          {errors.company && errors.company.type === "required" && (
+        <p className='text-red-400 text-md ps-3 py-1'>Category is required</p>
+      )}  
         </div>
         <div className="sm:col-span-2">
           <label
@@ -110,45 +169,24 @@ const CreateProduct = () => {
           </label>
           <textarea
             id="description"
-            {...register("description")}
-            rows={8}
+            {...register("description", {required: true, minLength: 100})}
+            rows={3}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Write a product description here..."
-            defaultValue={
-              "Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US"
-            }
+            placeholder="Write a product description here..."           
           />
+          {errors.description && errors.description.type === "required" && (
+          <p className='text-red-400 text-md ps-3 py-1'>Description is required</p>
+      )}  
+          {errors.description && errors.description.type === "minLength" && (
+          <p className='text-red-400 text-md ps-3 py-1'>Description must be at least 100 characters long</p>
+        )}
         </div>
-        <div className="flex items-center justify-center w-full">
-  <label
-    htmlFor="dropzone-file"
-    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-  >
-    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-      <svg
-        className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 20 16"
-      >
-        <path
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-        />
-      </svg>
-      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-        <span className="font-semibold">Click to upload</span> or drag and drop
-      </p>
-      <p className="text-xs text-gray-500 dark:text-gray-400">
-        SVG, PNG, JPG or GIF (MAX. 800x400px)
-      </p>
-    </div>
-    <input id="dropzone-file" type="file" className="hidden" />
-  </label>
+        <div className="col-span-2 ">
+        <Image_Upload  inputFiles={inputFiles} setInputFiles={setInputFiles} />
+        {!inputFiles?.length && <p className='text-red-400 text-md ps-3 py-1'>{inputFilesError}</p>}
+        </div>
+        <div className="col-span-2 flex items-center justify-center w-full">
+  
 </div>
 
       </div>
@@ -157,26 +195,15 @@ const CreateProduct = () => {
           type="submit"
           className="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
-          Update product
+          {isloading ? "Loading ..." : "Create product"}
         </button>
-        <button
-          type="button"
+        <p          
+          onClick={()=>{reset(); setInputFiles(null)}}
           className="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
         >
-          <svg
-            className="w-5 h-5 mr-1 -ml-1"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Delete
-        </button>
+          <FaRegTrashAlt className='h-6 w-6 mr-3' />
+          Reset
+        </p>
       </div>
     </form>
   </div>

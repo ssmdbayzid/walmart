@@ -19,6 +19,7 @@ import Orders from '../Page/Dashboard/Orders'
 import Contact from '../Page/Contact/Contact'
 import CreateProduct from '../Page/Dashboard/Admin/CreateProduct'
 import AllOrder from '../Page/Dashboard/Admin/AllOrder'
+import AllUsers from '../Page/Dashboard/Admin/AllUsers'
 
 Routes, Route, Link
 
@@ -49,6 +50,7 @@ const MainLayout = () => {
           <Route path="/dashboard/address"  element={<Address />} />
           <Route path="/dashboard/createProduct"  element={<CreateProduct />} />
           <Route path="/dashboard/allOrder"  element={<AllOrder />} />
+          <Route path="/dashboard/allUsers"  element={<AllUsers />} />
           <Route  index  element={<DashboardIndex />} />
         </Route>
 

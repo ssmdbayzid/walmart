@@ -17,8 +17,7 @@ const AllOrder = () => {
 useEffect(()=>{
   setLoading(true)
   if(data){
-    setOrders(data)
-    console.log(data?.data)
+    setOrders(data)    
     setLoading(false)
   }else{
     setOrders(null)

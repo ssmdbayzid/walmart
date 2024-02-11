@@ -41,9 +41,8 @@ const AuthProvider = ({children}) => {
                     })
                     .catch(error=> toast.error(error.message))
         } catch (error) {
-            setLoading(false); // Handle errors and set loading to false
-            console.error(error?.message);
-            toast.error(error?.message)
+            setLoading(false); // Handle errors and set loading to false                        
+            toast.error("Already have an account")
             return // Re-
         }
     }
@@ -79,7 +78,7 @@ const AuthProvider = ({children}) => {
                     .catch(error=> toast.error(error.message))
         } catch (error) {
             setLoading(false); // Handle errors and set loading to false
-            console.error(error.message);
+            toast.error("invalid-credential");
             throw error; // Re-
         }
     }

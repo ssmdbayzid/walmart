@@ -606,7 +606,7 @@ const Menu = () => {
                     </svg>
                   </div>
                   <input
-                    className="bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-100  rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2"
+                    className="focus:outline-none focus:ring-1 focus:ring-gray-100  rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2"
                     type="text"
                     placeholder="Search"
                   />

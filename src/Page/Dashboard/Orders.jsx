@@ -19,13 +19,17 @@ const Orders = () => {
     }
   return (
     <div className="bg-slate-100 p-8 rounded-md w-full">
-   {user && user?.orders.map((order, index)=><div>
-   <div className="flex space-y-2 flex-col">
+        
+   {user && user?.orders.length === 0 ? <h1 className='text-center font-bold text-2xl'>Empty Order</h1> : 
+   <>
+   
+     { user?.orders.map((order, index)=>
+     <div key={index} className=''>
+        <div className="flex space-y-2 flex-col">
         <h1 className="text-md dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #{order.tran_id}</h1>
-        <p className="text-base dark:text-gray-300 font-medium leading-6 -600 text-capitalize ">Delivery Status : <span className='text-yellow-400 capitalize'>{order.delivery_Status}</span> </p>
-       
-    </div>     
-    <div className="relative overflow-x-auto">
+        <p className="text-base dark:text-gray-300 font-medium leading-6 -600 text-capitalize ">Delivery Status : <span className='text-yellow-400 capitalize'>{order.delivery_Status}</span> </p>       
+        </div>     
+        <div className="relative overflow-x-auto">
     <table className="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -87,8 +91,11 @@ const Orders = () => {
         <p className="text-sm font-medium text-gray-900">Total</p>
         <p className="text-2xl font-semibold text-gray-900">${(order?.total_price).toFixed(2)}</p>
       </div>  
-</div>  </div>)}  
-  </div>
+</div>
+        </div>)
+   }
+   </>}
+   </div>     
   )
 }
 

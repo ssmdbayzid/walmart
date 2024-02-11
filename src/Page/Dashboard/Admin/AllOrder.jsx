@@ -12,6 +12,7 @@ const AllOrder = () => {
     const [ updateOrder] = useUpdateOrderMutation()
     const [loading, setLoading]= useState(false)
     const [orders, setOrders] = useState(null)
+    const [cartItems, setCartItems] = useState(null)
     
 
 useEffect(()=>{
@@ -268,7 +269,8 @@ useEffect(()=>{
         </div>
       </div>
      {loading ? <p>Loading ....</p> : <>
-     {orders && orders?.data.map((order, index)=> <div key={index} className="overflow-x-auto">
+     {orders && orders?.data.map((order, index)=>
+      <div key={index} className="overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -303,17 +305,25 @@ useEffect(()=>{
               <td className="px-4 py-3">{order.cartItems.length}</td>
               <td className="px-4 py-3">{order.total_price}</td>
               <td className="px-4 py-3">{order.shippingAddress.address}</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-3 ">
                 {openEdit ?
-                <select onChange={(e)=>updateOrderStatus(order._id, e.target.value)} name="delivery_status" id="" className='px-2 py-1' >
+                <select onChange={(e)=>updateOrderStatus(order._id, e.target.value)} name="delivery_status" id="" className='px-2 py-1 ' >
                   <option value="pending">pending</option>
                   <option value="shipped">shipped</option>
                   <option value="delivered">delivered</option>
-                </select> : <>{order.delivery_Status}</>}
+                </select> : <><p className={`
+                ${order.delivery_Status == "pending" && "bg-red-200"}
+                ${order.delivery_Status == "shipped" && "bg-yellow-200"}
+                ${order.delivery_Status == "delivered" && "bg-green-200"}
+
+                 text-center py-2 rounded-full font-semibold`}>{order.delivery_Status}</p> </>}
                 </td>
               <td className="px-4 py-3 flex items-center justify-center">
                   
-                  <IoEyeOutline onClick={()=>setOpenModal(!openModal)} 
+                  <IoEyeOutline onClick={()=>{
+                    setOpenModal(!openModal);
+                    setCartItems(order)}                    
+                  } 
                    className='w-6 h-6 mr-2 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none' />
                    <FiEdit3 onClick={()=>setOpenEdit(!openEdit)} className='w-6 h-6 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none'/>
                 
@@ -427,7 +437,7 @@ useEffect(()=>{
     </div>
   </div>
   {/* <!-- Main modal --> */}
-{openModal && <div className=""><ItemModal openModal={openModal} setOpenModal={setOpenModal} /></div> }
+{openModal && <div className=""><ItemModal order={cartItems} openModal={openModal} setOpenModal={setOpenModal} /></div> }
 </section>
 
   )

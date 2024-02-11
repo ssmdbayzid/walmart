@@ -56,7 +56,7 @@ const dispatch = useDispatch()
         </div>
         </div>
         
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 ">
                     {data && data.map((item, index)=>
                         <div key={index} className="relative border border-gray-800 dark:border-gray-700 ">
                                

@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import store from './app/store.js'
 import Providers from './Provider/index.jsx'
 import MainLayout from './layout/MainLayout.jsx'
+import router from './Routes/Router.jsx'
 
 
 {/* <RouterProvider router={router}/> */}
@@ -19,9 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <div>
     <Provider store={store}>
       <Providers>
-    <BrowserRouter>
+    {/* <BrowserRouter>
     <MainLayout />
-    </BrowserRouter>    
+    </BrowserRouter>     */}
+    <RouterProvider router={router}/>
     </Providers>
     </Provider>
     <ToastContainer

@@ -5,7 +5,7 @@ import Home from '../Page/Home/Home'
 import Products from '../Page/Products/Products'
 import ProductDetails from '../Page/Products/ProductDetails'
 import ShoppingCart from '../Page/ShoppingCart/ShoppingCart'
-import RequiredAuth from '../Routes/RequiredAuth'
+// import RequiredAuth from '../Routes/RequiredAuth'
 import Dashboard from '../Page/Dashboard/Dashboard'
 
 import CheckOut from '../Page/ShoppingCart/CheckOut'
@@ -29,13 +29,21 @@ const MainLayout = () => {
     return (
     <div>
         <Header />
+    <Outlet />
+    </div>
+  )
+}
+
+export default MainLayout
+
+   /*
         <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/home' element={<Home />}/>
         <Route path='/products' element={<Products />}/>
         <Route path='/product/:id' element={<ProductDetails />}/>
         <Route path='/shoppingCart' element={<RequiredAuth> <ShoppingCart /></RequiredAuth>}/>
-        <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
+     
         <Route path='/payment-success' element={<RequiredAuth> <Payment_Success /></RequiredAuth>}/>
         <Route path='/payment-cancel' element={<RequiredAuth> <Payment_Cancel /></RequiredAuth>}/>
         <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
@@ -56,11 +64,5 @@ const MainLayout = () => {
           <Route  index  element={<DashboardIndex />} />
         </Route>
 
-
         </Routes>
-        
-    </div>
-  )
-}
-
-export default MainLayout
+        */

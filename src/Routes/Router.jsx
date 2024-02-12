@@ -1,21 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../layout/MainLayout";
-import App from "../App";
-import Payment_Success from "../Page/Payment/Payment_Success";
-import Payment_Cancel from "../Page/Payment/Payment_Cancel";
-import Payment from "../Page/Payment/Payment";
-import Home from "../Page/Home/Home";
-import ProductDetails from "../Page/Products/ProductDetails";
-import ShoppingCart from "../Page/ShoppingCart/ShoppingCart";
-import CheckOut from "../Page/ShoppingCart/CheckOut";
-import Login from "../Page/Auth/Login";
-import SignUp from "../Page/Auth/SignUp";
-import Products from "../Page/Products/Products";
 
-import Order from "../Page/Order/Order";
-import RequiredAuth from "./RequiredAuth";
-import Dashboard from "../Page/Dashboard/Dashboard";
-import Orders from "../Page/Dashboard/Orders";
+import { 
+    Address, AllOrder, AllProducts, AllUsers, 
+    CheckOut, Contact, CreateProduct, Dashboard,
+    DashboardIndex, Home, Login, Orders, 
+    Payment_Cancel, Payment_Success, ProductDetails, 
+    Products, 
+    ShoppingCart, SignUp 
+} from "../Page";
+
+import MainLayout from "../layout/MainLayout";
+import PrivatedRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+
+
 
 const router = createBrowserRouter([
     {
@@ -23,13 +21,21 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
-                path: "/",
+                path: "/",                
                 element: <Home/>
             },
             {
                 path: "/home",
                 element: <Home />
-            },           
+            },  
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/signup",
+                element: <SignUp />
+            },         
             {
                 path: "/products",
                 element: <Products />
@@ -40,29 +46,60 @@ const router = createBrowserRouter([
             },
             {
                 path: "/shoppingCart",
-                element:   <RequiredAuth>
+                element:   <PrivatedRoute>
                         <ShoppingCart />
-                        </RequiredAuth>
+                        </PrivatedRoute>
             },
             {
                 path: "/dashboard",
-                element: <Dashboard />,
-                children: [
+                element: <PrivatedRoute>
+                          <Dashboard />
+                        </PrivatedRoute>,
+                index: {
+                    element: <DashboardIndex />
+                },
+                children: [                   
                     {
-                        path: "order",
+                        path: "orders",
                         element: <Orders />
-                    }
+                    },
+                    {
+                        path: "address",
+                        element: <Address />
+                    },
+                    {
+                        path: "createProduct",
+                        element: <AdminRoute>
+                                <CreateProduct />
+                                </AdminRoute>
+                    },
+                    {
+                        path: "allOrder",
+                        element: <AdminRoute>
+                                <AllOrder />
+                                </AdminRoute>
+                    },
+                    {
+                        path: "allUsers",
+                        element: <AdminRoute>
+                                <AllUsers />
+                                </AdminRoute>
+                    },
+                    {
+                        path: "allProducts",
+                        element: <AdminRoute>
+                                <AllProducts />
+                                </AdminRoute>
+                    },
+
                 ]
-            },
-           
+            },           
             {
-                path: "/Checkout",
-                element: <CheckOut />
-            },
-            {
-                path: '/order',
-                element: <Order />
-            },
+                path: "/checkout",
+                element: <PrivatedRoute>
+                            <CheckOut />
+                        </PrivatedRoute> 
+            },           
             {
                 path: '/payment-success',
                 element: <Payment_Success />
@@ -71,14 +108,7 @@ const router = createBrowserRouter([
                 path: '/payment-cancel',
                 element: <Payment_Cancel />
             },
-            {
-                path: "/login",
-                element: <Login />
-            },
-            {
-                path: "/signup",
-                element: <SignUp />
-            },
+            
         ]
     }
 ])

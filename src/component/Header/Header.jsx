@@ -55,7 +55,7 @@ const Header = () => {
 </nav>
 
 <div className={`absolute min-h-screen z-[99] bg-gray-300 w-4/5 overflow-y-auto ${openMenu ? "translate-x-0" : "-translate-x-full"} transition-transform transform ease-in-out duration-300 md:hidden`}>
-  <Menu  />
+  <Menu  />  
 </div>
 
 {/* className={`absolute bg-gray-800 text-green-100 w-56 min-h-screen overflow-y-auto transition-transform transform

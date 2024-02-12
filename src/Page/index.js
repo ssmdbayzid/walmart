@@ -1,0 +1,20 @@
+export {default as Login }  from "./Auth/Login"
+export {default as SignUp } from "./Auth/SignUp"
+export {default as Contact } from "./Contact/Contact"
+export {default as AllOrder} from "./Dashboard/Admin/AllOrder"
+export {default as AllProducts } from "./Dashboard/Admin/AllProducts"
+export {default as AllUsers } from "./Dashboard/Admin/AllUsers"
+export {default as CreateProduct} from "./Dashboard/Admin/CreateProduct"
+export {default as Dashboard} from "./Dashboard/Dashboard"
+export {default as DashboardIndex } from "./Dashboard/DashboardIndex"
+export {default as Orders } from "./Dashboard/Orders"
+export {default as Address } from "./Dashboard/User/Address"
+export {default as Payment_Cancel } from "./Payment/Payment_Cancel"
+export {default as Payment_Success } from "./Payment/Payment_Success"
+export {default as ProductDetails } from "./Products/ProductDetails"
+export {default as CheckOut } from "./ShoppingCart/CheckOut"
+export {default as ShoppingCart } from "./ShoppingCart/ShoppingCart"
+
+export {default as Home} from "./Home/Home"
+export {default as Products} from './Products/Products'
+

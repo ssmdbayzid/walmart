@@ -16,8 +16,7 @@ const ProductsGrid = ({ result, handleClick}) => {
     const pageSize = 12
 
 const dispatch = useDispatch()
-
-
+    
     useEffect(()=>{
         const startIndex = (pageNo - 1) * pageSize;
         const endIndex = (startIndex + pageSize)
@@ -38,7 +37,7 @@ const dispatch = useDispatch()
     <div>
         <div>
         <p className="text-xl font-bold">Recommanded</p>
-        <div className=" grid grid-cols-6 gap-4 mb-3 my-2 mx-auto">
+        <div className=" flex md:flex-wrap mb-4 md:mb-8 gap-2 overflow-x-auto md:overflow-x-hidden flex-x-auto">
         <button 
         value=""
         onClick={handleClick}

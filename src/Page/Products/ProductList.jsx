@@ -20,13 +20,13 @@ const ProductList = ({ result, handleClick}) => {
 
   return (
     <div className=''>
-        <div>
+        <div className=' md:mb-5 w-full mx-auto'>
         <p className="text-xl font-bold">Recommanded</p>
-        <div className="flex flex-row gap-4 mb-3 my-2 bg-green-300">
+        <div className=" flex gap-2 overflow-x-auto md:flex-wrap md:overflow-x-hidden flex-x-auto ">
         <button 
         value=""
         onClick={handleClick}
-        className='border-2  text-blue-600 font-semibold px-3 py-1 rounded-sm'>
+        className='border-2   font-semibold px-3 py-1 rounded-sm  hover:bg-blue-200 hover:border-2 '>
             All
         </button>
         {data && data.map((item, index)=> 
@@ -34,15 +34,15 @@ const ProductList = ({ result, handleClick}) => {
         key={index} 
         value={item.company.toLowerCase()}
         onClick={handleClick}
-        className='border-2  font-semibold px-3 py-1 rounded-sm'>
-                {item[0].company}
+        className='border-2   font-semibold px-3 py-1 rounded-sm hover:bg-blue-200 hover:border-2 '>
+                {item.company}
             </button> )}
         </div>
         </div>
         
           <div className="grid md:grid-cols-1 gap-3 ">
                     {data && data.map((item, index)=>
-                        <div key={index} className="md:flex border-b border-gray-800 dark:border-gray-700 ">
+                        <div key={index} className=" gap-4 items-center md:items-stretch md:gap-10 pb-3 flex border-b border-gray-300 ">
                                
                             <div className='h-56 w-1/2'>
                             <img src={item.image} alt=""
@@ -53,7 +53,7 @@ const ProductList = ({ result, handleClick}) => {
                                     <h3 className="text-2xl font-medium dark:text-gray-400 mb-1">
                                         {item.title}
                                     </h3>
-                                    <p className='pb-2'>{item.description}</p>
+                                    <p className='pb-2 line-clamp-3 h-[70px] md:h-full md:line-clamp-none'>{item.description}</p>
                                     <ul className="flex py-1">
                                     {[...Array(5).keys()].map((_, index)=>
                                         <svg  key={index} xmlns="http://www.w3.org/2000/svg" width="14" height="14"
@@ -77,7 +77,7 @@ const ProductList = ({ result, handleClick}) => {
                                 <MdOutlineShoppingCart className='text-blue-700 text-xl  mx-auto' />
                                 </div>
 
-                                <Link to={`/product/${item.id}`} className='bg-yellow-200 w-1/2 pt-1'>
+                                <Link to={`/product/${item._id}`} className='bg-yellow-200 w-1/2 pt-1'>
                                <FaRegEye className='text-blue-700 text-xl mx-auto ' />
                                 </Link>
                                 

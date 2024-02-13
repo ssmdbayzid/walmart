@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import ColorFilter from './ColorFilter'
 import CategoryFilter from './CategoryFilter'
-import SizeFilter from './SizeFilter'
+import PriceFilter from './PriceFilter'
 
 import { IoMenu } from "react-icons/io5";
 import { IoGrid } from "react-icons/io5";
@@ -25,6 +24,8 @@ const [query, setQuery] = useState("")
 const [products, setproducts] = useState(null)
 const {data} = useGetProductsQuery()
 const [loading, setLoading]  = useState(false)
+const [range, setRange] = useState(null)
+const [openMobileFilter, setMobileFilter] = useState(false)
 
 
 
@@ -41,6 +42,7 @@ useEffect(() => {
 
 
 
+
 // ---------- Ratio Filtering -------------
 
 const handleChange = event => {
@@ -48,6 +50,15 @@ const handleChange = event => {
     setSelectedCategory(event.target.value)
   }else{
     setSelectedCategory(null)
+  }
+}
+// ---------- Ratio Filtering -------------
+
+const handlePriceChange = event => {
+  if(event.target.checked){
+    setRange(event.target.value)
+  }else{
+    setRange(null)
   }
 }
 
@@ -66,7 +77,7 @@ if(products){
   )
 }  
 
-const filteredData = (products, selected, query) =>{
+const filteredData = (products, selected, query, range) =>{
   
   let filteredProducts = products;
 
@@ -77,36 +88,58 @@ const filteredData = (products, selected, query) =>{
   
   
     if(selected){      
-      console.log(selected)
-      filteredProducts  = filteredProducts.filter(({category, color, company, price}) =>
-        category.toLowerCase() === selected ||
-        color.toLowerCase() === selected ||
-        company.toLowerCase() === selected ||
-        price <= selected
-      )
-          
-    }
-  return filteredProducts;
-  
+      filteredProducts  = filteredProducts.filter(({category,  company}) =>
+        category.toLowerCase() === selected ||        
+        company.toLowerCase() === selected
+       
+      )          
+    } 
+    if(range){
+      filteredProducts  = filteredProducts.filter(({price})=>
+      range == 1 && price >= 0 && price <= 100 ||       
+      range == 2 && price >= 101 && price <= 200 ||       
+      range == 3 && price >= 201 && price <= 300 ||       
+      range == 4 && price >= 301       
+      )}   
+  console.log(filteredProducts)
+      return filteredProducts;  
+
 }
 
-const result = filteredData(products, selectedCategory, query)
+const result = filteredData(products, selectedCategory, query, range)
 
+//------------- - Sort By High To Low ------
+  const sortByHighToLow = (products) =>{
+    const sorted = [...products].sort((a, b)=> b.price - a.price)
+    setproducts(sorted)
+    setOpenSortMenu(!openSortMenu)
+  }
+
+//------------- - Sort By Low To High ------
+
+  const sortByLowToHigh = (products) =>{
+    const sorted = [...products].sort((a, b)=> a.price - b.price)
+    setproducts(sorted)
+    setOpenSortMenu(!openSortMenu)
+  }
+
+  console.log(range)
 return (
     <div>
   <div className="max-w-[1170px] mx-auto bg-gray-100">
  <> <div>
-    <FilterMenu />
+   {openMobileFilter && <FilterMenu handlePriceChange={handlePriceChange} products={products} handleChange={handleChange} setMobileFilter={setMobileFilter} openMobileFilter={setMobileFilter} />}
+
    { loading ? <div className='flex items-center justify-center h-screen'>
    <p>Loading ...</p>
 </div>  :
   <>
-  {products && <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-      <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+  {products && <main className="mx-auto  px-4 sm:px-6 lg:px-8 ">
+      <div className="flex justify-center border-b border-gray-200 pb-6 pt-10">
+        
         <SearchBar query={query} setQuery={setQuery} />
-        <div className="flex items-center">
-          <div className="relative inline-block text-left">
+        <div className=" ms-2 flex gap-4 md:justify-center md:gap-0 items-center">
+          <div className="relative  text-left">
             <div>
               <button onClick={()=>setOpenSortMenu(!openSortMenu)} type="button" className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900" id="menu-button" aria-expanded="false" aria-haspopup="true">
                 Sort
@@ -117,13 +150,13 @@ return (
             </div>
 
            {openSortMenu &&  <div className="absolute  right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-blue-200 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-              <div className="py-1" role="none">
-               
-                <a href="#" className="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Most Popular</a>
-                <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Best Rating</a>
-                <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Newest</a>
-                <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</a>
-                <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
+              <div className="py-1" role="none">                                               
+                <p 
+                onClick={()=>(sortByLowToHigh(products))}
+                className="cursor-pointer text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</p>
+                <p
+                onClick={()=>(sortByHighToLow(products))}                
+                className="cursor-pointer text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</p>
               </div>
             </div>}
           </div>
@@ -136,7 +169,11 @@ return (
           <button onClick={()=> setMenuType("menu")} type="button" className={`-m-2 p-2 ${menuType == "menu" && "bg-blue-200"} text-gray-400 hover:text-gray-500 sm:ml-7`}>
            <IoMenu className='text-2xl'/>           
           </button>
-          <button type="button" className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
+
+          {/* ---------- Filter Icon --------- */}
+          <button
+          onClick={()=> setMobileFilter(!openMobileFilter)}
+          type="button" className="  p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
             <span className="sr-only">Filters</span>
             <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clipRule="evenodd" />
@@ -154,7 +191,7 @@ return (
                                
           <CategoryFilter  products={products} handleChange={handleChange}  /> 
           
-           <SizeFilter handleChange={handleChange}  />
+           <PriceFilter handlePriceChange={handlePriceChange}  />
           </form>
 
          {menuType === "grid" ?
@@ -163,7 +200,7 @@ return (
          <ProductsGrid result={result} handleClick={handleClick}  />
          </div></>
          : <>{/* <!-- Product grid --> */}
-         <div className="lg:col-span-3">
+         <div className="md:col-span-3 lg:col-span-4">
            {/* <!-- Your content --> */}
            <ProductList result={result} handleClick={handleClick} />
          </div></>

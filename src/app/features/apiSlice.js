@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 let token
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:8000/api/v1/',  
+  baseUrl: 'https://walmart-server-gulv625pm-ssmd-bayzid.vercel.app/api/v1/',  
   prepareHeaders: (headers)=> {
     if(token){
       headers.set("Authorization", `Bearer ${token}`)

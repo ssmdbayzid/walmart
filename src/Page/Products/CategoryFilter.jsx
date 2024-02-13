@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 const CategoryFilter = ({products, handleChange}) => {
     const [openCategoryMenu, setOpenCategoryMenu] = useState(true)
 
-    const uniqueCategories = [...new Set(products.map(item => item.category))];
-    console.log(uniqueCategories)
+    const uniqueCategories = [...new Set(products.map(item => item.category))];    
+    
   return (
     <div className="border-b border-gray-200 py-6 ">
     <div onClick={()=> setOpenCategoryMenu(!openCategoryMenu)} className="-my-3 mb-3">

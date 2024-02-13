@@ -1,18 +1,23 @@
-import React from 'react';
+
+
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useAuth from '../Hooks/useAuth';
-import { Navigate,  Outlet,  useLocation } from 'react-router-dom';
-
-const PrivatedRoute = ({children}) => {    
-    const location = useLocation();
-    const token = localStorage.getItem("accessToken")    
-    const {user, loading} = useAuth()
 
 
-    if(loading) {return <p>Loading ...</p> }
+const PrivateRoute = ({children}) => {
+  const {user, loading} = useAuth()
+  const token = localStorage.getItem("accessToken")
+ 
+  const location = useLocation()     
+  
+  if(loading) return <p>Loading </p>
 
-    if(user.email && token) {return <Outlet />}
+ 
+  
+  const accessableRoute = user?.email && token ? children 
+  :  <Navigate to="/login" state={{from: location}} replace />  
+  return accessableRoute;
+}
 
-    return <Navigate to="/login" state={{ from: location }} replace />;
-};
-
-export default PrivatedRoute;
+export default PrivateRoute

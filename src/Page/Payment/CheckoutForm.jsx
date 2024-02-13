@@ -94,8 +94,9 @@ export default function CheckoutForm() {
         // Assuming you have some order-related data to send to the backend
       
         // Send the order-related data and paymentIntent.id to your backend
+        console.log(paymentIntent.id)
         try {
-          const response = await fetch("http://localhost:8000/api/v1/orders", {
+          const response = await fetch("http://localhost:8000/api/v1/orders/", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

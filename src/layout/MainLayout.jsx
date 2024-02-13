@@ -29,40 +29,11 @@ const MainLayout = () => {
     return (
     <div>
         <Header />
-    <Outlet />
+        <Outlet />
     </div>
   )
 }
 
 export default MainLayout
 
-   /*
-        <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/home' element={<Home />}/>
-        <Route path='/products' element={<Products />}/>
-        <Route path='/product/:id' element={<ProductDetails />}/>
-        <Route path='/shoppingCart' element={<RequiredAuth> <ShoppingCart /></RequiredAuth>}/>
-     
-        <Route path='/payment-success' element={<RequiredAuth> <Payment_Success /></RequiredAuth>}/>
-        <Route path='/payment-cancel' element={<RequiredAuth> <Payment_Cancel /></RequiredAuth>}/>
-        <Route path='/checkout' element={<RequiredAuth> <CheckOut /></RequiredAuth>}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/signup' element={<SignUp />}/>
-        <Route path='/contact' element={<Contact />}/>
-
-        <Route path='/dashboard' element={
-        <RequiredAuth>
-          <Dashboard />
-        </RequiredAuth>}>
-          <Route path="/dashboard/orders"  element={<Orders />} />
-          <Route path="/dashboard/address"  element={<Address />} />
-          <Route path="/dashboard/createProduct"  element={<CreateProduct />} />
-          <Route path="/dashboard/allOrder"  element={<AllOrder />} />
-          <Route path="/dashboard/allUsers"  element={<AllUsers />} />
-          <Route path="/dashboard/allProducts"  element={<AllProducts />} />
-          <Route  index  element={<DashboardIndex />} />
-        </Route>
-
-        </Routes>
-        */
+    

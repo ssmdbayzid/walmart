@@ -23,7 +23,7 @@ const Payment = () => {
       
       fetch("http://localhost:8000/api/v1/orders/payment", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ items: cart}),
       })
         .then((res) => res.json())

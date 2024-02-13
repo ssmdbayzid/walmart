@@ -5,10 +5,15 @@ const userSlice = apiSlice.enhanceEndpoints({addTagTypes: ["Users"]}).injectEndp
         getAllUsers: build.query({
             query: ()=>"users",
             providesTags: ["Users"]
-        })
+        }),
+        getUser : build.query({
+            query: (id)=> `users/${id}`,
+            providesTags: ["Users"]
+        }),
     })
 })
 
 export const {
-    useGetAllUsersQuery
+    useGetAllUsersQuery,
+    useGetUserQuery,
 } = userSlice;

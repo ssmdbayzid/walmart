@@ -6,6 +6,7 @@ const orderSlice = apiSlice.enhanceEndpoints({addTagTypes: ['Orders']}).injectEn
             query: ()=> "orders",
             providesTags: ["Orders"]
         }),
+       
         updateOrder: build.mutation({
             query: ({id, ...rest})=>({
                 url: `orders/${id}`,
@@ -18,7 +19,7 @@ const orderSlice = apiSlice.enhanceEndpoints({addTagTypes: ['Orders']}).injectEn
     })
 })
 
-export const {
+export const {    
     useGetOrdersQuery,
     useUpdateOrderMutation,
 } = orderSlice

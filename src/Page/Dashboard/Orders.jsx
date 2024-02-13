@@ -3,20 +3,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTotal } from '../../app/features/cartSlice'
 import useAuth from '../../Hooks/useAuth'
 
+import { useGetUserQuery } from '../../app/features/userApiSlice'
+
 const Orders = () => {
     const cart = useSelector((state)=> state.cart)
     const {user, loading} = useAuth()
+
+    const {data, isloading} = useGetUserQuery(user?._id)
+
+    if(isloading) return <p>Loading ....</p>
+
+    if(data) console.log(data)
 
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getTotal())
     },[cart, dispatch])
+    
     if(loading){
         return <p>Loading ...</p>
     }
-    if(user){
-        console.log(user?.orders)
-    }
+
   return (
     <div className="bg-slate-100 p-8 rounded-md w-full">
         

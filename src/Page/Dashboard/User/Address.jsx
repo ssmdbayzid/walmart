@@ -35,7 +35,7 @@ const Address = () => {
   
 
   useEffect(()=>{
-
+    console.log(data)
     if(data?.data?.shippingAddress){
       setShippingAddress(data?.data?.shippingAddress)
       setOpen(true)    
@@ -47,7 +47,9 @@ const Address = () => {
     
   },[data])
 
-
+if(isloading){
+  return <p>Loading ...</p>
+}
  
   const handleOnChange = e => {
     if(addressType == "shipping"){

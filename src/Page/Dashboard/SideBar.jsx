@@ -8,6 +8,8 @@ import { FaSignOutAlt } from "react-icons/fa";
 const SideBar = ({showSideBar, setShowSideBar}) => {
 
 const {user, logOut} = useAuth()
+
+console.log(user)
   return (
     <aside
   id="sidebar-multi-level-sidebar"
@@ -115,7 +117,10 @@ const {user, logOut} = useAuth()
        </a>
      </li>
      </>
-     : <>
+     :
+      <>
+        {user?.role ==="user" &&
+        <>
      <li>
         <a
           href="/dashboard/address"
@@ -149,7 +154,7 @@ const {user, logOut} = useAuth()
           </svg>
           <span className="flex-1 ms-3 whitespace-nowrap">Order</span>
         </a>
-      </li>
+      </li></>}
      </>}    
       
    

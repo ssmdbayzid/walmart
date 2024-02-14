@@ -2,15 +2,40 @@ import React, { useEffect, useState } from 'react'
 import { useGetProductsQuery } from '../../../app/features/productAPISlice'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
+import UpdatePrtoduct from './UpdatePrtoduct';
 
 
 const AllProducts = () => {
   const {data} = useGetProductsQuery()
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState(null)
+  const [openEditModal, setOpenEditModal] = useState(true)
+  
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productData, setProductData] = useState(null)
+  const itemsPerPage = 20
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const handlePageChange = (newPage) => {setCurrentPage(newPage)}
+
+  const handleBackClick = () => {
+    if(currentPage > 1){
+      handlePageChange(currentPage - 1)
+    }
+  }
+
+  const handleForwardClick = () => {
+    if(currentPage < totalPages){
+      handlePageChange(currentPage + 1)
+    }
+  }
+
+  const visiableItems = products.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+
   useEffect(()=>{
     setLoading(true)
-    if(data){
+    if(data){     
       setLoading(false),
       setProducts(data?.data)
     }else{
@@ -76,15 +101,15 @@ const AllProducts = () => {
                  </td>
                <td className='px-4 py-3'>
                <div className="flex items-center justify-between gap-5">
-               <FiEdit3 className='h-6 w-6 text-blue-700 cursor-pointer' />
+               <FiEdit3 onClick={()=> setOpenEditModal(!openEditModal)} className='h-6 w-6 text-blue-700 cursor-pointer' />
                 <FaRegTrashAlt className='h-6 w-6 text-red-700 cursor-pointer' />
                </div>
                </td>
-             </tr>)}
-           
+             </tr>)}           
            </tbody>
          </table>
        </div>
+       {openEditModal &&  < UpdatePrtoduct openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} products={products} /> }
         </>
       }
     </div>

@@ -68,6 +68,12 @@ const AuthProvider = ({children}) => {
                         console.log(data?.user)
                         // local storage is the easiest but not the best place to store jwt token
                         localStorage.setItem("user", JSON.stringify(data?.user))
+                        
+                        // ---------- Shipping Address ---------
+                        localStorage.setItem("shippingAddress", data?.user?.shippingAddress)
+                        localStorage.setItem("billingAddress", data?.user?.billingAddress)
+                        
+                        // -------- Token -----------
                         localStorage.setItem("accessToken", data.accessToken)
                         localStorage.setItem("refreshToken", data.refreshToken)
                         setUser(data?.user)

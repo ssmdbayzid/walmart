@@ -21,7 +21,7 @@ const Dashboard = () => {
     {showSideBar && <SideBar className="ease-in-out transition-all duration-300" setShowSideBar={setShowSideBar} showSideBar={showSideBar} />}
     <SideBar className="hidden md:block " />
     </div>
-    <div className=" sm:ml-64 w-full">
+    <div className=" sm:ml-64 w-full">       
       <Outlet />
       </div>    
     </div>

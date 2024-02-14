@@ -27,7 +27,7 @@ const Header = () => {
     <div className={`${scroll ? "fixed z-[999] top-0 shadow-lg" : "relative"}  w-full ease-in-out transition-all duration-300`}>   
 <nav className={` bg-gradient-to-r from-slate-50 via-slate-200 to-yellow-50  `}>
     
-    <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto px-4 md:px-0 py-4">
+    <div className="max-w-[1170px] flex items-center justify-between w-full mx-auto px-4 md:px-0 py-2 md:py-4">
     <a href="/home" className="">
             <img src={logo} className="h-12" alt="Flowbite Logo" />            
         </a>
@@ -54,7 +54,7 @@ const Header = () => {
     </div>
 </nav>
 
-<div className={`absolute min-h-screen z-[99] bg-gray-300 w-4/5 overflow-y-auto ${openMenu ? "translate-x-0" : "-translate-x-full"} transition-transform transform ease-in-out duration-300 md:hidden`}>
+<div className={`absolute h-screen z-[99] top-0 w-3/5 overflow-y-auto ${openMenu ? "translate-x-0" : "-translate-x-full"} transition-transform transform ease-in-out duration-300 md:hidden`}>
   <Menu  />  
 </div>
 

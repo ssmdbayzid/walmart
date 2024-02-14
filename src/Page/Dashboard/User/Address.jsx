@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../../Hooks/useAuth'
+import { useGetUserQuery } from '../../../app/features/userApiSlice'
 
 
 const shippingAddressData = {
@@ -20,12 +21,13 @@ const billingAddressData = {
 }
 const Address = () => {
   const {user, loading} = useAuth()
+  const {data, isloading} = useGetUserQuery(user?._id)
 
   // --------- Shipping Address -------- initialState--------
-  const [shippingAddress, setShippingAddress] = useState(shippingAddressData)  
+  const [shippingAddress, setShippingAddress] = useState(billingAddressData)  
 
   // --------- Billing Address -------- initialState--------
-  const [billingAddress, setBillingAddress] = useState( billingAddressData)  
+  const [billingAddress, setBillingAddress] = useState(billingAddressData)  
  
   // ------------ Set Address Type ------------
   const [addressType, setAddressType] = useState("shipping")
@@ -33,17 +35,20 @@ const Address = () => {
   
 
   useEffect(()=>{
-    if(user?.shippingAddress){
-      setShippingAddress(user?.shippingAddress)
-      setOpen(true)
-    }
-    if(user?.billingAddress){
-      setBillingAddress(user?.billingAddress)
-      setOpen(true)
-    }
-  },[user])
 
-  
+    if(data?.data?.shippingAddress){
+      setShippingAddress(data?.data?.shippingAddress)
+      setOpen(true)    
+    }
+    if(data?.data?.billingAddress){
+      setBillingAddress(data?.data?.billingAddress)
+      setOpen(true)    
+    }
+    
+  },[data])
+
+
+ 
   const handleOnChange = e => {
     if(addressType == "shipping"){
       setShippingAddress({...shippingAddress, [e.target.name]: e.target.value})    
@@ -56,25 +61,41 @@ const Address = () => {
   // ------------ Handle Form Submit ----------------
     const handleFormData = (event) =>{
         event.preventDefault()                            
-        setOpen(true)
         if(addressType == "shipping"){
           if(event.target.ship_bill_Address.checked === true){
-            axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{
+
+            axios.put(`http://localhost:8000/api/v1/users/${user._id}`,{
               shippingAddress:shippingAddress, billingAddress: shippingAddress})
-            .then(res=> console.log(res))
+            .then(res=> {
+              console.log(res)
+              setBillingAddress(shippingAddress)
+              setOpen(true)
+
+              localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
+              localStorage.setItem("billingAddress", JSON.stringify(billingAddress))
+            })
             .catch(err=> console.log(err))
-            localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
+            // ---- Store Addess to localStorage 
+                       
+
+           
           }else{
-            axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{shippingAddress:shippingAddress})
-            .then(res=> console.log(res))
+            axios.put(`http://localhost:8000/api/v1/users/${user._id}`,{shippingAddress:shippingAddress})
+            .then(res=> {
+              console.log(res)
+              setOpen(true)
+              localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
+            })
             .catch(err=> console.log(err))
-            localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress))
           }
 
         }else{
           localStorage.setItem("billingAddress", JSON.stringify(billingAddress))
-          axios.put("http://localhost:8000/api/v1/user/65be544bce718329f7e80b76",{billingAddress:billingAddress})
-          .then(res=> console.log(res))
+          axios.put(`http://localhost:8000/api/v1/users/${user._id}`, {billingAddress:billingAddress})
+          .then(res=> {
+            console.log(res)
+           setOpen(true)
+          })
           .catch(err=> console.log(err))
         }
     }
@@ -84,7 +105,7 @@ const Address = () => {
     
   { !open ?
     <div className="rounded-xl w-4/5 mx-auto py-3 px-4 lg:mt-8 bg-gray-200">
-
+{loading && isloading ? <p>Loading ...</p> : <>
       {/* -------------- Billing & Shipping Address Form ----------- */}
    <form onSubmit={handleFormData}>
     <p className="text-xl font-medium text-center capitalize">{addressType} Address</p>    
@@ -141,18 +162,18 @@ const Address = () => {
       </div>
       {/* ------------ City & Region End--------  */}                          
     </div>
-    <div className="flex gap-3 pt-5 capitalize items-center">
+   {addressType && <div className="flex gap-3 pt-5 capitalize items-center">
       <input 
       type="checkbox" name="ship_bill_Address" id="" className='outline outline-slate-400 rounded-full p-1' />
       <p className='text-slate-600 font-semibold'>The shipping & billing address are same</p>
-    </div>
+    </div>}
     <div className="flex justify-between gap-5">
     <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Save</button>
     <p
     onClick={()=>setOpen(!open)} 
     className="cursor-pointer text-center mt-4 mb-8 w-full rounded-md bg-red-600 px-6 py-3 font-medium text-white">Cancel</p>
     </div>
-    </form>
+    </form></>}
     </div>
 
     :

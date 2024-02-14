@@ -7,6 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,13 +22,17 @@ export default function CheckoutForm() {
   const shippingAddress = JSON.parse(localStorage.getItem("shippingAddress"))
   const cart = useSelector((state)=> state.cart)
 
+  const navigate = useNavigate()
+
   const {user} = useAuth()
 
+
+  console.log(user?.email)
   useEffect(() => {
     if (!stripe) {
       return;
     }
-   
+
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
@@ -60,6 +65,8 @@ export default function CheckoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!shippingAddress){
+      
+      navigate("/dashboard/address")
       toast.error("Add shipping address")
       return
     }
@@ -93,8 +100,7 @@ export default function CheckoutForm() {
     
         // Assuming you have some order-related data to send to the backend
       
-        // Send the order-related data and paymentIntent.id to your backend
-        console.log(paymentIntent.id)
+        // Send the order-related data and paymentIntent.id to your backend      
         try {
           const response = await fetch("http://localhost:8000/api/v1/orders/", {
             method: "POST",

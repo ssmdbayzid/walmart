@@ -18,8 +18,8 @@ const ShoppingCart = () => {
   
   return (
     <section className="max-w-[1170px] mx-auto  bg-slate-200 font-poppins  ">
-     <div className="container mx-auto py-2 w-5/6 pt-0 h-full ">
-     <div className='py-10 bg-[url("https://media.istockphoto.com/photos/golden-shopping-bag-with-black-shopping-bags-picture-id1281319569?k=20&m=1281319569&s=612x612&w=0&h=HiPaofdFtZQFc8TVzBabuG_NW8KNvLs9xC_7JRt4U9Q=")] bg-cover object-cover bg-no-repeat mb-10'>
+     <div className="container mx-auto py-10 w-5/6  h-full ">
+     <div className='py-6 bg-[url("https://media.istockphoto.com/photos/golden-shopping-bag-with-black-shopping-bags-picture-id1281319569?k=20&m=1281319569&s=612x612&w=0&h=HiPaofdFtZQFc8TVzBabuG_NW8KNvLs9xC_7JRt4U9Q=")] bg-cover object-cover bg-no-repeat mb-10'>
 
 <h2 className="text-4xl font-bold  text-center text-white ">Your Cart</h2>
 </div>

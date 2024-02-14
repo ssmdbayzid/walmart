@@ -4,12 +4,16 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { products } from '../../assets/data/ItemsCategory';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../app/features/cartSlice';
 
 
 const ProductList = ({ result, handleClick}) => {
     const [pageNo, setPageNo] = useState(1)
     const [data, setData] = useState(null)
     const pageSize = 8
+
+    const dispatch = useDispatch()
 
     useEffect(()=>{
         const startIndex = (pageNo - 1) * pageSize;
@@ -73,7 +77,9 @@ const ProductList = ({ result, handleClick}) => {
                                 </p>
                             </div>
                             <div className="flex justify-between border-t border-gray-300 dark:border-gray-700 cursor-pointer w-full">
-                                <div  className="w-1/2 bg-blue-200 px-2 py-1 cursor-pointer">
+                                <div 
+                                onClick={()=> dispatch(addToCart(item))}
+                                className="w-1/2 bg-blue-200 px-2 py-1 cursor-pointer">
                                 <MdOutlineShoppingCart className='text-blue-700 text-xl  mx-auto' />
                                 </div>
 

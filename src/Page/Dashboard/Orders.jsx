@@ -6,7 +6,7 @@ import useAuth from '../../Hooks/useAuth'
 import { useGetUserQuery } from '../../app/features/userApiSlice'
 
 const Orders = () => {
-    const cart = useSelector((state)=> state.cart)
+    const [orders, setOrders] = useState(null)
     const {user, loading} = useAuth()
 
     const {data, isloading} = useGetUserQuery(user?._id)
@@ -15,10 +15,12 @@ const Orders = () => {
 
     if(data) console.log(data)
 
-    const dispatch = useDispatch()
+    
     useEffect(()=>{
-        dispatch(getTotal())
-    },[cart, dispatch])
+        if(data){
+            setOrders(data?.data?.orders)
+        }
+    },[data])
     
     if(loading){
         return <p>Loading ...</p>
@@ -27,13 +29,16 @@ const Orders = () => {
   return (
     <div className="bg-slate-100 p-8 rounded-md w-full">
         
-   {user && user?.orders.length === 0 ? <h1 className='text-center font-bold text-2xl'>Empty Order</h1> : 
+        
+    {orders && orders.length === 0 ? <h1 className='text-center font-bold text-2xl'>Empty Order</h1> : 
    <>
-   
-     { user?.orders.map((order, index)=>
+   <h1 className='text-3xl text-center  font-bold text-blue-600'>Orders</h1>
+   <hr className='mb-4 h-1 bg-gradient-to-r from-yellow-300 via-blue-100 to-blue-500
+        w-1/4 m-auto mt-2' />
+     {orders && orders.length > 0 && orders.map((order, index)=>
      <div key={index} className=''>
         <div className="flex space-y-2 flex-col">
-        <h1 className="text-md dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #{order.tran_id}</h1>
+        <h1 className="text-md dark:text-white lg:text-2xl font-semibold leading-7 lg:leading-9 text-gray-800">Order #{order.tran_id}</h1>
         <p className="text-base dark:text-gray-300 font-medium leading-6 -600 text-capitalize ">Delivery Status : <span className='text-yellow-400 capitalize'>{order.delivery_Status}</span> </p>       
         </div>     
         <div className="relative overflow-x-auto">
@@ -60,7 +65,7 @@ const Orders = () => {
         </thead>
         <tbody>
         { order?.cartItems && order?.cartItems.map((item, index)=>  
-         <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+         <tr key={index} className="bg-white dark:bg-gray-800 dark:border-gray-700 mb-10">
                 <td className="py-2 ">
                   <div className=' h-10'>
                     <img src={item.image} className="object-cover h-full w-16 mx-auto" alt="Apple Watch"/>
@@ -84,7 +89,7 @@ const Orders = () => {
           
         </tbody>
     </table>
-    <div className="mt-6 border-t border-b py-2">
+    <div className="mt-6 border-t border-b-4 border-b-black/70 py-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-gray-900">Total</p>
           <p className="font-semibold text-gray-900">${order?.total_price.toFixed(2)}</p>
@@ -101,7 +106,7 @@ const Orders = () => {
 </div>
         </div>)
    }
-   </>}
+   </>} 
    </div>     
   )
 }

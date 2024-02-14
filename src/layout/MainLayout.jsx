@@ -1,28 +1,7 @@
 import React from 'react'
-import { Link, Outlet, Route, Routes } from 'react-router-dom'
+import {  Outlet } from 'react-router-dom'
 import Header from '../component/Header/Header'
-import Home from '../Page/Home/Home'
-import Products from '../Page/Products/Products'
-import ProductDetails from '../Page/Products/ProductDetails'
-import ShoppingCart from '../Page/ShoppingCart/ShoppingCart'
-// import RequiredAuth from '../Routes/RequiredAuth'
-import Dashboard from '../Page/Dashboard/Dashboard'
 
-import CheckOut from '../Page/ShoppingCart/CheckOut'
-import Payment_Success from '../Page/Payment/Payment_Success'
-import Payment_Cancel from '../Page/Payment/Payment_Cancel'
-import Login from '../Page/Auth/Login'
-import SignUp from '../Page/Auth/SignUp'
-import DashboardIndex from '../Page/Dashboard/DashboardIndex'
-import Address from '../Page/Dashboard/User/Address'
-import Orders from '../Page/Dashboard/Orders'
-import Contact from '../Page/Contact/Contact'
-import CreateProduct from '../Page/Dashboard/Admin/CreateProduct'
-import AllOrder from '../Page/Dashboard/Admin/AllOrder'
-import AllUsers from '../Page/Dashboard/Admin/AllUsers'
-import AllProducts from '../Page/Dashboard/Admin/AllProducts'
-
-Routes, Route, Link
 
 const MainLayout = () => {
   

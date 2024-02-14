@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 
 import { 
     Address, AllOrder, AllProducts, AllUsers, 
@@ -15,7 +15,9 @@ import AdminRoute from "./AdminRoute";
 
 
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+
+    [
     {
         path: "/",
         element: <MainLayout />,
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
                 element: <SignUp />
             },         
             {
+                path: "/contact",
+                element: <Contact />
+            },         
+            {
                 path: "/products",
                 element: <Products />
             },                    
@@ -44,11 +50,7 @@ const router = createBrowserRouter([
                 path: "/product/:id",
                 element: <ProductDetails />
             },
-            // {
-            //     path: "/shoppingcart",
-            //     element:
-            //             <ShoppingCart />                      
-            // },
+           
             {
                 path: "/shoppingcart",
                 element: <PrivatedRoute>
@@ -57,13 +59,14 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard",
-                element: <PrivatedRoute>
+                element: (<PrivatedRoute>
                           <Dashboard />
-                        </PrivatedRoute>,
-                index: {
+                        </PrivatedRoute>),
+                
+                children: [                                                 {
+                    index: true,
                     element: <DashboardIndex />
                 },
-                children: [                   
                     {
                         path: "orders",
                         element: <Orders />

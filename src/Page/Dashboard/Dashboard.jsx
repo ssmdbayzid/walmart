@@ -14,7 +14,7 @@ const Dashboard = () => {
     <div>
         <button 
         onClick={()=> setShowSideBar(!showSideBar)}
-        className=' p-1 ml-5 mt-5 md:hidden'>
+        className='absolute -top-16 p-1 ml-5 mt-5 md:hidden'>
     <RiMenu3Fill className=' text-2xl text-slate-400' />
         </button>
   

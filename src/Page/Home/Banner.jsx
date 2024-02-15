@@ -25,7 +25,7 @@ const [products, setProducts] = useState(null)
       setProducts(data?.data.filter(item=> item.category.toLowerCase() === "mobile"))
     }, [data])
   return (
-    <div className="max-w-[1170px] mx-auto my-20">      
+    <div className="max-w-[1170px] mx-auto my-20 md:px-0 px-4">      
       <div className='min-w-[70%]'>
         <div className="flex justify-between mx-8 mb-4">
           <h2 className="text-2xl font-bold font-mono">Smart Phones</h2>

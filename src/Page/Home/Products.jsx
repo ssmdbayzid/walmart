@@ -20,7 +20,7 @@ const Products = () => {
         <hr className='mb-4 h-1 bg-gradient-to-r from-yellow-300 via-blue-100 to-blue-500
         w-1/4 m-auto mt-2' />
                 
-           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 px-4 md:px-0">
            {products && products.slice(0, 10).map((item, index)=> 
            <div key={index} className="">
                <div className='h-60 '>

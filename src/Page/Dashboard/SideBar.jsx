@@ -16,7 +16,7 @@ console.log(user)
   return (
     <aside
   id="sidebar-multi-level-sidebar"
-  className={`absolute top-0 left-0 z-40 w-64 md:h-[81vh] transition-transform ${!showSideBar ?"-translate-x-full" : "translate-x-0"} sm:translate-x-0 `}
+  className={`absolute top-0 left-0 z-40 w-64 md:h-[81vh] transition-transform ${!showSideBar ?"-translate-x-full" : "translate-x-0"} sm:translate-x-0 bg-white`}
   aria-label="Sidebar"
 >
   <div className=" relative border h-full px-3 py-4 overflow-y-auto bg-gray-150 dark:bg-gray-800">

@@ -11,6 +11,7 @@
     border: 1px solid #141a1e !important;
     opacity: 100% ;
     background-color: #ffffff !important;
+   
   }
 
   .swiper-pagination-bullet-active {
@@ -38,6 +39,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding-bottom: 50px !important;
   }
   
   .swiper-slide-image {

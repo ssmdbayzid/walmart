@@ -6,7 +6,7 @@ import { PiSignInFill } from "react-icons/pi";
 import { FaUserCircle } from "react-icons/fa";
 import { CgMenu, CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
-
+import { RxCross1 } from "react-icons/rx";
 
 const HeaderIcons = ({setOpenMenu,openMenu, setShowSModal, showSModal}) => {  
   const cart = useSelector((state)=> state.cart)
@@ -31,7 +31,9 @@ const HeaderIcons = ({setOpenMenu,openMenu, setShowSModal, showSModal}) => {
         <p 
       onClick={() => setOpenMenu(!openMenu)}      
       className='group md:hidden flex items-center gap-2 cursor-pointer'>
-        <CgMenu className='text-2xl text-gray-600' />
+        {!openMenu ? <CgMenu className='text-2xl text-gray-600' />:
+        <RxCross1 className='text-2xl text-gray-600' />
+        }
       </p>
 
       {/* ----  Drop Down Mmenu -----*/}

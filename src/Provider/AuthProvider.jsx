@@ -22,7 +22,8 @@ const AuthProvider = ({children}) => {
             const result = await createUserWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {
+                // fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {
+                fetch('http://localhost:8000/api/v1/auth/signup', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -55,7 +56,8 @@ const AuthProvider = ({children}) => {
             const result = await signInWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
+                // fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
+                fetch('http://localhost:8000/api/v1/auth/jwt-token', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -70,8 +72,8 @@ const AuthProvider = ({children}) => {
                         localStorage.setItem("user", JSON.stringify(data?.user))
                         
                         // ---------- Shipping Address ---------
-                        localStorage.setItem("shippingAddress", data?.user?.shippingAddress)
-                        localStorage.setItem("billingAddress", data?.user?.billingAddress)
+                        localStorage.setItem("shippingAddress", JSON.stringify(data?.user?.shippingAddress))
+                        localStorage.setItem("billingAddress", JSON.stringify(data?.user?.billingAddress))
                         
                         // -------- Token -----------
                         localStorage.setItem("accessToken", data.accessToken)

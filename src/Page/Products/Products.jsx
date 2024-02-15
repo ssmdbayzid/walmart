@@ -11,8 +11,6 @@ import SearchBar from './SearchBar';
 import FilterMenu from './FilterMenu';
 import ProductsGrid from './ProductsGrid';
 import { useGetProductsQuery } from '../../app/features/productAPISlice';
-// import { products } from '../../assets/data/ItemsCategory';
-
 
 
 
@@ -100,10 +98,8 @@ const filteredData = (products, selected, query, range) =>{
       range == 2 && price >= 101 && price <= 200 ||       
       range == 3 && price >= 201 && price <= 300 ||       
       range == 4 && price >= 301       
-      )}   
-  console.log(filteredProducts)
+      )}     
       return filteredProducts;  
-
 }
 
 const result = filteredData(products, selectedCategory, query, range)
@@ -123,7 +119,6 @@ const result = filteredData(products, selectedCategory, query, range)
     setOpenSortMenu(!openSortMenu)
   }
 
-  console.log(range)
 return (
     <div>
   <div className="max-w-[1170px] mx-auto bg-gray-100">
@@ -135,10 +130,14 @@ return (
 </div>  :
   <>
   {products && <main className="mx-auto  px-4 sm:px-6 lg:px-8 ">
-      <div className="flex justify-center border-b border-gray-200 pb-6 pt-10">
+  <SearchBar query={query} setQuery={setQuery} />
+
+      <div className="flex  justify-between items-center border-b border-gray-200 pb-6 pt-10">
+        <div className="">
+        <h1 className="md:text-4xl text-3xl font-semibold text-center 0 ">Our Products</h1>                
+        </div>
         
-        <SearchBar query={query} setQuery={setQuery} />
-        <div className=" ms-2 flex gap-4 md:justify-center md:gap-0 items-center">
+        <div className=" ms-2 flex md:mt-0 mt-2 gap-5  justify-end md:gap-0 items-center">
           <div className="relative  text-left">
             <div>
               <button onClick={()=>setOpenSortMenu(!openSortMenu)} type="button" className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900" id="menu-button" aria-expanded="false" aria-haspopup="true">

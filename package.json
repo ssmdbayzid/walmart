@@ -14,7 +14,7 @@
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.2",
     "axios": "^1.6.4",
-    "firebase": "^10.7.1",
+    "firebase": "^10.8.0",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "json-server": "^1.0.0-alpha.14",

@@ -22,8 +22,7 @@ const AuthProvider = ({children}) => {
             const result = await createUserWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                // fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {
-                fetch('http://localhost:8000/api/v1/auth/signup', {
+                fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {                
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -56,8 +55,7 @@ const AuthProvider = ({children}) => {
             const result = await signInWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                // fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
-                fetch('http://localhost:8000/api/v1/auth/jwt-token', {
+                fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {                
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

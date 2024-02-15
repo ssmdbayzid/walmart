@@ -88,7 +88,7 @@ export default function CheckoutForm() {
           elements,
           redirect: 'if_required',
           confirmParams: {
-            return_url: "http://localhost:5173/payment-success", // Specify the confirm page URL
+            return_url: "https://walmart-272ed.web.app/payment-success", // Specify the confirm page URL
           },
         });
             
@@ -102,7 +102,7 @@ export default function CheckoutForm() {
       
         // Send the order-related data and paymentIntent.id to your backend      
         try {
-          const response = await fetch("http://localhost:8000/api/v1/orders/", {
+          const response = await fetch("https://walmart-server.vercel.app/api/v1/orders/", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -120,7 +120,7 @@ export default function CheckoutForm() {
             localStorage.setItem("paymentIntentId", paymentIntent.id);
     
             // Redirect to the confirm page
-            window.location.href = "http://localhost:5173/payment-success";
+            window.location.href = "https://walmart-272ed.web.app/payment-success";
           } else {
             setMessage("Failed to complete the payment on the server.");
             setIsLoading(false);

@@ -7,7 +7,7 @@ export const setAuthToken = (user) =>{
     }
 
     // get jwt token
-    fetch('http://localhost:8000/api/v1/auth/jwt-token', {
+    fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

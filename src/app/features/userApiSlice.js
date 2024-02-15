@@ -10,10 +10,28 @@ const userSlice = apiSlice.enhanceEndpoints({addTagTypes: ["Users"]}).injectEndp
             query: (id)=> `users/${id}`,
             providesTags: ["Users"]
         }),
+        updateUser: build.mutation({
+            query: ({id, ...rest})=>({
+                url: `users/${id}`,
+                method: "PUT",
+                body: rest
+            }),
+            invalidatesTags: ["Users"]
+        }),
+        deleteUser: build.mutation({
+            query: (id)=> ({
+                url: `users/${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Users"]
+        })
     })
 })
 
 export const {
     useGetAllUsersQuery,
     useGetUserQuery,
+
+    useUpdateUserMutation,
+    useDeleteUserMutation,
 } = userSlice;

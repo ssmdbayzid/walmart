@@ -66,7 +66,7 @@ if(isloading){
         if(addressType == "shipping"){
           if(event.target.ship_bill_Address.checked === true){
 
-            axios.put(`http://localhost:8000/api/v1/users/${user._id}`,{
+            axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`,{
               shippingAddress:shippingAddress, billingAddress: shippingAddress})
             .then(res=> {
               console.log(res)
@@ -82,7 +82,7 @@ if(isloading){
 
            
           }else{
-            axios.put(`http://localhost:8000/api/v1/users/${user._id}`,{shippingAddress:shippingAddress})
+            axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`,{shippingAddress:shippingAddress})
             .then(res=> {
               console.log(res)
               setOpen(true)
@@ -93,7 +93,7 @@ if(isloading){
 
         }else{
           localStorage.setItem("billingAddress", JSON.stringify(billingAddress))
-          axios.put(`http://localhost:8000/api/v1/users/${user._id}`, {billingAddress:billingAddress})
+          axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`, {billingAddress:billingAddress})
           .then(res=> {
             console.log(res)
            setOpen(true)

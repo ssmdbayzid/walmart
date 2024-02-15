@@ -3,7 +3,7 @@ import useAuth from "../Hooks/useAuth";
 export const useSignUp   = (user) =>{
    const {setUser} = useAuth()
     // get jwt token
-    fetch('http://localhost:8000/api/v1/auth/signUp', {
+    fetch('https://walmart-server.vercel.app/api/v1/auth/signUp', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

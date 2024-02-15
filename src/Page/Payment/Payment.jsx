@@ -21,7 +21,7 @@ const Payment = () => {
     // Create PaymentIntent as soon as the page loads
     if(cart.length > 0){
       
-      fetch("http://localhost:8000/api/v1/orders/payment", {
+      fetch("https://walmart-server.vercel.app/api/v1/orders/payment", {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ items: cart}),

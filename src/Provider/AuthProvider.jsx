@@ -22,7 +22,7 @@ const AuthProvider = ({children}) => {
             const result = await createUserWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                fetch('http://localhost:8000/api/v1/auth/signup', {
+                fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -55,7 +55,7 @@ const AuthProvider = ({children}) => {
             const result = await signInWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                fetch('http://localhost:8000/api/v1/auth/jwt-token', {
+                fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -100,41 +100,7 @@ const AuthProvider = ({children}) => {
         localStorage.removeItem("user")
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
-    }
-
-    // useEffect(()=>{
-    //     const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{                        
-    //         if(currentUser){                
-    //             setLoading(true)
-    //             fetch('http://localhost:8000/api/v1/auth/jwt-token', {
-    //               method: 'POST',
-    //             headers: {
-    //                 'content-type': 'application/json'
-    //             },
-    //             body: JSON.stringify(currentUser)
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {                    
-    //                 // local storage is the easiest but not the best place to store jwt token
-    //                 localStorage.setItem("accessToken", data.accessToken)
-    //                 localStorage.setItem("refreshToken", data.refreshToken)
-    //                 setUser(data?.user)
-    //                 setLoading(false)
-    //             })
-    //             .catch(error=> console.log(error.message))
-                 
-    //         }else{
-    //             setLoading(false)
-    //             localStorage.removeItem("accessToken")
-    //             localStorage.removeItem("refreshToken")
-    //             setUser(null)
-    //         }
-    //     })
-
-    //     return ()=> {
-    //         unsubscribe();
-    //     }
-    // },[])
+    } 
 
     const info = {
         user,        

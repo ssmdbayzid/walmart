@@ -8,15 +8,30 @@ const productApiSlice = apiSlice.enhanceEndpoints({addTagTypes: ['Product']}).in
                 method: 'POST',
                 body: data,
             }),
-            invalidatestags: ['product']
+            invalidatestags: ['Product']
         }),
         getProducts: build.query({
             query: ()=> 'Products',
-            providesTags: ['Products']
+            providesTags: ['Product']
         }),
         getSingleProduct: build.query({
             query: (id)=> `products/${id}`,
             providesTags: ['Product']
+        }),
+        updateProduct : build.mutation({
+            query: ({id, ...rest})=>({
+                url: `products/${id}`,
+                method: "PUT",
+                body: rest
+            }),
+            invalidatesTags: ['Product']
+        }),
+        deleteProduct: build.mutation({
+            query: (id)=> ({
+                url: `products/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['Product']
         }),
         postReview: build.mutation({
             query: ({id, ...rest})=> ({
@@ -24,14 +39,17 @@ const productApiSlice = apiSlice.enhanceEndpoints({addTagTypes: ['Product']}).in
                 method: 'POST',
                 body: rest,
             }),
-            invalidatestags: ['product']
+            invalidatestags: ['Product']
         })
     })
 })
 
 export const {
-    useCreateProductMutation,
     useGetProductsQuery,
     useGetSingleProductQuery,
+    
+    useDeleteProductMutation,
+    useCreateProductMutation,
+    useUpdateProductMutation,
     usePostReviewMutation,
 } = productApiSlice

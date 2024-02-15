@@ -9,7 +9,7 @@ const AdminRoute = () => {
 
     if(loading) {return <p>Loading ....</p> }
     if(user.role === "admin"){
-        return <Outlet />
+       console.log(user?.email)
     }
     
   return <Navigate to="/dashboard" state={{from: location}} />

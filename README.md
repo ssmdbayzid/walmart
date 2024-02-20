@@ -2,14 +2,18 @@
 
 ## [https://walmart-272ed.web.app](https://walmart-272ed.web.app)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
 ## Server Side Code
-
-
-Currently, two official plugins are available:
-
 ## [https://github.com/ssmdbayzid/walmart-server](https://github.com/ssmdbayzid/walmart-server)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technology used:
+- React JS, React Router dom, React hook form, Tailwind.Css, Redux toolkit, RTK Query, Swiper, Cloudinary etc.
+-  Vercel, Firebase, Node.js, Express.js, Mongoose, stripe, JSON Web Token (JWT) etc.
+
+  ### Overview
+- In this web application we can search for products that will compare the other e-commerce sites and compare the matching of the search.
+- An admin can create another admin, and an admin can update orders. All goods can be created.
+- An Admin can make another admin, manage all products (add, delete, update products), can manage all orders.
+- Secure and streamlined checkout process with multiple payment methods.
+- User can sign in /sign up to their email and password.
+- Responsive for Mobile and large devices.
+- Used Stripe for payment.

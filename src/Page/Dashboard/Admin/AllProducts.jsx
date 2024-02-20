@@ -4,6 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 import UpdatePrtoduct from './UpdatePrtoduct';
 import { toast } from 'react-toastify';
+import Loader from '../../../component/Loader';
 
 
 const AllProducts = () => {
@@ -81,7 +82,7 @@ const AllProducts = () => {
   return (
     <div>
       {
-        loading ? <p>Loading ...</p> :
+        loading ? <Loader /> :
         <>
         
         {visiableItems &&  <div className="overflow-x-auto px-2">

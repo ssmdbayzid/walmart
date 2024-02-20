@@ -55,7 +55,7 @@ const AuthProvider = ({children}) => {
             const result = await signInWithEmailAndPassword(auth, email, password)
             const {user} = result
             
-                fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {                
+                fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {                                
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -64,8 +64,7 @@ const AuthProvider = ({children}) => {
                     
                 })
                     .then(res => res.json())
-                    .then(data => {                    
-                        console.log(data?.user)
+                    .then(data => {                                            
                         // local storage is the easiest but not the best place to store jwt token
                         localStorage.setItem("user", JSON.stringify(data?.user))
                         
@@ -74,8 +73,7 @@ const AuthProvider = ({children}) => {
                         localStorage.setItem("billingAddress", JSON.stringify(data?.user?.billingAddress))
                         
                         // -------- Token -----------
-                        localStorage.setItem("accessToken", data.accessToken)
-                        localStorage.setItem("refreshToken", data.refreshToken)
+                        localStorage.setItem("accessToken", data.accessToken)                        
                         setUser(data?.user)
                         const destination = location?.state?.from || '/home';
                         navigate(destination)

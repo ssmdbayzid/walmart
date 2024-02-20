@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 let token
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://walmart-server.vercel.app/api/v1/',    
+  baseUrl: 'https://walmart-server.vercel.app/api/v1/',      
   prepareHeaders: (headers)=> {
     if(token){
       headers.set("Authorization", `Bearer ${token}`)
@@ -22,21 +22,12 @@ export const apiSlice = createApi({
     token = localStorage.getItem("accessToken");
     let result = await baseQuery(args, api, extraOptions)    
     if(result?.error?.status === 401){
-      token = localStorage.getItem("refreshToken")
-      
-      const refreshResult = await baseQuery({
-        url: 'auth/refresh-token',
-        method: "GET"        
-      }, api, extraOptions)      
-      
-      if(refreshResult?.data){
-        localStorage.setItem("accessToken", refreshResult?.data?.accessToken)
-        toast.success("Generate Access Token")
-        result = await baseQuery(args, api, extraOptions)        
-      }else{
-        const {logOut}=useAuth()
-        logOut()
-      }
+      localStorage.removeItem("accessToken")
+      localStorage.removeItem("shippingAddress")
+      localStorage.removeItem("billingAddress")
+      localStorage.removeItem("user")
+      window.location.href = "/login";
+      toast.error("invalid token please Log In")
     }
     return result
   },

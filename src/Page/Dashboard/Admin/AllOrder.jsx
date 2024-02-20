@@ -4,6 +4,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import ItemModal from './ItemModal';
 import { FiEdit3 } from "react-icons/fi";
 import { toast } from 'react-toastify';
+import Loader from '../../../component/Loader';
 const AllOrder = () => {
     // const [openOption, setOpenOption] = useState(false)
     const [openModal, setOpenModal] = useState(false)
@@ -54,7 +55,7 @@ useEffect(()=>{
       <hr className='mb-4 h-1 bg-gradient-to-r from-yellow-300 via-blue-100 to-blue-500
         w-1/4 m-auto mt-2' />
 
-     {loading ? <p>Loading ....</p> : <>
+     {loading ? <Loader /> : <>
      {orders && 
       <div className="overflow-x-hidden">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

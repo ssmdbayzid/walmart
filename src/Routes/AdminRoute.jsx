@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, Outlet, useLocation,  } from 'react-router-dom'
 import useAuth from '../Hooks/useAuth'
+import Loader from '../component/Loader'
 
-const AdminRoute = () => {
+const AdminRoute = ({children}) => {
     const {user, loading} = useAuth()
     const location = useLocation()
-    
+       
+  useEffect(()=>{
+    if(loading) {return <Loader />}
 
-    if(loading) {return <p>Loading ....</p> }
-    if(user.role === "admin"){
-       console.log(user?.email)
-    }
+    const accessableRoute = user?.role === "admin"  ? children 
+  :  <Navigate to="/dashboard" state={{from: location}} replace />  
+  return accessableRoute;
+  },[user, loading])
     
-  return <Navigate to="/dashboard" state={{from: location}} />
 }
 
 export default AdminRoute

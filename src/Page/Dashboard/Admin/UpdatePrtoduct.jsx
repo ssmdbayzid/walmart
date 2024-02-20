@@ -21,6 +21,7 @@ const UpdatePrtoduct = ({setOpenEditModal, openEditModal, product}) => {
         })
       }
     },[product, setValue])    
+
     const onSubmit = async d => {
             
       // -------- Update product data with image ----
@@ -38,13 +39,15 @@ const UpdatePrtoduct = ({setOpenEditModal, openEditModal, product}) => {
          body: formData,
        })
        .then(res => res.json())
-       alert(data.error)
+       
+       console.log(data)
        
        // console.log(data)
     
        // --- post data to database ----
  
-       const result = await updateProduct({...d, id: product._id, image: data?.url})
+       const result = await updateProduct({...d, id: product._id, image: data?.secure_url})
+       console.log(result)
      if(result.data){
          console.log(result.data)
          setOpenEditModal(!openEditModal)
@@ -56,9 +59,9 @@ const UpdatePrtoduct = ({setOpenEditModal, openEditModal, product}) => {
          console.log(result.error)
      }
       }else{
-        // -------- Update product data without image ----
-
+        // -------- Update product data without image ----        
         const result = await updateProduct({...d, id: product._id,})
+        
         if(result.data){
             console.log(result.data)
             setOpenEditModal(!openEditModal)
@@ -73,12 +76,12 @@ const UpdatePrtoduct = ({setOpenEditModal, openEditModal, product}) => {
   return (
     <div id="popup-modal" tabindex="-1" class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[999] justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/40 flex ">
     <div class="relative w-full px-4 md:px-0 md:w-2/5 max-h-full  ">
-    <section className="bg-slate-100 dark:bg-gray-900 rounded-2xl p-4">
-  <div className=" px-4  mx-auto ">
-  <section className="bg-slate-100 dark:bg-gray-900">
-  <div className=" px-4  mx-auto py-1">
+    <section className="bg-slate-100 dark:bg-gray-900 rounded-2xl  md:p-4">
+  <div className=" px-0  mx-auto ">
+  <section className="bg-slate-100 rounded-lg py-4 md:py-0 px-4  dark:bg-gray-900">
+  <div className="  mx-auto ">
     <div className="flex justify-end items-center">
-    <h2 className="capitalize mr-[30%] text-center text-2xl font-bold text-gray-900 dark:text-white">
+    <h2 className="capitalize mr-[30%] text-xl whitespace-nowrap md:text-2xl font-bold text-gray-900 dark:text-white">
       Update product
     </h2>
     <div onClick={()=>setOpenEditModal(!openEditModal)} className="flex justify-end cursor-pointer ms-1/2 text-red-600 hover:text-red-800">

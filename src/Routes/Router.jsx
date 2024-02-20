@@ -88,9 +88,7 @@ const router = createBrowserRouter(
                     },
                     {
                         path: "allusers",
-                        element: 
-                                <AllUsers />
-                               
+                        element: <AdminRoute> <AllUsers /> </AdminRoute>                     
                     },
                     {
                         path: "allproducts",

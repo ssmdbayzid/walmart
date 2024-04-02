@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth'
 
 
 const ShippingForm = () => {
   const {loading, user} = useAuth()
-  const shippingAddress  = JSON.parse(localStorage.getItem("shippingAddress"))
-  console.log(shippingAddress)
+  const [shippingAddress, setShippingAddress] = useState(null)
+
+  // const shippingAddress  = !localStorage.getItem("shippingAddress") ? null : JSON.parse(localStorage.getItem("shippingAddress")) 
+  
+
+  useEffect(()=>{
+    if(localStorage.getItem("shippingAddress")){
+      setShippingAddress(
+        JSON.parse(localStorage.getItem("shippingAddress")) 
+      )
+    }else{
+      setShippingAddress(null)
+    }
+  },[localStorage.getItem("shippingAddress")])
+ 
+  
+  
+  // console.log(shippingAddress)
   
   return (
     <div className='pt-10 w-full'>
@@ -14,8 +30,8 @@ const ShippingForm = () => {
     {/* --------- Billing Address Content--------- */}
 
 
-    { !shippingAddress ? <><p>Loading ...</p></> : <>
-      {shippingAddress && <div className="mt-10 w-full  px-5 md:px-10  ">    
+    { !shippingAddress ? <><p className='font-bold'> Shipping Address <span className='text-red-600'>*</span> : N/A</p></> : <>
+      <div className="mt-10 w-full  px-5 md:px-10  ">    
       <div className="w-full border border-dashed mb-10 md:mb-0">
       <div className='p-2'>
       <h1 className='text-xl text-center bg-slate-100 font-semibold'>Shipping Address</h1>
@@ -57,7 +73,7 @@ const ShippingForm = () => {
       </div>
     </div>  */}
     
-    </div>  }
+    </div>  
     </>}    
   </div>
   )

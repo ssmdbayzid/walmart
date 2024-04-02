@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import { FaDatabase } from 'react-icons/fa6';
 import { CircleLoader } from 'react-spinners';
+import { BASE_URL } from '../utls/Base_URL';
 
 const GoogleSignIn = () => {
     const [loading, setLoading] = useState(false);
@@ -24,9 +25,8 @@ const GoogleSignIn = () => {
                 photo: user?.photoURL
              }    
                 setLoading(false)
-
-            //  fetch('https://walmart-server.vercel.app/api/v1/auth/signup', {                
-             fetch('https://walmart-server.vercel.app/api/v1/auth/google/login', {                
+                       
+             fetch(`${BASE_URL}auth/google/login`, {                
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

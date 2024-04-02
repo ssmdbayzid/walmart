@@ -70,6 +70,11 @@ const cartSlice = createSlice({
 
       //============ Toast =========
       toast.error("Reset cart Items")
+
+      //============ Remove Cart data from localStorage =========
+
+      localStorage.removeItem("cartItems")
+      console.log("clicked reset func")
     },
     getTotal(state){
 

@@ -1,4 +1,5 @@
 import useAuth from "../Hooks/useAuth";
+import { BASE_URL } from "./Base_URL";
 
 export const setAuthToken = (user) =>{
     // const {setUser} = useAuth()
@@ -7,7 +8,7 @@ export const setAuthToken = (user) =>{
     }
 
     // get jwt token
-    fetch('https://walmart-server.vercel.app/api/v1/auth/jwt-token', {
+    fetch(`${BASE_URL}auth/jwt-token`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

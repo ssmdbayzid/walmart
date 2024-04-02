@@ -13,6 +13,7 @@ const CheckOut = () => {
   useEffect(()=>{
     dispatch(getTotal())
   },[dispatch, cart])
+
   return (
     <div className='max-w-[1170px] w-full mx-auto'>     
      <div className='px-2 pt-14 w-full md:px-10'>

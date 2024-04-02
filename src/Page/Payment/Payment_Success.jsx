@@ -1,9 +1,14 @@
 import axios from 'axios'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
 import { Link } from 'react-router-dom'
+import { resetCartItem } from '../../app/features/cartSlice'
 
 const Payment_Success = () => {
+ const dispatch = useDispatch()
  
+
   return (
     <div className='max-w-[1170px] min-h-[90vh] mx-auto flex items-center justify-center'>
       <div className="flex flex-col  items-center justify-center  ">

@@ -5,6 +5,7 @@ import CheckoutForm from './CheckoutForm';
 import './Payment.module.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../utls/Base_URL';
 // const stripePromise = loadStripe(`${import.meta.env.VITE_PK}`);
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx")
 
@@ -21,7 +22,7 @@ const Payment = () => {
     // Create PaymentIntent as soon as the page loads
     if(cart.length > 0){
       
-      fetch("https://walmart-server.vercel.app/api/v1/orders/payment", {
+      fetch(`${BASE_URL}orders/payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ items: cart}),

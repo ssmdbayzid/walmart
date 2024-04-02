@@ -4,10 +4,12 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../utls/Base_URL";
+import { resetCartItem } from "../../app/features/cartSlice";
 
 
 
@@ -26,6 +28,7 @@ export default function CheckoutForm() {
 
   const {user} = useAuth()
 
+  const dispatch = useDispatch()
 
   console.log(user?.email)
   useEffect(() => {
@@ -102,7 +105,7 @@ export default function CheckoutForm() {
       
         // Send the order-related data and paymentIntent.id to your backend      
         try {
-          const response = await fetch("https://walmart-server.vercel.app/api/v1/orders/", {
+          const response = await fetch(`${BASE_URL}orders/`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -118,9 +121,10 @@ export default function CheckoutForm() {
           if (response.ok) {
             // Store paymentIntent.id in localStorage
             localStorage.setItem("paymentIntentId", paymentIntent.id);
-    
+            dispatch(resetCartItem())
             // Redirect to the confirm page
             window.location.href = "https://walmart-272ed.web.app/payment-success";
+
           } else {
             setMessage("Failed to complete the payment on the server.");
             setIsLoading(false);

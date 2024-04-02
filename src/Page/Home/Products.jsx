@@ -4,24 +4,25 @@ import React, { useEffect, useState } from 'react'
 // import { products } from '../../assets/data/ItemsCategory'
 // import { useGetProductsQuery } from '../../app/features/productAPISlice'
 import { useGetProducts } from '../../Hooks/useGetProducts'
+import Loader from '../../component/Loader'
 
 
 const Products = () => {
   const {products, loading} = useGetProducts()
 
   if(loading){
-    return <div>Loading ....</div>
+    return <Loader />
   }
   
   return (
     <div className="max-w-[1170px] mx-auto">
         
-        <h1 className="text-4xl font-semibold text-center ">Popular Products</h1>        
+        <h1 className="text-4xl font-semibold text-center text-nowrap">Popular Products</h1>        
         <hr className='mb-4 h-1 bg-gradient-to-r from-yellow-300 via-blue-100 to-blue-500
         w-1/4 m-auto mt-2' />
                 
-           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 px-4 md:px-0">
-           {products && products.slice(0, 10).map((item, index)=> 
+           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 px-4 md:px-0">
+           {products && products.slice(0, 8).map((item, index)=> 
            <div key={index} className="">
                <div className='h-60 '>
                <img src={item.image} alt=""

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { addToCart } from '../../app/features/cartSlice'
 import { Magnifier } from 'react-image-magnifiers'
 import { useGetSingleProductQuery } from '../../app/features/productAPISlice'
+import Loader from '../../component/Loader'
 
 
 
@@ -16,11 +17,6 @@ const ProductDetails = () => {
     
 
   
-        
-
-    if(isLoading){
-        return <p>Loading .....</p>
-    }
 
     if(isError){
         return <p>Some thing Wents Wrong</p>
@@ -31,7 +27,7 @@ const handleAddtocart = (product) =>{
     return (
         <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
           {  (isError || isLoading) ? <> {isError ? <p className="text-center">Something Went Error</p>  
-           : <div className=' text-center pt-[10%]'> Loading .... </div>}    </> :
+           : <div className=' text-center flex items-center justify-center'> <Loader /></div>}    </> :
             <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">               
                <div  className="flex items-center flex-wrap -mx-4">
                     <div className="relative w-full px-4 md:w-1/2  ">

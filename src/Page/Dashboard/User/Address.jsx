@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../../Hooks/useAuth'
 import { useGetUserQuery } from '../../../app/features/userApiSlice'
+import { BASE_URL } from '../../../utls/Base_URL'
 
 
 const shippingAddressData = {
@@ -66,7 +67,7 @@ if(isloading){
         if(addressType == "shipping"){
           if(event.target.ship_bill_Address.checked === true){
 
-            axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`,{
+            axios.put(`${BASE_URL}users/${user._id}`,{
               shippingAddress:shippingAddress, billingAddress: shippingAddress})
             .then(res=> {
               console.log(res)
@@ -82,7 +83,7 @@ if(isloading){
 
            
           }else{
-            axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`,{shippingAddress:shippingAddress})
+            axios.put(`${BASE_URL}users/${user._id}`,{shippingAddress:shippingAddress})
             .then(res=> {
               console.log(res)
               setOpen(true)
@@ -93,7 +94,7 @@ if(isloading){
 
         }else{
           localStorage.setItem("billingAddress", JSON.stringify(billingAddress))
-          axios.put(`https://walmart-server.vercel.app/api/v1/users/${user._id}`, {billingAddress:billingAddress})
+          axios.put(`${BASE_URL}users/${user._id}`, {billingAddress:billingAddress})
           .then(res=> {
             console.log(res)
            setOpen(true)

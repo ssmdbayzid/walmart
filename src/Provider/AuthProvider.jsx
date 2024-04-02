@@ -14,6 +14,12 @@ const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(false)
     
 
+
+    useEffect(()=>{
+        if(localStorage.getItem("user")){
+            setUser(JSON.parse(localStorage.getItem("user")))
+        }
+    },[localStorage.getItem("user")])
     // ------------ Create User ----------------
     const createUser = async(email, password, navigate, location) => {
         

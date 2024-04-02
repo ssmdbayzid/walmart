@@ -3,9 +3,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 
-let token
+let token 
 const baseQuery = fetchBaseQuery({
   baseUrl: 'https://walmart-server.vercel.app/api/v1/',      
+  // baseUrl: 'http://localhost:5000/api/v1/',      
   prepareHeaders: (headers)=> {
     if(token){
       headers.set("Authorization", `Bearer ${token}`)

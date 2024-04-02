@@ -8,7 +8,7 @@ import {Autoplay, Pagination } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
+
 
 // import './styles.css';
 
@@ -29,20 +29,17 @@ const [products, setProducts] = useState(null)
       <div className='min-w-[70%]'>
         <div className="flex justify-between mx-8 mb-4">
           <h2 className="text-2xl font-bold font-mono">Smart Phones</h2>
-          <a href='/products?category=mobile' className="px-6 py-1 -skew-y-[10deg] bg-blue-600 text-white cursor-pointer">View All</a>
+          <a href='/products?category=mobile' className="px-6 py-1  bg-blue-600 text-white cursor-pointer">View All</a>
         </div>
       
       </div>
      
     
       <Swiper
-        modules={[Autoplay, Pagination]}        
+        modules={[Autoplay,]}        
         slidesPerView={2}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        
+              
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -101,8 +98,7 @@ const [products, setProducts] = useState(null)
        )}
         </div>
        
-      </Swiper>
-      
+      </Swiper>            
         </div>
   )
 }

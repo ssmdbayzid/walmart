@@ -14,16 +14,12 @@ const HeroSection2 = () => {
       <Swiper 
       modules={[Autoplay, Pagination, Navigation]}  
       rewind={true}    
-      slidesPerView={1}
-      
-      pagination={{
-        clickable: true,
+      slidesPerView={1}         
+      speed={2000}
+      autoplay={{
+        delay: 4500,
+        disableOnInteraction: false,
       }}
-      // speed={2000}
-      // autoplay={{
-      //   delay: 4500,
-      //   disableOnInteraction: false,
-      // }}
       >
         <div>
         

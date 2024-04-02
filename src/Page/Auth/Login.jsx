@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { setAuthToken } from '../../utls/setAuthToken';
+import GoogleSignIn from '../../component/GoogleSignIn';
 
 const Login = () => {
     const {logIn, setUser} = useAuth()
@@ -33,7 +34,7 @@ const Login = () => {
         
     }
     return (
-        <div className='max-w-[1170px] h-[90vh] mx-auto flex items-center justify-center'>
+        <div className='max-w-[1170px] h-screen mx-auto flex items-center justify-center'>
             <div className="p-3 w-full md:w-1/2">
                 <form onSubmit={handleLogin} className='w-full'>
                     <div className='relative'>
@@ -64,18 +65,7 @@ const Login = () => {
                     <p className='mx-3 text-lg'>Or Signin With</p>
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-yellow-300 via-blue-500 to-blue-100 border-0 rounded dark:bg-gray-700" />   
                 </div>
-                <div className='flex justify-between gap-5'>
-                <div 
-                className='flex items-center justify-center gap-3 border border-blue-400 py-2 px-2 w-full rounded-md hover:bg-slate-200 cursor-pointer'>
-                    <FcGoogle className='text-xl' />
-                    <span className='text-xl'>Google</span>
-                </div>                    
-                <div 
-                className='flex items-center justify-center gap-3 border border-blue-400 py-2 px-2 w-full rounded-md hover:bg-slate-200 cursor-pointer'>
-                    <FcGoogle className='text-xl' />
-                    <span className='text-xl'>Google</span>
-                </div>                     
-                </div>
+                <GoogleSignIn />
             </div>
             <div className='hidden md:block md:w-1/2'>
                 <img src="https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png" alt="" />

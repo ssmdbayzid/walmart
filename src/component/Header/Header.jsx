@@ -39,11 +39,15 @@ const Header = () => {
                 <li>
                     <a href="/products" className="h-full  font-medium  hover:underline">Products</a>
                 </li>
+               
                 <li>
-                    <a href="#" className="h-full  font-medium  hover:underline">About</a>
+                    <a href="/#" className="h-full  font-medium  hover:underline">About</a>
                 </li>
                 <li>
                     <a href="/contact" className="h-full  font-medium  hover:underline">Contact</a>
+                </li>
+                <li>
+                    <a href="/dashboard" className="h-full  font-medium  hover:underline">Dashboard</a>
                 </li>
               {user?.role ==="admin" &&  <li>
                     <a href="/dashboard" className="h-full  font-medium  hover:underline">Dashboard</a>
@@ -55,7 +59,7 @@ const Header = () => {
 </nav>
 
 <div className={`absolute h-screen z-[99] top-0 w-4/5 overflow-y-auto ${openMenu ? "translate-x-0" : "-translate-x-full"} transition-transform transform ease-in-out duration-300 md:hidden`}>
-  <Menu  />  
+  <Menu openMenu={openMenu} setOpenMenu={setOpenMenu} />  
 </div>
 
 {/* className={`absolute bg-gray-800 text-green-100 w-56 min-h-screen overflow-y-auto transition-transform transform

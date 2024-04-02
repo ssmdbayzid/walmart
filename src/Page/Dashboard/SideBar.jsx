@@ -27,7 +27,7 @@ console.log(user)
 </div>
     <div className="">
       <div className="mb-6">
-        <img src={avatar} alt="" className='w-20 mx-auto'/>
+        <img src={user?.photo ? user?.photo : avatar} alt="" className='w-24 mx-auto'/>
         <p className='text-center font-semibold'>{user?.email}</p>
       </div>
     </div>

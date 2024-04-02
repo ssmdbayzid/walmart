@@ -7,6 +7,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../../utls/setAuthToken';
 import { useSignUp } from '../../utls/useSignUp';
+import GoogleSignIn from '../../component/GoogleSignIn';
 
 
 const SignUp = () => {
@@ -54,18 +55,7 @@ const SignUp = () => {
                     <p className='mx-3 text-lg'>Or Signup With</p>
                     <hr className="w-1/3 h-1 my-8 bg-gradient-to-r from-yellow-300 via-blue-500 to-blue-100 border-0 rounded dark:bg-gray-700" />   
                 </div>
-                <div className='flex justify-between gap-5'>
-                <div 
-                className='flex items-center justify-center gap-3 border border-blue-400 py-2 px-2 w-full rounded-md hover:bg-slate-200 cursor-pointer'>
-                    <FcGoogle className='text-3xl' />
-                    <span className='text-xl'>Google</span>
-                </div>                    
-                <div 
-                className='flex items-center justify-center gap-3 border border-blue-400 py-2 px-2 w-full rounded-md hover:bg-slate-200 cursor-pointer'>
-                    <FaFacebookF className='text-3xl text-blue-600' />
-                    <span className='text-xl'>Facebook</span>
-                </div>                    
-                </div>
+                <GoogleSignIn />
             </div>
             <div className='hidden md:block md:w-1/2'>
                 <img src="https://img.freepik.com/free-vector/business-people-arranging-appointment-digital-booking-app_74855-20006.jpg" alt="" />

@@ -10,38 +10,37 @@ import { HiOutlineMicrophone } from "react-icons/hi2";
 import { FiPrinter } from "react-icons/fi";
 import { PiSpeakerHifiBold } from "react-icons/pi";
 import { IoGameControllerOutline } from "react-icons/io5"
-
+import { GrPersonalComputer } from "react-icons/gr";
 
 export const ItemsCategory = [
   {
-    name: "Laptop",
-    icon: FaLaptop,
-  },
-  {
     name: "Mobile",
     icon: CiMobile3,
-  },
-  {
-    name: "TC & LG",
-    icon: FiMonitor,
-  },
-  {
-    name: "Headphone",
-    icon: MdOutlineHeadphones,
-  },
-  {
-    name: "Camera",
-    icon: IoCameraOutline,
   },
   {
     name: "Watch",
     icon: FiWatch,
   },
   {
+    name: "Laptop",
+    icon: FaLaptop,
+  },
+  {
+    name: "Camera",
+    icon: IoCameraOutline,
+  },
+  {
+    name: "PC",
+    icon: GrPersonalComputer,
+  },
+  {
     name: "Microphone",
     icon: HiOutlineMicrophone,
   },
-
+  {
+    name: "Headphone",
+    icon: MdOutlineHeadphones,
+  },
   {
     name: "Printer",
     icon: FiPrinter,
@@ -51,7 +50,7 @@ export const ItemsCategory = [
     icon: PiSpeakerHifiBold,
   },
   {
-    name: "Xbox",
+    name: "Electronics",
     icon: IoGameControllerOutline,
   },
 ]

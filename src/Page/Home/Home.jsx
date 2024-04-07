@@ -3,8 +3,7 @@ import Products from './Products'
 import Promotion from './Promotion'
 import Banner from './Banner'
 import Brand from './Brand'
-import Subscription from '../../component/Subscription'
-import Footer from '../../component/Footer'
+
 
 
 import Banner2 from './Bannner2'
@@ -22,7 +21,7 @@ const Home = () => {
       <Banner2 />
       <Banner />
       <Brand />
-      <Subscription />      
+      
     </div>
   )
 }

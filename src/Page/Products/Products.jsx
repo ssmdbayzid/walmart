@@ -12,14 +12,18 @@ import FilterMenu from './FilterMenu';
 import ProductsGrid from './ProductsGrid';
 import { useGetProductsQuery } from '../../app/features/productAPISlice';
 import Loader from '../../component/Loader';
+import { useSearchParams } from 'react-router-dom';
 
 
 
 const Products = () => {
 const [openSortMenu, setOpenSortMenu] = useState(false)
+const [queryParams, setQueryParams] = useSearchParams()
 const [menuType, setMenuType] = useState("grid")
 const [selectedCategory, setSelectedCategory] = useState(null);
-const [query, setQuery] = useState("")
+const [query, setQuery] = useState(
+  queryParams.get("category") ? queryParams.get("category") : ""
+)
 const [products, setproducts] = useState(null)
 const {data} = useGetProductsQuery()
 const [loading, setLoading]  = useState(false)
@@ -28,7 +32,7 @@ const [openMobileFilter, setMobileFilter] = useState(false)
 
 
 
-
+console.log(data)
 useEffect(() => {
   setLoading(true);
   setTimeout(()=>{
@@ -75,10 +79,16 @@ let filteredItems;
 
 if(products){
   filteredItems = products?.filter(
-    (item)=> item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1    
+    (item)=>{
+    return   item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1 
+       || item.category.toLowerCase().indexOf(query.toLowerCase()) !== -1 
+      }
+        
   )
 }  
 
+
+console.log(filteredItems)
 const filteredData = (products, selected, query, range) =>{
   
   let filteredProducts = products;
